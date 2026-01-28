@@ -2,16 +2,14 @@ import { ReactTyped } from "react-typed";
 
 export default function Hero() {
   return (
-  <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
-
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
       {/* Background Video */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-      >
+        className="absolute inset-0 w-full h-full object-cover">
         <source src="/video/home.mp4" type="video/mp4" />
       </video>
 
@@ -20,7 +18,6 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl">
-
         {/* Heading */}
         <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
           Software Development Services
@@ -48,26 +45,42 @@ export default function Hero() {
         </div>
 
         {/* Buttons */}
-        <div className="mt-8 flex justify-center gap-4 flex-wrap">
-
+        <div className="mt-8 flex justify-center gap-5">
           <a
             href="#services"
-            className="border border-green-400 text-green-400 px-6 py-3 rounded hover:bg-green-400 hover:text-black transition"
-          >
+            className="
+      border border-green-400
+      text-green-400
+      px-5 py-2.5
+      text-sm
+      rounded
+      hover:bg-green-400
+      hover:text-black
+      transition-all
+      duration-200
+      hover:scale-105
+    ">
             Recent Projects
           </a>
 
           <a
             href="#team"
-            className="bg-green-400 text-black px-6 py-3 rounded font-semibold hover:bg-green-500 transition"
-          >
+            className="
+      bg-green-400
+      text-black
+      px-5 py-2.5
+      text-sm
+      rounded
+      font-semibold
+      hover:bg-green-500
+      transition-all
+      duration-200
+      hover:scale-105
+    ">
             Get Free Estimation
           </a>
-
         </div>
-
       </div>
-
     </section>
   );
 }
