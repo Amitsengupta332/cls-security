@@ -7,7 +7,7 @@
 
 /* Full Width Purple Frame */
 
-.company-frame-wrap {
+/* .company-frame-wrap {
   position: relative;
   overflow: visible;
 }
@@ -27,5 +27,126 @@
 
   pointer-events: none;
   z-index: 0;
+} */
+.companyContactText,
+.companyGroupPhoto {
+  padding: 0;
 }
 
+.groupContactnum,
+.group-card-item {
+  background: #f3f5f9;
+  position: relative;
+  z-index: 999;
+  margin-top: 26px;
+  margin-bottom: 26px;
+}
+
+.groupContactnum {
+  padding-left: 50px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+.group-card-item img {
+  height: 222px;
+}
+
+/* ===== PURPLE DRAW BORDER ===== */
+
+.draw {
+  transition: color 0.45s;
+  width: 77vw;
+
+  /* IMPORTANT */
+  height: 100%;
+
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  transform: skewX(-12deg);
+  z-index: 3;
+}
+
+
+/* .draw {
+  transition: color 0.45s;
+  width: 77vw;
+  height: calc(100% + 0px);
+  display: block;
+  position: absolute;
+  transform: skewX(-12deg);
+  z-index: 3;
+} */
+
+.draw_f-left {
+  left: 51px;
+}
+
+.draw:before,
+.draw:after {
+  content: "";
+  position: absolute;
+  border: 1px solid transparent;
+  width: 0;
+  height: 0;
+}
+
+.draw_color-left:before,
+.draw_color-left:after {
+  bottom: 0;
+  left: 0;
+}
+
+.draw_purple-no-opacity.active:before {
+  border-top-color: #8c66de;
+  border-left-color: #8c66de;
+}
+
+.draw_purple-no-opacity.active:after {
+  border-right-color: #8c66de;
+  border-bottom-color: #8c66de;
+}
+
+.draw_color-left.active:before {
+  width: 100%;
+  height: 100%;
+  transition:
+    height 0.45s ease-out,
+    width 0.45s ease-out 0.45s;
+}
+
+.draw_color-left.active:after {
+  width: 100%;
+  height: 100%;
+  transition:
+    height 0.45s ease-out 0.45s,
+    width 0.45s ease-out;
+}
+
+.company-wrapper {
+  position: relative;
+  overflow: visible;
+  min-height: 260px;
+}
+
+.companyContactText {
+  position: relative;
+}
+
+.company-inner {
+  transform: skewX(-12deg);
+  background: #f3f5f9;
+  border-radius: 12px;
+}
+
+.company-inner > * {
+  transform: skewX(12deg); /* text straight রাখার জন্য */
+}
+.companyContactText {
+  min-height: 280px;
+  display: flex;
+  align-items: stretch;
+}
