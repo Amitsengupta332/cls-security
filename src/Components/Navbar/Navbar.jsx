@@ -1,140 +1,138 @@
-import { useState, useEffect } from "react";
-import logo from "../../assets/img/CLS-SECURITY-NEW-LOGO-2024.png";
+import { FaArrowRight } from "react-icons/fa";
 
-import {
-  FaPhoneAlt,
-  FaFacebookF,
-  FaLinkedinIn,
-  FaSearch,
-  FaUser,
-  FaShoppingCart,
-  FaBars,
-  FaTimes,
-} from "react-icons/fa";
+import img1 from "../../assets/img/maincat/mainpage-img3.webp";
+import img2 from "../../assets/img/maincat/mainpage-img1.webp";
+import img3 from "../../assets/img/maincat/user-support-system-for-mercedes-benz.webp";
+import img4 from "../../assets/img/maincat/homepage-conversational-ai-chatbot-for-bank.webp";
+import img5 from "../../assets/img/maincat/homepage-web-app-for-robotics-manufacturer.webp";
+import img6 from "../../assets/img/maincat/homepage-ml-powered-demand-forecasting-for-ecommerce.webp";
 
-export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  // Scroll detect
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 80);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+export default function Services() {
+  const services = [
+    {
+      title: "NFT Marketplace Development For Patents",
+      image: img1,
+      description:
+        "How developing a frictionless web app empowered an agricultural startup to bring the idea of a real-time AI-powered monitoring system to life and serve farms with 10,000–15,000 plants.",
+    },
+    {
+      title: "Real-time AI-powered Monitoring System",
+      image: img2,
+      description:
+        "Instinctools was approached by IPwe for assistance in revamping their marketplace for monetizing patents encased in NFTs.",
+    },
+    {
+      title: "User Support System For Mercedes-Benz",
+      image: img3,
+      description:
+        "Instinctools helped to revamp the marketplace for monetizing patents encased in NFTs.",
+    },
+    {
+      title: "Conversational AI Chatbot For Bank",
+      image: img4,
+      description:
+        "Instinctools improved the NFT-based patent marketplace to increase transparency and accessibility.",
+    },
+    {
+      title: "Web App For Robotics Manufacturer",
+      image: img5,
+      description:
+        "Instinctools revamped the robotics manufacturer's patent marketplace platform.",
+    },
+    {
+      title: "ML-Powered Demand Forecasting For Ecommerce",
+      image: img6,
+      description:
+        "Instinctools revamped the NFT-based marketplace for improved patent monetization.",
+    },
+  ];
 
   return (
-    <div >
-      <header
-        className={`fixed top-0 w-full z-50 transition-all duration-300
-      ${scrolled ? "bg-black shadow-lg" : "bg-transparent"}`}>
-        {/* ================= TOPBAR ================= */}
-        <div
-          className={`text-white text-sm transition-all duration-300
-        ${scrolled ? "bg-black" : "bg-transparent"}`}>
-          <div className="container mx-auto  px-28 py-2 flex items-center justify-between">
-            {/* Phone */}
-            <div className="flex items-center gap-2">
-              <FaPhoneAlt size={13} />
-              <span>+0621 7163591</span>
-            </div>
+    <section id="services" className="py-24 bg-gray-50">
 
-            {/* Social */}
-            <div className="hidden md:flex gap-4">
-              <FaFacebookF className="cursor-pointer hover:text-green-400" />
-              <FaLinkedinIn className="cursor-pointer hover:text-green-400" />
-            </div>
+      {/* Title */}
+      <div className="text-center mb-14">
+        <span className="text-green-500 text-3xl font-semibold uppercase">
+          Our Service
+        </span>
 
-            {/* Buttons */}
-            <div className="flex gap-3">
-              <button className="border border-white/60 px-3 py-1 rounded text-xs hover:bg-white hover:text-black transition">
-                B2B
-              </button>
+        <h2 className="text-3xl md:text-4xl font-bold mt-3">
+          What We Offer
+        </h2>
+      </div>
 
-              <button className="border border-white/60 px-3 py-1 rounded text-xs hover:bg-white hover:text-black transition">
-                Get Quote
-              </button>
+      {/* Grid */}
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="group bg-white rounded-lg overflow-hidden
+              shadow-md hover:shadow-2xl
+              transition-all duration-500
+              hover:-translate-y-2"
+            >
+
+              {/* Image */}
+              <div className="relative h-[240px] overflow-hidden">
+
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover
+                  transition-all duration-500
+                  group-hover:scale-95"
+                />
+
+                {/* Dark Overlay */}
+                <div
+                  className="absolute inset-0 bg-black/0
+                  group-hover:bg-black/20
+                  transition-all duration-500"
+                ></div>
+
+              </div>
+
+              {/* Content */}
+              <div
+                className="p-6
+                transition-all duration-500
+                group-hover:-translate-y-4"
+              >
+
+                {/* Title + Arrow */}
+                <div className="flex items-start justify-between gap-4">
+
+                  <h3 className="text-lg font-semibold leading-snug">
+                    {service.title}
+                  </h3>
+
+                  {/* Arrow Box */}
+                  <div
+                    className="w-10 h-10 bg-green-500 text-white
+                    flex items-center justify-center
+                    rounded transition-all duration-300
+                    group-hover:bg-green-600"
+                  >
+                    <FaArrowRight size={14} />
+                  </div>
+
+                </div>
+
+                {/* Description */}
+                <p className="text-gray-600 text-sm mt-4 leading-relaxed">
+                  {service.description}
+                </p>
+
+              </div>
+
             </div>
-          </div>
+          ))}
+
         </div>
+      </div>
 
-        {/* ================= MAIN NAV ================= */}
-        <nav>
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="flex items-center justify-between py-4 text-white">
-              {/* Logo */}
-              <img
-                src={logo}
-                alt="CLS Security"
-                className="h-9 object-contain"
-              />
-
-              {/* Desktop Menu */}
-              <ul className="hidden md:flex flex-1 justify-center gap-7 text-sm font-medium">
-                {[
-                  "Engineering",
-                  "Consulting",
-                  "Industries",
-                  "Clients",
-                  "Insights",
-                  "Approach",
-                  "About us",
-                ].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="hover:text-green-400 transition">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Icons */}
-              <div className="flex items-center gap-4 text-lg">
-                <FaSearch className="cursor-pointer hover:text-green-400" />
-                <FaUser className="cursor-pointer hover:text-green-400" />
-                <FaShoppingCart className="cursor-pointer hover:text-green-400" />
-
-                {/* Mobile */}
-                <button
-                  onClick={() => setMobileOpen(!mobileOpen)}
-                  className="md:hidden text-xl">
-                  {mobileOpen ? <FaTimes /> : <FaBars />}
-                </button>
-              </div>
-            </div>
-
-            {/* Mobile Menu */}
-            {mobileOpen && (
-              <div className="md:hidden bg-black text-white border-t border-white/20">
-                <ul className="flex flex-col text-center py-4 space-y-3 text-sm">
-                  {[
-                    "Engineering",
-                    "Consulting",
-                    "Industries",
-                    "Clients",
-                    "Insights",
-                    "Approach",
-                    "About us",
-                  ].map((item) => (
-                    <li key={item}>
-                      <a
-                        href="#"
-                        className="block py-2 hover:bg-white/10"
-                        onClick={() => setMobileOpen(false)}>
-                        {item}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        </nav>
-      </header>
-    </div>
+    </section>
   );
 }

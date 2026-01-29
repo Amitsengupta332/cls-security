@@ -48,51 +48,68 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-20 bg-gray-50">
+    <section id="services" className="py-24 bg-gray-50">
+
       {/* Title */}
-      <div className="text-center mb-12">
-        <span className="text-green-500 text-3xl font-semibold uppercase tracking-wide">
+      <div className="text-center mb-14">
+        <span className="text-green-500 text-3xl font-semibold uppercase">
           Our Service
         </span>
 
-        <h2 className="text-3xl md:text-4xl font-bold mt-2">What We Offer</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mt-3">
+          What We Offer
+        </h2>
       </div>
 
       {/* Grid */}
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+
           {services.map((service, index) => (
             <div
               key={index}
-              className="group bg-white rounded-lg overflow-hidden shadow hover:shadow-xl transition">
+              className="group bg-white rounded-lg overflow-hidden
+              shadow-md hover:shadow-xl
+              transition-all duration-300"
+            >
+
               {/* Image */}
-              <div className="relative h-[260px] overflow-hidden">
+              <div className="relative h-[240px] overflow-hidden">
+
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                  className="w-full h-full object-cover
+                  transition-all duration-500
+                  group-hover:scale-95"
                 />
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition"></div>
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <h3 className="text-lg font-semibold flex items-center gap-2 group-hover:text-green-500 transition">
-                  {service.title}
+              <div
+                className="p-6
+                transition-all duration-300
+                group-hover:-translate-y-3"
+              >
 
+                <h3 className="text-lg font-semibold flex items-center gap-2">
+                  {service.title}
                   <FaArrowRight size={14} />
                 </h3>
 
                 <p className="text-gray-600 text-sm mt-3 leading-relaxed">
                   {service.description}
                 </p>
+
               </div>
+
             </div>
           ))}
+
         </div>
       </div>
+
     </section>
   );
 }
