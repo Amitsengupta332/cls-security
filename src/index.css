@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Exact Purple Frame */
+/* Exact Purple Frame */
+
+/* Full Width Purple Frame */
+
+.company-frame-wrap {
+  position: relative;
+  overflow: visible;
+}
+
+.company-frame {
+  position: absolute;
+  top: 20px;
+  left: -60px;
+  right: -60px;
+  bottom: 20px;
+
+  border: 1.5px solid #8b5cf6;
+
+  transform: skewY(-1.5deg);
+
+  border-radius: 14px;
+
+  pointer-events: none;
+  z-index: 0;
+}
+

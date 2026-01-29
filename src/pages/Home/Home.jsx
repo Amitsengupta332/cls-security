@@ -1,5 +1,6 @@
 import Blog from "../../Components/Blog/Blog";
 import CategoryWithTab from "../../Components/CategoryWithTab/CategoryWithTab";
+import CompanyPortfolio from "../../Components/CompanyPortfolio/CompanyPortfolio";
 import Footer from "../../Components/Footer/Footer";
 import Hero from "../../Components/Hero/Hero";
 import MapSection from "../../Components/MapSection/MapSection";
@@ -19,6 +20,7 @@ const Home = () => {
       <Products />
       <CategoryWithTab/>
       <ProductsSwiper/>
+      <CompanyPortfolio/>
       <Blog />
       <MapSection/>
       <Footer />
