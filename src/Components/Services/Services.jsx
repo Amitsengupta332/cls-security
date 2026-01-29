@@ -69,8 +69,9 @@ export default function Services() {
             <div
               key={index}
               className="group bg-white rounded-lg overflow-hidden
-              shadow-md hover:shadow-xl
-              transition-all duration-300"
+              shadow-md hover:shadow-2xl
+              transition-all duration-500
+              hover:-translate-y-2"
             >
 
               {/* Image */}
@@ -84,21 +85,43 @@ export default function Services() {
                   group-hover:scale-95"
                 />
 
+                {/* Dark Overlay */}
+                <div
+                  className="absolute inset-0 bg-black/0
+                  group-hover:bg-black/20
+                  transition-all duration-500"
+                ></div>
+
               </div>
 
               {/* Content */}
               <div
                 className="p-6
-                transition-all duration-300
-                group-hover:-translate-y-3"
+                transition-all duration-500
+                group-hover:-translate-y-4"
               >
 
-                <h3 className="text-lg font-semibold flex items-center gap-2">
-                  {service.title}
-                  <FaArrowRight size={14} />
-                </h3>
+                {/* Title + Arrow */}
+                <div className="flex items-start justify-between gap-4">
 
-                <p className="text-gray-600 text-sm mt-3 leading-relaxed">
+                  <h3 className="text-lg font-semibold leading-snug">
+                    {service.title}
+                  </h3>
+
+                  {/* Arrow Box */}
+                  <div
+                    className="w-10 h-10 bg-green-500 text-white
+                    flex items-center justify-center
+                    rounded transition-all duration-300
+                    group-hover:bg-green-600"
+                  >
+                    <FaArrowRight size={14} />
+                  </div>
+
+                </div>
+
+                {/* Description */}
+                <p className="text-gray-600 text-sm mt-4 leading-relaxed">
                   {service.description}
                 </p>
 
