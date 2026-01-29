@@ -7,6 +7,7 @@ import MapSection from "../../Components/MapSection/MapSection";
 import Navbar from "../../Components/Navbar/Navbar";
 import Products from "../../Components/Products/Products";
 import ProductsSwiper from "../../Components/ProductsSwiper/ProductsSwiper";
+import SeoContent from "../../Components/SeoContent/SeoContent";
 import Services from "../../Components/Services/Services";
 import TextYoutube from "../../Components/TextYoutube/TextYoutube";
 
@@ -22,6 +23,7 @@ const Home = () => {
       <ProductsSwiper/>
       <CompanyPortfolio/>
       <Blog />
+      <SeoContent/>
       <MapSection/>
       <Footer />
     </div>
