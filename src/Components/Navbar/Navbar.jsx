@@ -221,7 +221,7 @@ export default function Navbar() {
                   className="
       absolute left-1/2 top-[100%] mt-4
       -translate-x-1/2
-      w-[1140px] max-w-[95vw]
+      w-full max-w-full
       bg-[#f3f5f9] text-black
       shadow-xl z-40
     ">
@@ -348,6 +348,7 @@ export default function Navbar() {
                     </div>
                   </div>
                 )}
+                   w-[1140px] max-w-[95vw]
               </li> */}
 
               {/* ================= INDUSTRIES ================= */}
@@ -359,65 +360,75 @@ export default function Navbar() {
 
                 {activeMenu === "ind" && (
                   <div
+                    onMouseEnter={() => setActiveMenu("ind")}
+                    onMouseLeave={() => setActiveMenu(null)}
                     className="
-        absolute
-        left-1/2 -translate-x-1/2
-        top-full mt-4
-        w-[1140px] max-w-[95vw]
-        bg-[#f3f5f9]
-        text-black
-        shadow-xl
+        absolute left-1/2 top-full
+        -translate-x-1/2
+        w-screen
+        bg-[#f3f5f9] text-black
+        shadow-xl z-40
+        border-t border-gray-200
       ">
-                    <div className="grid grid-cols-12 gap-6 p-8">
-                      {/* Col 1 */}
-                      <div className="col-span-3 space-y-3 text-sm">
-                        {[
-                          "Healthcare",
-                          "Healthcare",
-                          "Manufacturing",
-                          "Logistics",
-                          "Automotive",
-                          "Entertainment and Media",
-                        ].map((i) => (
-                          <a key={i} href="#" className="block hover:underline">
-                            {i}
-                          </a>
-                        ))}
-                      </div>
+                    {/* centered content like Consulting */}
+                    <div className="mx-auto max-w-[1140px] px-6 py-8">
+                      <div className="grid grid-cols-12 gap-6">
+                        {/* Col 1 */}
+                        <div className="col-span-3 space-y-3 text-sm">
+                          {[
+                            "Healthcare",
+                            "Healthcare",
+                            "Manufacturing",
+                            "Logistics",
+                            "Automotive",
+                            "Entertainment and Media",
+                          ].map((i) => (
+                            <a
+                              key={i}
+                              href="#"
+                              className="block hover:underline">
+                              {i}
+                            </a>
+                          ))}
+                        </div>
 
-                      {/* Col 2 */}
-                      <div className="col-span-3 space-y-3 text-sm">
-                        {[
-                          "Ecommerce",
-                          "Ad-Tech",
-                          "Cryptocurrency",
-                          "Education and E-learning",
-                          "Technology",
-                        ].map((i) => (
-                          <a key={i} href="#" className="block hover:underline">
-                            {i}
-                          </a>
-                        ))}
-                      </div>
+                        {/* Col 2 */}
+                        <div className="col-span-3 space-y-3 text-sm">
+                          {[
+                            "Ecommerce",
+                            "Ad-Tech",
+                            "Cryptocurrency",
+                            "Education and E-learning",
+                            "Technology",
+                          ].map((i) => (
+                            <a
+                              key={i}
+                              href="#"
+                              className="block hover:underline">
+                              {i}
+                            </a>
+                          ))}
+                        </div>
 
-                      {/* Quote */}
-                      <div className="col-span-6 bg-[#edf0f7] skew-x-[-15deg] px-8 py-6">
-                        <div className="skew-x-[12deg]">
-                          <p className="italic text-sm text-gray-600 leading-relaxed">
-                            * The team is dependable when it comes to managing
-                            time and finances...
-                          </p>
+                        {/* Quote */}
+                        <div className="col-span-6 bg-[#edf0f7] skew-x-[-15deg] px-8 py-6">
+                          <div className="skew-x-[12deg]">
+                            <p className="italic text-sm text-gray-600 leading-relaxed">
+                              * The team is dependable when it comes to managing
+                              time and finances...
+                            </p>
 
-                          <div className="flex items-center gap-4 mt-5">
-                            <img
-                              src="https://cdn-hokdj.nitrocdn.com/xTVZIceRirelUWcvTeSrIReGRrnfbTIP/assets/images/optimized/rev-7cec5d5/www.instinctools.com/wp-content/uploads/2022/03/lawpilots-logo-size2.png"
-                              className="h-8"
-                              alt=""
-                            />
+                            <div className="flex items-center gap-4 mt-5">
+                              <img
+                                src="https://cdn-hokdj.nitrocdn.com/xTVZIceRirelUWcvTeSrIReGRrnfbTIP/assets/images/optimized/rev-7cec5d5/www.instinctools.com/wp-content/uploads/2022/03/lawpilots-logo-size2.png"
+                                className="h-8"
+                                alt=""
+                              />
 
-                            <span className="text-xs text-gray-600">
-                              Sebastian Belle
-                            </span>
+                              <span className="text-xs text-gray-600">
+                                Sebastian Belle
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
