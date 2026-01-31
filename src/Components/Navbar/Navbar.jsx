@@ -219,117 +219,52 @@ export default function Navbar() {
                   onMouseEnter={() => setActiveMenu("con")}
                   onMouseLeave={() => setActiveMenu(null)}
                   className="
-      absolute left-1/2 top-[100%] mt-4
+      absolute left-1/2 top-full
       -translate-x-1/2
-      w-full max-w-full
+      w-screen
       bg-[#f3f5f9] text-black
       shadow-xl z-40
+      border-t border-gray-200
     ">
-                  <div className="grid grid-cols-12 gap-6 p-8">
-                    {/* Col 1 */}
-                    <div className="col-span-3 space-y-3 text-sm">
-                      {[
-                        "Innovation Consulting",
-                        "Product Design",
-                        "Technology Enabled",
-                        "Technology Enabled",
-                        "AI & ML Consulting",
-                      ].map((i) => (
-                        <a key={i} href="#" className="block hover:underline">
-                          {i}
-                        </a>
-                      ))}
-                    </div>
-
-                    {/* Col 2 */}
-                    <div className="col-span-3 space-y-3 text-sm">
-                      {[
-                        "Data-driven Transformation",
-                        "CRM Consulting",
-                        "CRM Consulting",
-                        "CRM Consulting",
-                        "Mega menu item",
-                      ].map((i) => (
-                        <a key={i} href="#" className="block hover:underline">
-                          {i}
-                        </a>
-                      ))}
-                    </div>
-
-                    {/* Quote */}
-                    <div className="col-span-6 bg-[#edf0f7] skew-x-[-15deg] px-8 py-6">
-                      <div className="skew-x-[12deg]">
-                        <p className="italic text-sm text-gray-600 leading-relaxed">
-                          *instinctools' work has led to a continuously growing
-                          and satisfied customer base...
-                        </p>
-
-                        <div className="flex items-center gap-4 mt-5">
-                          <img
-                            src="https://cdn-hokdj.nitrocdn.com/xTVZIceRirelUWcvTeSrIReGRrnfbTIP/assets/images/optimized/rev-7cec5d5/www.instinctools.com/wp-content/uploads/2022/03/lawpilots-logo-size2.png"
-                            className="h-8"
-                            alt=""
-                          />
-                          <span className="text-xs text-gray-600">
-                            Sebastian Belle, Head of Engineering
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* ================= INDUSTRIES ================= */}
-              {/* <li
-                className="relative"
-                onMouseEnter={() => setActiveMenu("ind")}
-                onMouseLeave={() => setActiveMenu(null)}>
-                <button className="hover:text-[#9c0]">Industries ▾</button>
-
-                {activeMenu === "ind" && (
-                  <div className="absolute left-0 top-full w-screen bg-[#f3f5f9] text-black border-t border-gray-200 shadow-sm">
-                    <div className="mx-auto max-w-7xl grid grid-cols-12 gap-6 px-6 py-8">
+                  {/* centered container */}
+                  <div className="mx-auto max-w-[1140px] px-6 py-8">
+                    <div className="grid grid-cols-12 gap-6">
+                      {/* Col 1 */}
                       <div className="col-span-3 space-y-3 text-sm">
                         {[
-                          "Healthcare",
-                          "Healthcare",
-                          "Manufacturing",
-                          "Logistics",
-                          "Automotive",
-                          "Entertainment and Media",
+                          "Innovation Consulting",
+                          "Product Design",
+                          "Technology Enabled",
+                          "Technology Enabled",
+                          "AI & ML Consulting",
                         ].map((i) => (
-                          <a
-                            key={i}
-                            href="#"
-                            className="block hover:text-[#9c0]">
+                          <a key={i} href="#" className="block hover:underline">
                             {i}
                           </a>
                         ))}
                       </div>
 
+                      {/* Col 2 */}
                       <div className="col-span-3 space-y-3 text-sm">
                         {[
-                          "Ecommerce",
-                          "Ad-Tech",
-                          "Cryptocurrency",
-                          "Education and E-learning",
-                          "Technology",
+                          "Data-driven Transformation",
+                          "CRM Consulting",
+                          "CRM Consulting",
+                          "CRM Consulting",
+                          "Mega menu item",
                         ].map((i) => (
-                          <a
-                            key={i}
-                            href="#"
-                            className="block hover:text-[#9c0]">
+                          <a key={i} href="#" className="block hover:underline">
                             {i}
                           </a>
                         ))}
                       </div>
 
+                      {/* Quote */}
                       <div className="col-span-6 bg-[#edf0f7] skew-x-[-15deg] px-8 py-6">
                         <div className="skew-x-[12deg]">
                           <p className="italic text-sm text-gray-600 leading-relaxed">
-                            * The team is dependable when it comes to managing
-                            time and finances...
+                            *instinctools&apos; work has led to a continuously
+                            growing and satisfied customer base...
                           </p>
 
                           <div className="flex items-center gap-4 mt-5">
@@ -340,17 +275,15 @@ export default function Navbar() {
                             />
 
                             <span className="text-xs text-gray-600">
-                              Sebastian Belle
+                              Sebastian Belle, Head of Engineering
                             </span>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                )}
-                   w-[1140px] max-w-[95vw]
-              </li> */}
-
+                </div>
+              )}
               {/* ================= INDUSTRIES ================= */}
               <li
                 className="relative"

@@ -54,7 +54,7 @@ export default function Hero() {
       px-5 py-2.5
       text-sm
       rounded
-      hover:bg-green-400
+      hover:bg-[#8cbb00]
       hover:text-black
       transition-all
       duration-200
@@ -66,13 +66,13 @@ export default function Hero() {
           <a
             href="#team"
             className="
-      bg-green-400
+       bg-[#9c0]
       text-black
       px-5 py-2.5
       text-sm
       rounded
       font-semibold
-      hover:bg-green-500
+      hover:bg-[#8cbb00]
       transition-all
       duration-200
       hover:scale-105
