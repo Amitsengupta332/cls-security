@@ -1,3 +1,5 @@
+//
+
 import { FaArrowRight } from "react-icons/fa";
 
 import img1 from "../../assets/img/maincat/mainpage-img3.webp";
@@ -48,91 +50,103 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-24 bg-gray-50">
-
-      {/* Title */}
-      <div className="text-center mb-14">
-        <span className="text-green-500 text-3xl font-semibold uppercase">
-          Our Service
-        </span>
-
-        <h2 className="text-3xl md:text-4xl font-bold mt-3">
-          What We Offer
-        </h2>
-      </div>
-
-      {/* Grid */}
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="group bg-white rounded-lg overflow-hidden
-              shadow-md hover:shadow-2xl
-              transition-all duration-500
-              hover:-translate-y-2"
-            >
-
-              {/* Image */}
-              <div className="relative h-[240px] overflow-hidden">
-
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover
-                  transition-all duration-500
-                  group-hover:scale-95"
-                />
-
-                {/* Dark Overlay */}
-                <div
-                  className="absolute inset-0 bg-black/0
-                  group-hover:bg-black/20
-                  transition-all duration-500"
-                ></div>
-
-              </div>
-
-              {/* Content */}
-              <div
-                className="p-6
-                transition-all duration-500
-                group-hover:-translate-y-4"
-              >
-
-                {/* Title + Arrow */}
-                <div className="flex items-start justify-between gap-4">
-
-                  <h3 className="text-lg font-semibold leading-snug">
-                    {service.title}
-                  </h3>
-
-                  {/* Arrow Box */}
-                  <div
-                    className="w-10 h-10 bg-green-500 text-white
-                    flex items-center justify-center
-                    rounded transition-all duration-300
-                    group-hover:bg-green-600"
-                  >
-                    <FaArrowRight size={14} />
-                  </div>
-
-                </div>
-
-                {/* Description */}
-                <p className="text-gray-600 text-sm mt-4 leading-relaxed">
-                  {service.description}
-                </p>
-
-              </div>
-
-            </div>
-          ))}
-
+    <section id="services" className="bg-[#f9f9f9] py-[60px] pb-[80px]">
+      {/* Title (matches your .section-title div) */}
+      <div className="text-center pb-[60px]">
+        <div className="mt-[10px] text-[32px] font-bold text-[#433f39]">
+          <span>Our Service</span>
         </div>
       </div>
 
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid grid-cols-1 gap-y-8 gap-x-6 sm:grid-cols-2 xl:grid-cols-3">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="relative"
+              // Bootstrap columns were just layout; Tailwind grid handles it
+            >
+              <a
+                href={service.link}
+                className={[
+                  "group block overflow-hidden bg-white",
+                  "border border-[#dee4ea]",
+                  "shadow-[0_8px_10px_hsla(0,0%,65%,0.05)]",
+                ].join(" ")}
+                style={{ height: 345 }} // matches your PHP inline style
+              >
+                {/* Image block (245px -> 80px on hover) */}
+                <div className="relative h-[245px] w-full transition-[height] duration-[800ms] group-hover:h-[80px]">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="h-full w-full object-cover"
+                  />
+                  {/* overlay always present (rgba(0,0,0,.25)) */}
+                  <div className="absolute inset-0 bg-black/25" />
+                </div>
+
+                {/* Content area */}
+                <div
+                  className={[
+                    "flex h-[calc(100%-245px)] min-h-[100px] flex-col justify-center overflow-hidden",
+                    "px-[40px] py-[22px] pr-[30px]",
+                    "transition-[height] duration-300 group-hover:h-auto group-hover:max-h-[calc(100%-80px)]",
+                    // Mobile overrides from your CSS
+                    "max-md:px-[10px] max-md:py-[5px] max-md:pr-[10px]",
+                  ].join(" ")}>
+                  {/* Title */}
+                  <h3
+                    className={[
+                      "relative text-[#22282d]",
+                      "text-[18px] leading-[1.333em] tracking-[-0.32px]",
+                      "pr-[80px]",
+                      "max-md:text-[16px] max-md:pr-[36px]",
+                    ].join(" ")}>
+                    {service.title}
+
+                    {/* Arrow box */}
+                    <span
+                      className={[
+                        "absolute right-0 top-1/2 flex h-[45px] w-[50px] -translate-y-1/2 items-center justify-center",
+                        "bg-[#9c0] skew-x-[-12deg]",
+                      ].join(" ")}>
+                      <svg
+                        viewBox="0 0 31 31"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-[28px] w-[28px] skew-x-[12deg]">
+                        <path
+                          d="M7.195 15.289h17.5M15.945 6.539l8.75 8.75-8.75 8.75"
+                          stroke="white"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </h3>
+
+                  {/* Description (Tailwind-only replacement for height:auto transition) */}
+                  <div
+                    className={[
+                      "overflow-hidden text-[14px] font-normal leading-[1.22] text-[#171e2a]",
+                      // start hidden
+                      "max-h-0 opacity-0",
+                      // animate open (delay 500ms like your CSS)
+                      "transition-[max-height,opacity,margin-top] duration-300 delay-500",
+                      "group-hover:max-h-[220px] group-hover:opacity-100 group-hover:mt-[30px]",
+                      // mobile: margin-top 0 on hover (from your CSS)
+                      "max-md:group-hover:mt-0",
+                    ].join(" ")}>
+                    <p>{service.description}</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
