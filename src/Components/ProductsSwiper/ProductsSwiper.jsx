@@ -6,8 +6,19 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import { FaPlus, FaMinus, FaShoppingCart, FaPhoneAlt, FaStar } from "react-icons/fa";
+import {
+  FaPlus,
+  FaMinus,
+  FaShoppingCart,
+  FaPhoneAlt,
+  FaStar,
+} from "react-icons/fa";
+
 import productImg from "../../assets/img/products/hikvision.webp";
+
+// ✅ your downloaded svg arrows
+import leftArrow from "../../assets/icons/Left_Arrow.svg";
+import rightArrow from "../../assets/icons/Righ_Arrow.svg";
 
 export default function ProductsSwiper() {
   const products = [
@@ -68,6 +79,7 @@ export default function ProductsSwiper() {
         <div
           className="
             relative
+
             /* ✅ Swiper arrows css override via tailwind arbitrary selectors */
             [&_.swiper-button-next]:h-[34px]
             [&_.swiper-button-next]:w-[34px]
@@ -107,6 +119,8 @@ export default function ProductsSwiper() {
               [&_.swiper-wrapper]:items-stretch
               [&_.swiper-slide]:h-auto
               [&_.swiper-slide]:flex
+
+              /* pagination */
               [&_.swiper-pagination]:relative
               [&_.swiper-pagination]:mt-[20px]
               [&_.swiper-pagination]:bottom-0
@@ -148,7 +162,11 @@ export default function ProductsSwiper() {
                       </a>
 
                       {/* Title + Rating + SKU */}
-                      <a href={p.link} className="block" aria-label="visit product">
+                      <a
+                        href={p.link}
+                        className="block"
+                        aria-label="visit product"
+                      >
                         <h3
                           className="
                             mt-[25px] mb-[20px]
@@ -198,7 +216,9 @@ export default function ProductsSwiper() {
                               <span className="block text-[12px]">Statt</span>
                               <span className="text-red-500 line-through">
                                 <span className="text-black">€</span>
-                                <span className="text-black">{p.oldPrice},</span>
+                                <span className="text-black">
+                                  {p.oldPrice},
+                                </span>
                                 <span>-</span>
                               </span>
                             </div>
@@ -225,38 +245,30 @@ export default function ProductsSwiper() {
               </SwiperSlide>
             ))}
 
-            {/* ✅ KEEP Swiper structure, just custom icons inside buttons */}
+            {/* ✅ KEEP Swiper structure, just custom SVG icons inside buttons */}
             <div className="swiper-button-prev">
               <span className="skew-x-[12deg] flex items-center justify-center">
-                <BlueArrow direction="left" />
+                <img
+                  src={leftArrow}
+                  alt="Previous"
+                  className="h-[18px] w-[18px] object-contain"
+                />
               </span>
             </div>
+
             <div className="swiper-button-next">
               <span className="skew-x-[12deg] flex items-center justify-center">
-                <BlueArrow direction="right" />
+                <img
+                  src={rightArrow}
+                  alt="Next"
+                  className="h-[18px] w-[18px] object-contain"
+                />
               </span>
             </div>
           </Swiper>
         </div>
       </div>
     </section>
-  );
-}
-
-function BlueArrow({ direction = "left" }) {
-  const rotate = direction === "right" ? "rotate(180 12 12)" : undefined;
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <g transform={rotate ? `rotate(180 12 12)` : ""}>
-        <path
-          d="M15 18l-6-6 6-6"
-          stroke="#1e76d0"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </g>
-    </svg>
   );
 }
 
