@@ -1,0 +1,254 @@
+/* =========================
+   Product Section CSS
+   Pixel-perfect from PHP
+   ========================= */
+
+/* If you are NOT using Bootstrap in React, keep these simple helpers.
+   If you ARE using Bootstrap, you can remove this block. */
+.container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.gy-4 {
+  row-gap: 24px;
+}
+
+/* Section spacing (matches your global section rules) */
+.section {
+  padding: 60px 0px 80px 0px;
+}
+
+/* Light background (matches your vars) */
+.light-background {
+  background: #f9f9f9;
+}
+
+/* Title (matches .section-title div from your CSS) */
+.section-title {
+  text-align: center;
+  padding-bottom: 60px;
+  position: relative;
+}
+.section-title div {
+  color: #433f39;
+  margin: 10px 0 0 0;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* -------------------------
+   Product Card / Grid
+-------------------------- */
+
+.custom-padding { padding: 5px; }
+.custom-card-body { text-align: center; }
+
+.productsgrid .card-item {
+  background: #fff;
+  padding: 0px 10px;
+  transition: all ease-in-out 0.3s;
+  height: 100%;
+  position: relative;
+}
+
+.productsgrid .card-item:hover {
+  box-shadow: 0 5px 83px 0 rgba(27, 26, 26, 0.12);
+}
+
+/* Brand */
+.product_container .brand_photo_list { text-align: left; }
+.product_container .brand_photo_list .brandphoto {
+  object-fit: contain;
+  width: 110px;
+  height: 45px;
+}
+
+/* Product Image */
+.product_container .img_box {
+  object-fit: contain;
+  max-width: 260px;
+  margin: 0 auto;
+  max-height: 240px;
+  width: 200px;
+  height: 200px;
+  transition: 1s ease;
+}
+
+.product_container:hover .img_box {
+  transform: scale(0.8);
+  transition: 1s ease;
+}
+
+/* Title clamp */
+.productTitle_name {
+  display: -webkit-box;
+  height: 55.2px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 21px;
+  font-size: 19px;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.productTitle_name {
+  color: rgba(80, 95, 107);
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 500;
+}
+
+/* Rating + SKU */
+.ratingpart span,
+.skupart span {
+  color: #868686;
+}
+
+.starRating i,
+.currentPrice {
+  font-size: 35px;
+}
+
+/* price layout */
+.regular-price { display: inline-grid; }
+.old-price {
+  display: block;
+  font: 17px / 20px Eurostile-Bol, Arial, Helvetica, sans-serif;
+  letter-spacing: 0px;
+}
+.instead-price { font-size: 12px; letter-spacing: 0; }
+
+.strike-through { color: red; text-decoration: line-through; }
+.price-label { display: none; }
+
+.currency, .price { color: #000; }
+
+.discount-price-label {
+  display: inline-block;
+  clear: both;
+  line-height: 11px;
+  font-size: 11px;
+}
+.home-hidden:last-child { color: #9c0; }
+
+/* Footer */
+.productFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px !important;
+}
+
+/* Qty */
+.qty-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d4d4d4;
+  margin-right: 20px;
+}
+
+.qty-container .qty-btn-minus,
+.qty-container .qty-btn-plus {
+  border: none;
+  padding: 10px 13px;
+  font-size: 10px;
+  height: 38px;
+  width: 38px;
+  transition: 0.3s;
+  background: none;
+}
+.qty-container .qty-btn-minus { margin-right: -1px; }
+.qty-container .qty-btn-plus { margin-left: -1px; }
+
+.qty-container .input-qty {
+  text-align: center;
+  border: none;
+  background-color: #9c0;
+  color: #fff;
+}
+
+/* Cart */
+.readMoreLink .global-button {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: .03em;
+  transform: skewX(-12deg);
+  transition: all .3s ease;
+}
+.readMoreLink .btn-main {
+  text-transform: uppercase;
+  color: #9c0;
+  border: 2px solid #9c0;
+  background-color: transparent;
+  border-radius: inherit;
+  height: 40px;
+  padding: 0 40px;
+}
+.readMoreLink .global-button-content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: skewX(12deg);
+  z-index: 1;
+  font-size: 20px;
+}
+
+/* Call-for-price button behavior from your CSS */
+.callpricehidden { visibility: hidden; opacity: 0; }
+
+.phone_number_call2 {
+  position: absolute;
+  left: 0;
+  text-align: center;
+  top: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.productFooter:hover > .phone_number_call2 {
+  visibility: visible;
+  opacity: 1;
+  font-size: 15px;
+  font-weight: 800;
+  border-radius: 5px;
+  padding: 7px 0px;
+  width: 100%;
+  color: #fff;
+}
+
+.phone_number_call2 span { color: #fff; }
+.productFooter:hover > .call_for_button {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* -------------------------
+   Responsive pieces you pasted
+-------------------------- */
+@media (min-width: 1200px) {
+  .currentPrice { font-size: 25px; }
+  .qty-container { padding: 0; }
+}
+
+@media all and (max-width: 992px) {
+  .currentPrice { font-size: 25px; }
+  .qty-container { padding: 0; }
+}
+
+/* Optional: If you want to mimic your "hidden" behavior from PHP */
+.hidden { display: none !important; }
