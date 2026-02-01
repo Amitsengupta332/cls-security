@@ -1,0 +1,70 @@
+/* This matches your pasted CSS exactly (Blog section only) */
+
+.blog-sectionblog-section .blog {
+  position: relative;
+}
+
+.blog-sectionblog-section .blog .pic {
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.blog-sectionblog-section .blog .blog-info {
+  background-color: var(--surface-color);
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 70%;
+  left: 20px;
+  right: 20px;
+  padding: 20px 15px;
+  overflow: hidden;
+  transition: 0.5s;
+  opacity: 0.7;
+}
+
+.blog-sectionblog-section .blog h4 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.blog-sectionblog-section .blog h4::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: color-mix(in srgb, var(--default-color), transparent 60%);
+  bottom: 0;
+  left: 0;
+}
+
+.blog-sectionblog-section .blog span {
+  font-style: normal;
+  font-size: 13px;
+}
+
+.blog-sectionblog-section .blog .social a {
+  transition: color 0.3s;
+  color: #9c0;
+}
+
+.blog-sectionblog-section .blog .social a:hover {
+  color: #444;
+}
+
+.viewboreBtn {
+  margin-top: 65px;
+  position: relative;
+  overflow: hidden;
+  top: 15%;
+}
+
+/* Your arrow hover translate depends on these exact class names */
+.redMore:hover .icon-keyboard_arrow_right {
+  -webkit-transform: translateX(5px);
+  -moz-transform: translateX(5px);
+  transform: translateX(5px);
+}

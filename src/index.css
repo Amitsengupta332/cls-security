@@ -37,7 +37,8 @@
 .group-card-item {
   background: #f3f5f9;
   position: relative;
-  z-index: 999;
+  z-index: 0;
+  /* z-index: 999; */
   margin-top: 26px;
   margin-bottom: 26px;
 }
@@ -67,7 +68,8 @@
   bottom: 0;
 
   transform: skewX(-12deg);
-  z-index: 3;
+  /* z-index: 3; */
+  z-index: 0;
 }
 
 
@@ -143,7 +145,7 @@
 }
 
 .company-inner > * {
-  transform: skewX(12deg); /* text straight রাখার জন্য */
+  transform: skewX(12deg); 
 }
 .companyContactText {
   min-height: 280px;
