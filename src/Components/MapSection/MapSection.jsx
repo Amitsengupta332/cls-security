@@ -1,6 +1,6 @@
 export default function MapSection() {
   return (
-    <section className="py-20 bg-white">
+    <section className="pt-8 pb-2 bg-white">
       {/* Title */}
       <div className="text-center mb-10">
         <h2 className="text-3xl md:text-4xl font-bold">Find Our Store</h2>
