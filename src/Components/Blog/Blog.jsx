@@ -66,13 +66,13 @@ export default function Blog() {
                     text-[color:rgba(68,68,68,0.8)]
                   ">
                   {/* Title + underline */}
-                  <h4 className="relative mb-[10px] pb-[10px] text-[20px]">
+                  <h4 className="relative mb-[10px] text-black pb-[10px] text-[20px]">
                     {blog.title}
                     <span className="absolute left-0 bottom-0 block h-px w-[50px] bg-[rgba(68,68,68,0.4)]" />
                   </h4>
 
                   {/* Description */}
-                  <span className="text-[13px] block">{blog.description}</span>
+                  <span className="text-[13px] text-black block">{blog.description}</span>
 
                   {/* Read More */}
                   <div className="mt-3">
