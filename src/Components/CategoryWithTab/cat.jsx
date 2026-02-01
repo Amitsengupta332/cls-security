@@ -5,9 +5,21 @@ import youtubeImg from "../../assets/img/security-youtube.jpg";
 
 export default function CategoryWithTab() {
   const tabs = [
-    { id: "camera", label: "ÜBERWACHUNGSKAMERA", order: ["text", "video"] },
-    { id: "alarm", label: "ALARMTECHNIK", order: ["video", "text"] },
-    { id: "record", label: "AUFZEICHNUNGSGERÄTE", order: ["text", "video"] },
+    {
+      id: "camera",
+      label: "ÜBERWACHUNGSKAMERA",
+      order: ["text", "video"],
+    },
+    {
+      id: "alarm",
+      label: "ALARMTECHNIK",
+      order: ["video", "text"],
+    },
+    {
+      id: "record",
+      label: "AUFZEICHNUNGSGERÄTE",
+      order: ["text", "video"],
+    },
   ];
 
   const [active, setActive] = useState(tabs[0]);
@@ -32,20 +44,25 @@ export default function CategoryWithTab() {
           "Duis aute irure dolor in reprehenderit in voluptate velit.",
         ].map((item, i) => (
           <li key={i} className="flex gap-3 items-start">
-            <span className="w-4 h-4 bg-[#9c0] mt-1" />
-            <span className="text-gray-700">{item}</span>
+            <span className="w-4 h-4 bg-lime-500 mt-1"></span>
+            <span>{item}</span>
           </li>
         ))}
       </ul>
 
-      {/* ✅ Buttons with animation */}
-      <div className="flex justify-between gap-6 flex-wrap mt-6">
-        <a href="#" className="cls-btn">
-          <span className="cls-btn-inner">0621 7163591</span>
+      <div className="flex gap-4 flex-wrap">
+        <a
+          href="#"
+          className="border-2 border-lime-500 text-lime-600 px-6 py-3 font-medium hover:bg-lime-500 hover:text-white transition"
+        >
+          0621 7163591
         </a>
 
-        <a href="#" className="cls-btn">
-          <span className="cls-btn-inner">TERMIN</span>
+        <a
+          href="#"
+          className="border-2 border-lime-500 text-lime-600 px-6 py-3 font-medium hover:bg-lime-500 hover:text-white transition"
+        >
+          TERMIN
         </a>
       </div>
     </div>
@@ -59,7 +76,8 @@ export default function CategoryWithTab() {
         alt="Youtube"
         className="w-full h-[420px] object-cover"
       />
-      <div className="absolute inset-0 bg-black/25" />
+
+      <div className="absolute inset-0 bg-black/25"></div>
 
       <a
         href="https://www.youtube.com/watch?v=nrJtHemSPW4"
@@ -67,7 +85,7 @@ export default function CategoryWithTab() {
         rel="noreferrer"
         className="absolute inset-0 flex items-center justify-center"
       >
-        <div className="w-24 h-24 border-2 border-[#9c0] rounded-full flex items-center justify-center">
+        <div className="w-24 h-24 border-2 border-lime-400 rounded-full flex items-center justify-center">
           <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
             <FaPlay className="text-white ml-1" />
           </div>
@@ -80,86 +98,48 @@ export default function CategoryWithTab() {
     </div>
   );
 
+  /* ================= MAIN ================= */
   return (
     <section id="categoryWithTab" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
+
         {/* Tabs */}
         <div className="flex justify-center gap-4 mb-16 flex-wrap">
+
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActive(tab)}
               className={`
                 px-8 py-3 uppercase italic font-semibold
-                border-2 border-[#9c0]
+                border-2 border-lime-500
                 skew-x-[-12deg]
-                transition-all duration-300
+                transition
                 ${
                   active.id === tab.id
-                    ? "bg-[#9c0] text-black"
-                    : "text-[#9c0] hover:bg-[#9c0]/10"
+                    ? "bg-lime-500 text-white"
+                    : "text-lime-600 hover:bg-lime-100"
                 }
               `}
             >
-              <span className="skew-x-[12deg] inline-block">{tab.label}</span>
+              <span className="skew-x-[12deg] inline-block">
+                {tab.label}
+              </span>
             </button>
           ))}
+
         </div>
 
         {/* Content */}
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 items-center">
+
           {active.order.map((item, i) =>
             item === "text" ? <TextBox key={i} /> : <VideoBox key={i} />
           )}
+
         </div>
+
       </div>
-
-      {/* ✅ Button animation CSS (global-button like PHP) */}
-      <style>{`
-        .cls-btn{
-          position:relative;
-          display:inline-flex;
-          align-items:center;
-          justify-content:center;
-          height:46px;
-          min-width:200px;
-          border:2px solid #9c0;
-          color:#9c0;
-          font-size:14px;
-          font-weight:600;
-          text-transform:uppercase;
-          transform:skewX(-12deg);
-          overflow:hidden;
-          transition:all .3s ease;
-        }
-
-        .cls-btn::before{
-          content:"";
-          position:absolute;
-          left:0;
-          top:0;
-          width:0;
-          height:100%;
-          background:#8cbb00;
-          transition:all .3s ease;
-          z-index:0;
-        }
-
-        .cls-btn:hover::before{
-          width:100%;
-        }
-
-        .cls-btn:hover{
-          color:#fff;
-          border-color:#8cbb00;
-        }
-
-        .cls-btn-inner{
-          position:relative;
-          z-index:1;
-          transform:skewX(12deg);
-        }
-      `}</style>
     </section>
   );
 }
