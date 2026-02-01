@@ -72,7 +72,6 @@
   z-index: 0;
 }
 
-
 /* .draw {
   transition: color 0.45s;
   width: 77vw;
@@ -145,10 +144,53 @@
 }
 
 .company-inner > * {
-  transform: skewX(12deg); 
+  transform: skewX(12deg);
 }
 .companyContactText {
   min-height: 280px;
   display: flex;
   align-items: stretch;
+}
+
+/* =========================================
+   CLS Product Swiper: Arrow design override
+   (match your PHP: green skew button + white icon)
+========================================= */
+
+/* make arrow buttons green + skew */
+#productsgrid .swiper-button-next,
+#productsgrid .swiper-button-prev,
+.products-wrap-swiper .swiper-button-next,
+.products-wrap-swiper .swiper-button-prev {
+  width: 44px;
+  height: 44px;
+  background: #9c0;
+  transform: skewX(-12deg);
+  border-radius: 0; /* php style: not round */
+}
+
+/* icon size + color */
+#productsgrid .swiper-button-next:after,
+#productsgrid .swiper-button-prev:after,
+.products-wrap-swiper .swiper-button-next:after,
+.products-wrap-swiper .swiper-button-prev:after {
+  font-size: 15px;
+  color: #fff;
+  transform: skewX(12deg); /* unskew icon */
+}
+
+/* hover background */
+#productsgrid .swiper-button-next:hover,
+#productsgrid .swiper-button-prev:hover,
+.products-wrap-swiper .swiper-button-next:hover,
+.products-wrap-swiper .swiper-button-prev:hover {
+  background: #8cbb00;
+}
+
+/* disabled opacity */
+#productsgrid .swiper-button-next.swiper-button-disabled,
+#productsgrid .swiper-button-prev.swiper-button-disabled,
+.products-wrap-swiper .swiper-button-next.swiper-button-disabled,
+.products-wrap-swiper .swiper-button-prev.swiper-button-disabled {
+  opacity: 0.35;
 }

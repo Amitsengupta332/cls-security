@@ -1,0 +1,54 @@
+/* =============================
+   Product Swiper (PHP exact CSS)
+============================= */
+
+.products-wrap-swiper {
+  padding: 68px 0;
+  position: relative;
+}
+
+.products-wrap-swiper .swiper-wrapper {
+  height: auto;
+}
+
+.products-wrap-swiper .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+
+/* bullets */
+.products-wrap-swiper .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  opacity: 0.5;
+  background: rgba(68, 68, 68, 0.5);
+}
+
+.products-wrap-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #444444;
+}
+
+/* arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  background: #9c0;
+  transform: skewX(-12deg);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  color: #fff;
+  font-size: 15px;
+}
+
+/* card hover shadow */
+.products-wrap-swiper .card-item:hover {
+  box-shadow: 0 5px 83px 0 rgba(27, 26, 26, 0.12);
+}
+
+/* full width product container inside slide */
+.products-wrap-swiper .product_container {
+  width: 100%;
+  display: block;
+}

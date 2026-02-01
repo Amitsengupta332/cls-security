@@ -1,0 +1,329 @@
+/* Scope everything to this component only */
+.products-wrap-swiper .card-item {
+  background: #fff;
+  padding: 0px 10px;
+  transition: all ease-in-out 0.3s;
+  height: 100%;
+  position: relative;
+}
+
+.products-wrap-swiper .card-item:hover {
+  box-shadow: 0 5px 83px 0 rgba(27, 26, 26, 0.12);
+}
+
+.products-wrap-swiper .custom-card-body {
+  text-align: center;
+}
+
+.products-wrap-swiper .product_container {
+  width: 100%;
+  display: block;
+}
+
+/* Brand */
+.products-wrap-swiper .brand_photo_list {
+  text-align: left;
+}
+
+.products-wrap-swiper .brand_photo_list .brandphoto {
+  object-fit: contain;
+  width: 110px;
+  height: 45px;
+}
+
+/* Product image */
+.products-wrap-swiper .product_container .img_box {
+  object-fit: contain;
+  max-width: 260px;
+  margin: 0 auto;
+  max-height: 240px;
+  width: 200px;
+  height: 200px;
+  transition: 1s ease;
+}
+
+.products-wrap-swiper .product_container:hover .img_box {
+  transform: scale(0.8);
+  transition: 1s ease;
+}
+
+/* Title clamp */
+.products-wrap-swiper .productTitle_name {
+  display: -webkit-box;
+  height: 55.2px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  text-align: left;
+
+  color: rgba(80, 95, 107);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+/* Rating + SKU */
+.products-wrap-swiper .ratingpart span,
+.products-wrap-swiper .skupart span {
+  color: #868686;
+}
+
+/* Price */
+.products-wrap-swiper .starRating i,
+.products-wrap-swiper .currentPrice {
+  font-size: 35px;
+}
+
+.products-wrap-swiper .regular-price {
+  display: inline-grid;
+}
+
+.products-wrap-swiper .old-price {
+  display: block;
+  font: 17px / 20px Eurostile-Bol, Arial, Helvetica, sans-serif;
+  letter-spacing: 0px;
+}
+
+.products-wrap-swiper .instead-price {
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.products-wrap-swiper .strike-through {
+  color: red;
+  text-decoration: line-through;
+}
+
+.products-wrap-swiper .price-label {
+  display: none;
+}
+
+.products-wrap-swiper .currency,
+.products-wrap-swiper .price {
+  color: #000;
+}
+
+.products-wrap-swiper .discount-price-label {
+  display: inline-block;
+  clear: both;
+  line-height: 11px;
+  font-size: 11px;
+}
+
+.products-wrap-swiper .home-hidden:last-child {
+  color: #9c0;
+}
+
+/* Footer */
+.products-wrap-swiper .productFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px !important;
+}
+
+/* Qty skew button */
+.products-wrap-swiper .qty-container {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0.03em;
+  transform: skewX(-12deg);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  color: #9c0;
+  border: 2px solid #9c0;
+  background-color: #9c0;
+  border-radius: inherit;
+  height: 40px;
+  padding: 0 15px;
+}
+
+.products-wrap-swiper .qty-container .qty-btn-minus,
+.products-wrap-swiper .qty-container .qty-btn-plus {
+  border: none;
+  padding: 10px 13px;
+  font-size: 10px;
+  height: 38px;
+  width: 38px;
+  transition: 0.3s;
+  background: none;
+}
+
+.products-wrap-swiper .qty-container .qty-btn-minus {
+  margin-right: -1px;
+}
+
+.products-wrap-swiper .qty-container .qty-btn-plus {
+  margin-left: -1px;
+}
+
+.products-wrap-swiper .qty-container .qty-btn-minus span,
+.products-wrap-swiper .qty-container .qty-btn-plus span {
+  color: #fff;
+}
+
+.products-wrap-swiper .qty-container .input-qty {
+  text-align: center;
+  border: none;
+  background-color: #9c0;
+  color: #fff;
+}
+
+/* Cart button skew + hover fill */
+.products-wrap-swiper .readMoreLink .global-button {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0.03em;
+  transform: skewX(-12deg);
+  transition: all 0.3s ease;
+}
+
+.products-wrap-swiper .readMoreLink .btn-main {
+  text-transform: uppercase;
+  color: #9c0;
+  border: 2px solid #9c0;
+  background-color: transparent;
+  border-radius: inherit;
+  height: 40px;
+  padding: 0 40px;
+}
+
+.products-wrap-swiper .readMoreLink .global-button:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  transition: all 0.3s ease;
+  background-color: #8cbb00;
+}
+
+.products-wrap-swiper .readMoreLink .global-button-content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: skewX(12deg);
+  z-index: 1;
+  font-size: 20px;
+}
+
+.products-wrap-swiper .readMoreLink .btn-main:hover {
+  color: #fff;
+  border-color: #8cbb00;
+}
+
+.products-wrap-swiper .readMoreLink .global-button:hover:before {
+  width: 100%;
+}
+
+/* Call for price */
+.products-wrap-swiper .callpricehidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.products-wrap-swiper .callfor-global-button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0.03em;
+  transform: skewX(-12deg);
+  transition: all 0.3s ease;
+}
+
+.products-wrap-swiper .callfor-btn {
+  text-transform: uppercase;
+  color: #9c0;
+  border: 2px solid #9c0;
+  background-color: transparent;
+  border-radius: inherit;
+  height: 40px;
+  padding: 0 40px;
+  margin-top: 35px !important;
+}
+
+.products-wrap-swiper .callfor-global-button:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  transition: all 0.3s ease;
+  background-color: #8cbb00;
+}
+
+.products-wrap-swiper .callfor-btn:hover {
+  color: #fff;
+  border-color: #8cbb00;
+}
+
+.products-wrap-swiper .callfor-btn:hover:before {
+  width: 100%;
+}
+
+/* Phone swap on hover (same as PHP behavior) */
+.products-wrap-swiper .phone_number_call2 {
+  position: absolute;
+  left: 0;
+  text-align: center;
+  top: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.products-wrap-swiper .productFooter:hover > .phone_number_call2 {
+  visibility: visible;
+  opacity: 1;
+  font-size: 15px;
+  font-weight: 800;
+  border-radius: 5px;
+  padding: 7px 0px;
+  width: 100%;
+  color: #fff;
+}
+
+.products-wrap-swiper .phone_number_call2 span {
+  color: #fff;
+}
+
+.products-wrap-swiper .productFooter:hover > .call_for_button {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Swiper bullets */
+.products-wrap-swiper .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+
+.products-wrap-swiper .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(68, 68, 68, 0.5);
+  opacity: 0.5;
+}
+
+.products-wrap-swiper .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #444444;
+  opacity: 1;
+}
