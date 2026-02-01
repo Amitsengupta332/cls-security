@@ -97,13 +97,15 @@ export default function Navbar() {
     <header
       id="header"
       ref={headerRef}
-      className="fixed top-0 left-0 w-full z-50 text-white transition-all duration-300">
+      className="fixed top-0 left-0 w-full z-50 text-white transition-all duration-300"
+    >
       {/* ================= TOPBAR ================= */}
+      {/* <div className="hidden md:block bg-[#1b1a1a]"> */}
       <div className="hidden md:block">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-12 items-center py-2 text-[14px]">
             <div className="col-span-4">
-              <a href="#" className="inline-flex items-center gap-1">
+              <a href="#" className="inline-flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-[#9c0]" />
                 <span>+0621 7163591</span>
               </a>
@@ -141,13 +143,15 @@ export default function Navbar() {
       </div>
 
       {/* ================= NAV ================= */}
+      {/* <nav className="bg-[rgba(27,26,26,0.70)]"> */}
       <nav className="">
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-[1400px] px-6">
           <div className="md:hidden flex justify-end py-2">
             <button
               onClick={() => setMobileOpen((s) => !s)}
               className="p-2"
-              aria-label="toggle mobile menu">
+              aria-label="toggle mobile menu"
+            >
               {mobileOpen ? <FiX size={22} /> : <HiBars3 size={24} />}
             </button>
           </div>
@@ -167,7 +171,8 @@ export default function Navbar() {
               <li
                 className="relative"
                 onMouseEnter={() => openMenuDelayed("eng")}
-                onMouseLeave={closeMenuDelayed}>
+                onMouseLeave={closeMenuDelayed}
+              >
                 <button className="menu-link">Engineering</button>
                 <span className="menu-caret">▾</span>
 
@@ -177,24 +182,22 @@ export default function Navbar() {
                       Page 1
                     </a>
 
-                    {/* ================= Page 2 trigger (NO leave here) ================= */}
+                    {/* Page 2 nested */}
                     <div
-                      className="relative pr-2"
-                      onMouseEnter={() => setEngLevel1("page2")}>
+                      className="relative pr-2" // ✅ hover bridge (right side)
+                      onMouseEnter={() => setEngLevel1("page2")}
+                      onMouseLeave={() => {
+                        setEngLevel1(null);
+                        setEngLevel2(null);
+                      }}
+                    >
                       <a href="#" className="drop-item drop-flex">
                         <span>Page 2</span>
                         <FiChevronRight />
                       </a>
 
-                      {/* ================= Page 2 submenu (controls leave) ================= */}
                       {engLevel1 === "page2" && (
-                        <div
-                          className="dropdown-sub dropdown-anim left-full top-0 ml-0 pl-2"
-                          onMouseEnter={() => setEngLevel1("page2")}
-                          onMouseLeave={() => {
-                            setEngLevel1(null);
-                            setEngLevel2(null);
-                          }}>
+                        <div className="dropdown-sub dropdown-anim left-full top-0 ml-0 pl-2">
                           <a href="#" className="drop-item">
                             Page 2.1
                           </a>
@@ -202,31 +205,26 @@ export default function Navbar() {
                             Page 2.2
                           </a>
 
-                          {/* ================= Page 2.3 trigger (NO leave here) ================= */}
+                          {/* Page 2.3 nested */}
                           <div
                             className="relative pr-2"
-                            onMouseEnter={() => setEngLevel2("page23")}>
+                            onMouseEnter={() => setEngLevel2("page23")}
+                            onMouseLeave={() => setEngLevel2(null)}
+                          >
                             <a href="#" className="drop-item drop-flex">
                               <span>Page 2.3</span>
                               <FiChevronRight />
                             </a>
 
-                            {/* ================= Page 2.3 submenu ================= */}
                             {engLevel2 === "page23" && (
-                              <div
-                                className="dropdown-sub dropdown-anim left-full top-0 ml-0 pl-2"
-                                onMouseEnter={() => setEngLevel2("page23")}
-                                onMouseLeave={() => setEngLevel2(null)}>
-                                {[
-                                  "Page 2.1",
-                                  "Page 2.2",
-                                  "Page 2.3",
-                                  "Page 2.4",
-                                ].map((x) => (
-                                  <a key={x} href="#" className="drop-item">
-                                    {x}
-                                  </a>
-                                ))}
+                              <div className="dropdown-sub dropdown-anim left-full top-0 ml-0 pl-2">
+                                {["Page 2.1", "Page 2.2", "Page 2.3", "Page 2.4"].map(
+                                  (x) => (
+                                    <a key={x} href="#" className="drop-item">
+                                      {x}
+                                    </a>
+                                  )
+                                )}
                               </div>
                             )}
                           </div>
@@ -252,7 +250,8 @@ export default function Navbar() {
               <li
                 className="relative"
                 onMouseEnter={() => openMenuDelayed("con")}
-                onMouseLeave={closeMenuDelayed}>
+                onMouseLeave={closeMenuDelayed}
+              >
                 <button className="menu-link">Consulting</button>
                 <span className="menu-caret">▾</span>
               </li>
@@ -284,7 +283,8 @@ export default function Navbar() {
               <li
                 className="relative"
                 onMouseEnter={() => openMenuDelayed("ind")}
-                onMouseLeave={closeMenuDelayed}>
+                onMouseLeave={closeMenuDelayed}
+              >
                 <button className="menu-link">Industries</button>
                 <span className="menu-caret">▾</span>
               </li>
@@ -323,9 +323,7 @@ export default function Navbar() {
             </ul>
 
             <div className="flex items-center gap-5">
-              <button
-                onClick={() => setSearchOpen(true)}
-                aria-label="open search">
+              <button onClick={() => setSearchOpen(true)} aria-label="open search">
                 <FiSearch className="text-[20px] hover:text-[#9c0]" />
               </button>
               <a href="#" className="hover:text-[#9c0]" aria-label="user">
@@ -343,12 +341,10 @@ export default function Navbar() {
               {/* Engineering */}
               <button
                 onClick={() => toggleMob("engineering")}
-                className="w-full flex items-center justify-between py-2 px-3 rounded hover:bg-white/10">
+                className="w-full flex items-center justify-between py-2 px-3 rounded hover:bg-white/10"
+              >
                 <span>Engineering</span>
-                <span
-                  className={`transition-transform ${
-                    mob.engineering ? "rotate-180" : ""
-                  }`}>
+                <span className={`transition-transform ${mob.engineering ? "rotate-180" : ""}`}>
                   ▾
                 </span>
               </button>
@@ -360,12 +356,10 @@ export default function Navbar() {
 
                 <button
                   onClick={() => toggleMob("engPage2")}
-                  className="mob-item flex items-center justify-between w-full">
+                  className="mob-item flex items-center justify-between w-full"
+                >
                   <span>Page 2</span>
-                  <span
-                    className={`transition-transform ${
-                      mob.engPage2 ? "rotate-180" : ""
-                    }`}>
+                  <span className={`transition-transform ${mob.engPage2 ? "rotate-180" : ""}`}>
                     ▾
                   </span>
                 </button>
@@ -380,24 +374,20 @@ export default function Navbar() {
 
                   <button
                     onClick={() => toggleMob("engPage23")}
-                    className="mob-item flex items-center justify-between w-full">
+                    className="mob-item flex items-center justify-between w-full"
+                  >
                     <span>Page 2.3</span>
-                    <span
-                      className={`transition-transform ${
-                        mob.engPage23 ? "rotate-180" : ""
-                      }`}>
+                    <span className={`transition-transform ${mob.engPage23 ? "rotate-180" : ""}`}>
                       ▾
                     </span>
                   </button>
 
                   <Accordion open={mob.engPage23} inner>
-                    {["Page 2.1", "Page 2.2", "Page 2.3", "Page 2.4"].map(
-                      (x) => (
-                        <a key={x} href="#" className="mob-item">
-                          {x}
-                        </a>
-                      ),
-                    )}
+                    {["Page 2.1", "Page 2.2", "Page 2.3", "Page 2.4"].map((x) => (
+                      <a key={x} href="#" className="mob-item">
+                        {x}
+                      </a>
+                    ))}
                   </Accordion>
 
                   <a href="#" className="mob-item">
@@ -415,10 +405,7 @@ export default function Navbar() {
 
               {/* Rest */}
               {["Clients", "Insights", "Approach", "About us"].map((m) => (
-                <a
-                  key={m}
-                  href="#"
-                  className="block py-2 px-3 rounded hover:bg-white/10">
+                <a key={m} href="#" className="block py-2 px-3 rounded hover:bg-white/10">
                   {m}
                 </a>
               ))}
@@ -434,12 +421,9 @@ export default function Navbar() {
           h-[15%] min-h-[140px]
           bg-[linear-gradient(180deg,#171e2a,rgba(23,30,42,.82))]
           transition-all duration-300
-          ${
-            searchOpen
-              ? "opacity-100 translate-y-0 visible"
-              : "opacity-0 -translate-y-4 invisible"
-          }
-        `}>
+          ${searchOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-4 invisible"}
+        `}
+      >
         <div className="absolute left-1/2 top-[60px] -translate-x-1/2 w-[56%] max-w-[900px]">
           <input
             autoFocus
@@ -456,7 +440,8 @@ export default function Navbar() {
 
         <button
           onClick={() => setSearchOpen(false)}
-          className="absolute right-[6rem] top-[30px] h-8 w-8">
+          className="absolute right-[6rem] top-[30px] h-8 w-8"
+        >
           <FiX className="text-white text-[26px]" />
         </button>
 
@@ -470,7 +455,8 @@ export default function Navbar() {
             overflow-hidden
             transition-all duration-300
             hover:text-[#9c0]
-          ">
+          "
+        >
           <span className="skew-x-[12deg] relative z-10">Search</span>
           <span className="absolute inset-0 bg-white w-0 hover:w-full transition-all duration-300" />
         </button>
@@ -649,7 +635,8 @@ function MegaMenu({
         animationDuration: "0.25s",
         animationTimingFunction: "ease",
         animationFillMode: "both",
-      }}>
+      }}
+    >
       <div className="mx-auto max-w-[1140px] px-6 py-8">
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-3 space-y-3 text-sm">
@@ -704,7 +691,8 @@ function Accordion({ open, inner = false, children }) {
         overflow-hidden transition-all duration-300
         ${open ? "max-h-[900px] opacity-100" : "max-h-0 opacity-0"}
         ${inner ? "pl-3" : "pl-0"}
-      `}>
+      `}
+    >
       <div className={`${inner ? "border-l border-white/10 ml-3" : ""}`}>
         {children}
       </div>
