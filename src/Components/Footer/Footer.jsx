@@ -14,7 +14,7 @@ export default function Footer() {
     <>
       <footer id="footer" className="bg-[#1b1a1a] text-white/80 pt-12">
         {/* Main Footer */}
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="max-w-7xl mx-auto  px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-8">
             {/* Address */}
             <div className="flex gap-4">

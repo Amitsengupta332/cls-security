@@ -22,6 +22,7 @@ import rightArrow from "../../assets/icons/Righ_Arrow.svg";
 
 export default function ProductsSwiper() {
   const products = [
+    // 1
     {
       brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
       image: productImg,
@@ -33,33 +34,82 @@ export default function ProductsSwiper() {
       type: "normal",
       link: "#",
     },
+    // 2
     {
       brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
       image: productImg,
-      title: "HIKVISION DS-2CD2123G2-IU(2.8mm) IP Kamera",
-      sku: "CLS100290968",
-      price: "169.99 €",
-      oldPrice: "3.099",
+      title: "HIKVISION DS-2CD2143G2-IU(2.8mm) 4MP IP Kamera",
+      sku: "CLS100290969",
+      price: "189.99 €",
+      oldPrice: "3.199",
       tax: "19% MwSt.",
       type: "normal",
       link: "#",
     },
+    // 3
     {
       brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
       image: productImg,
-      title: "HIKVISION DS-2CD2123G2-IU(2.8mm) IP Kamera",
-      sku: "CLS100290968",
-      price: "169.99 €",
-      oldPrice: "3.099",
+      title: "HIKVISION DS-2CD2347G2H-LIU (2.8mm) ColorVu Kamera",
+      sku: "CLS100291010",
+      price: "229.99 €",
+      oldPrice: "3.499",
       tax: "19% MwSt.",
       type: "normal",
       link: "#",
     },
+    // 4 (call)
     {
       brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
       image: productImg,
-      title: "HIKVISION DS-2CD2123G2-IU(2.8mm) IP Kamera",
-      sku: "CLS100290968",
+      title: "HIKVISION 8-Kanal NVR Rekorder (Preis auf Anfrage)",
+      sku: "CLS100291011",
+      phone: "0621 7163591",
+      type: "call",
+      link: "#",
+    },
+    // 5
+    {
+      brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
+      image: productImg,
+      title: "HIKVISION DS-2CD2043G2-IU (2.8mm) Bullet Kamera",
+      sku: "CLS100291012",
+      price: "159.99 €",
+      oldPrice: "2.999",
+      tax: "19% MwSt.",
+      type: "normal",
+      link: "#",
+    },
+    // 6
+    {
+      brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
+      image: productImg,
+      title: "HIKVISION DS-2CD2T43G2-4I (2.8mm) IP Bullet Kamera",
+      sku: "CLS100291013",
+      price: "199.99 €",
+      oldPrice: "3.299",
+      tax: "19% MwSt.",
+      type: "normal",
+      link: "#",
+    },
+    // 7
+    {
+      brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
+      image: productImg,
+      title: "HIKVISION DS-2CD2387G2H-LIU (2.8mm) 8MP ColorVu",
+      sku: "CLS100291014",
+      price: "279.99 €",
+      oldPrice: "3.799",
+      tax: "19% MwSt.",
+      type: "normal",
+      link: "#",
+    },
+    // 8 (call)
+    {
+      brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
+      image: productImg,
+      title: "HIKVISION PoE Switch 8 Port (Preis auf Anfrage)",
+      sku: "CLS100291015",
       phone: "0621 7163591",
       type: "call",
       link: "#",
@@ -75,12 +125,11 @@ export default function ProductsSwiper() {
         </div>
       </div>
 
-      <div className="mx-auto w-full px-6 max-[1200px]:max-w-[1300px] min-[1300px]:max-w-[1400px]">
+      <div className="max-w-7xl mx-auto w-full px-6">
         <div
           className="
             relative
 
-            /* ✅ Swiper arrows css override via tailwind arbitrary selectors */
             [&_.swiper-button-next]:h-[34px]
             [&_.swiper-button-next]:w-[34px]
             [&_.swiper-button-next]:bg-[#9c0]
@@ -95,11 +144,9 @@ export default function ProductsSwiper() {
             [&_.swiper-button-prev]:left-[10px]
             [&_.swiper-button-prev]:top-[110px]
 
-            /* ✅ remove default arrow icons */
             [&_.swiper-button-next:after]:hidden
             [&_.swiper-button-prev:after]:hidden
-          "
-        >
+          ">
           <Swiper
             modules={[Navigation, Pagination]}
             navigation={{
@@ -110,9 +157,10 @@ export default function ProductsSwiper() {
             spaceBetween={20}
             slidesPerView={1}
             breakpoints={{
-              640: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-              1280: { slidesPerView: 3 },
+              640: { slidesPerView: 2 }, // mobile landscape / small tablets
+              1024: { slidesPerView: 3 }, // tablets / small desktop
+              1280: { slidesPerView: 4 }, // ✅ desktop = 4 cards
+              1536: { slidesPerView: 4 }, // large desktop
             }}
             className="
               pb-12
@@ -120,7 +168,6 @@ export default function ProductsSwiper() {
               [&_.swiper-slide]:h-auto
               [&_.swiper-slide]:flex
 
-              /* pagination */
               [&_.swiper-pagination]:relative
               [&_.swiper-pagination]:mt-[20px]
               [&_.swiper-pagination]:bottom-0
@@ -129,8 +176,7 @@ export default function ProductsSwiper() {
               [&_.swiper-pagination-bullet]:bg-[#444]
               [&_.swiper-pagination-bullet]:opacity-50
               [&_.swiper-pagination-bullet-active]:opacity-100
-            "
-          >
+            ">
             {products.map((p, idx) => (
               <SwiperSlide key={idx}>
                 <div className="flex w-full">
@@ -165,8 +211,7 @@ export default function ProductsSwiper() {
                       <a
                         href={p.link}
                         className="block"
-                        aria-label="visit product"
-                      >
+                        aria-label="visit product">
                         <h3
                           className="
                             mt-[25px] mb-[20px]
@@ -179,8 +224,7 @@ export default function ProductsSwiper() {
                             [-webkit-line-clamp:2]
                             h-[55.2px]
                             text-[rgba(80,95,107)]
-                          "
-                        >
+                          ">
                           {p.title}
                         </h3>
 
@@ -245,7 +289,7 @@ export default function ProductsSwiper() {
               </SwiperSlide>
             ))}
 
-            {/* ✅ KEEP Swiper structure, just custom SVG icons inside buttons */}
+            {/* ✅ Custom arrows */}
             <div className="swiper-button-prev">
               <span className="skew-x-[12deg] flex items-center justify-center">
                 <img
@@ -280,8 +324,7 @@ function Qty() {
       <button
         type="button"
         onClick={() => setQty((q) => Math.max(0, q - 1))}
-        className="flex h-[38px] w-[38px] items-center justify-center bg-transparent text-white"
-      >
+        className="flex h-[38px] w-[38px] items-center justify-center bg-transparent text-white">
         <FaMinus size={10} />
       </button>
 
@@ -294,8 +337,7 @@ function Qty() {
       <button
         type="button"
         onClick={() => setQty((q) => q + 1)}
-        className="flex h-[38px] w-[38px] items-center justify-center bg-transparent text-white"
-      >
+        className="flex h-[38px] w-[38px] items-center justify-center bg-transparent text-white">
         <FaPlus size={10} />
       </button>
     </div>
@@ -306,8 +348,7 @@ function CartButton() {
   return (
     <a
       href="#"
-      className="group relative inline-flex h-[40px] w-[110px] shrink-0 items-center justify-center border-2 border-[#9c0] bg-white skew-x-[-12deg] overflow-hidden"
-    >
+      className="group relative inline-flex h-[40px] w-[110px] shrink-0 items-center justify-center border-2 border-[#9c0] bg-white skew-x-[-12deg] overflow-hidden">
       <span className="absolute left-0 top-0 h-full w-0 bg-[#8cbb00] transition-all duration-300 group-hover:w-full" />
       <span className="relative skew-x-[12deg] text-[#9c0] group-hover:text-white">
         <FaShoppingCart />
