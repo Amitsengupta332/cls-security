@@ -14,7 +14,7 @@ import TextYoutube from "../../Components/TextYoutube/TextYoutube";
 const Home = () => {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <Hero />
       <Services />
       <TextYoutube/>
@@ -25,7 +25,7 @@ const Home = () => {
       <Blog />
       <SeoContent/>
       <MapSection/>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

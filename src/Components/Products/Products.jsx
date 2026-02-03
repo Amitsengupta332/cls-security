@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom"; // ✅ add
 import { FaPlus, FaMinus, FaPhoneAlt, FaStar } from "react-icons/fa";
 import productImg from "../../assets/img/products/hikvision.webp";
 
-export default function Products() {
-  // ✅ add more products here
+export default function Products({ showAll = false }) {
   const products = useMemo(
     () => [
       {
@@ -128,15 +128,11 @@ export default function Products() {
     []
   );
 
-  // ✅ show first 4 cards, then load more
-  const STEP = 4;
-  const [visible, setVisible] = useState(STEP);
-  const visibleProducts = products.slice(0, visible);
-  const canViewMore = visible < products.length;
+  // ✅ Home = first 4, Products page = all
+  const list = showAll ? products : products.slice(0, 4);
 
   return (
     <section id="productsgrid" className="bg-[#f9f9f9] py-[60px] pb-[80px]">
-      {/* Section title */}
       <div className="text-center pb-[60px]">
         <div className="mt-[10px] text-[32px] font-bold text-[#433f39]">
           <span>Angebot der Woche</span>
@@ -145,12 +141,11 @@ export default function Products() {
 
       <div className="max-w-7xl mx-auto w-full px-6">
         <div className="grid grid-cols-1 gap-y-8 sm:grid-cols-2 xl:grid-cols-4">
-          {visibleProducts.map((p, idx) => (
+          {list.map((p, idx) => (
             <div key={idx} className="p-[5px]">
               <div className="h-full bg-white px-[10px] transition-all duration-300 hover:shadow-[0_5px_83px_0_rgba(27,26,26,0.12)]">
                 <div className="group flex h-full w-full flex-col p-3 m-2">
                   <div className="flex-1 text-center">
-                    {/* Brand */}
                     <div className="text-left">
                       <img
                         src={p.brand}
@@ -159,7 +154,6 @@ export default function Products() {
                       />
                     </div>
 
-                    {/* Image */}
                     <a href={p.link} className="block" tabIndex={0}>
                       <img
                         src={p.image}
@@ -175,13 +169,7 @@ export default function Products() {
                       />
                     </a>
 
-                    {/* Title + Rating + SKU */}
-                    <a
-                      href={p.link}
-                      aria-label="visit product"
-                      className="block"
-                      tabIndex={0}
-                    >
+                    <a href={p.link} aria-label="visit product" className="block" tabIndex={0}>
                       <h3
                         className="
                           mt-[25px] mb-[20px]
@@ -207,7 +195,6 @@ export default function Products() {
                       </div>
                     </a>
 
-                    {/* Price */}
                     {p.type === "normal" ? (
                       <div className="flex items-center justify-between">
                         <div className="inline-grid text-left">
@@ -225,7 +212,6 @@ export default function Products() {
                             Statt
                           </span>
                           <span className="text-red-500 line-through">
-                            <span className="hidden">ab</span>
                             <span className="text-black">€</span>
                             <span className="text-black">{p.oldPrice},</span>
                             <span>-</span>
@@ -235,7 +221,6 @@ export default function Products() {
                     ) : null}
                   </div>
 
-                  {/* Footer */}
                   <div className="mt-auto pt-6">
                     {p.type === "normal" ? (
                       <div className="flex items-center justify-between">
@@ -252,12 +237,11 @@ export default function Products() {
           ))}
         </div>
 
-        {/* ✅ View more button (same frame style as your buttons) */}
-        {canViewMore ? (
+        {/* ✅ ONLY show button on Home (not on /products page) */}
+        {!showAll && (
           <div className="mt-[40px] flex justify-center">
-            <button
-              type="button"
-              onClick={() => setVisible((v) => Math.min(v + STEP, products.length))}
+            <Link
+              to="/products"
               className="
                 group relative inline-flex h-[40px] min-w-[220px]
                 items-center justify-center
@@ -271,9 +255,9 @@ export default function Products() {
               <span className="relative skew-x-[12deg] font-bold uppercase text-[#9c0] group-hover:text-white transition-colors duration-300">
                 View more products
               </span>
-            </button>
+            </Link>
           </div>
-        ) : null}
+        )}
       </div>
     </section>
   );
@@ -296,15 +280,7 @@ function Qty() {
   const [qty, setQty] = useState(0);
 
   return (
-    <div
-      className="
-        inline-flex h-[40px] shrink-0 items-stretch
-        border-2 border-[#9c0] bg-[#9c0]
-        skew-x-[-12deg]
-        px-[15px]
-        mr-[20px]
-      "
-    >
+    <div className="inline-flex h-[40px] shrink-0 items-stretch border-2 border-[#9c0] bg-[#9c0] skew-x-[-12deg] px-[15px] mr-[20px]">
       <button
         type="button"
         onClick={() => setQty((q) => Math.max(0, q - 1))}
@@ -330,31 +306,14 @@ function Qty() {
   );
 }
 
-/* Cart button */
 function CartButton() {
   return (
     <a
       href="#"
       aria-label="Add to cart"
-      className="
-        group relative inline-flex h-[40px] w-[108px] shrink-0
-        items-center justify-center
-        border-2 border-[#9c0]
-        bg-white
-        skew-x-[-12deg]
-        overflow-hidden
-        transition-colors duration-300
-      "
+      className="group relative inline-flex h-[40px] w-[108px] shrink-0 items-center justify-center border-2 border-[#9c0] bg-white skew-x-[-12deg] overflow-hidden transition-colors duration-300"
     >
-      <span
-        className="
-          absolute left-0 top-0 h-full w-0
-          bg-[#8cbb00]
-          transition-all duration-300
-          group-hover:w-full
-        "
-      />
-
+      <span className="absolute left-0 top-0 h-full w-0 bg-[#8cbb00] transition-all duration-300 group-hover:w-full" />
       <span className="relative skew-x-[12deg]">
         <CartOutlineIcon className="h-[20px] w-[20px] stroke-[#9c0] group-hover:stroke-white transition-colors duration-300" />
       </span>
@@ -381,51 +340,15 @@ function CartOutlineIcon({ className = "" }) {
 
 function CallForPrice({ phone }) {
   return (
-    <div
-      className="
-        group relative mt-[35px]
-        flex h-[40px] items-center justify-center
-        border-2 border-[#9c0]
-        text-[#9c0]
-        font-bold uppercase
-        skew-x-[-12deg]
-        overflow-hidden
-      "
-    >
-      <div
-        className="
-          absolute left-0 top-0 h-full w-0
-          bg-[#8cbb00]
-          transition-all duration-300
-          group-hover:w-full
-        "
-      />
+    <div className="group relative mt-[35px] flex h-[40px] items-center justify-center border-2 border-[#9c0] text-[#9c0] font-bold uppercase skew-x-[-12deg] overflow-hidden">
+      <div className="absolute left-0 top-0 h-full w-0 bg-[#8cbb00] transition-all duration-300 group-hover:w-full" />
 
-      <div
-        className="
-          absolute inset-0
-          flex items-center justify-center gap-2
-          opacity-0 invisible
-          transition-opacity duration-200
-          group-hover:opacity-100 group-hover:visible
-          skew-x-[12deg]
-          text-white
-          text-[15px] font-extrabold
-          px-3
-        "
-      >
+      <div className="absolute inset-0 flex items-center justify-center gap-2 opacity-0 invisible transition-opacity duration-200 group-hover:opacity-100 group-hover:visible skew-x-[12deg] text-white text-[15px] font-extrabold px-3">
         <FaPhoneAlt className="text-white" />
         <span>{phone}</span>
       </div>
 
-      <div
-        className="
-          relative skew-x-[12deg]
-          opacity-100 visible
-          transition-opacity duration-200
-          group-hover:opacity-0 group-hover:invisible
-        "
-      >
+      <div className="relative skew-x-[12deg] opacity-100 visible transition-opacity duration-200 group-hover:opacity-0 group-hover:invisible">
         Preis anfragen
       </div>
     </div>
