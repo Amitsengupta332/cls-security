@@ -1,266 +1,138 @@
-import { useState, useEffect } from "react";
-import logo from "../../assets/img/CLS-SECURITY-NEW-LOGO-2024.png";
-
-import {
-  FaPhoneAlt,
-  FaFacebookF,
-  FaLinkedinIn,
-  FaSearch,
-  FaUser,
-  FaShoppingCart,
-  FaBars,
-  FaTimes,
-} from "react-icons/fa";
-
-export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  // Scroll detect
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 80);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  return (
-    <div>
-      <header
-        className={`fixed top-0 w-full z-50 transition-all duration-300
-      ${scrolled ? "bg-black shadow-lg" : "bg-transparent"}`}>
-        {/* ================= TOPBAR ================= */}
-        <div
-          className={`text-white text-sm transition-all duration-300
-        ${scrolled ? "bg-black" : "bg-transparent"}`}>
-          <div className="container mx-auto  lg:px-28 py-2 flex items-center justify-between">
-            {/* Phone */}
-            <div className="flex items-center gap-2">
-              <FaPhoneAlt size={13} />
-              <span>+0621 7163591</span>
-            </div>
-
-            {/* Social */}
-            <div className="hidden md:flex gap-4">
-              <FaFacebookF className="cursor-pointer hover:text-green-400" />
-              <FaLinkedinIn className="cursor-pointer hover:text-green-400" />
-            </div>
-
-            {/* Buttons */}
-            <div className="flex gap-3">
-              <button className="border border-white/60 px-3 py-1 rounded text-xs hover:bg-white hover:text-black transition">
-                B2B
-              </button>
-
-              <button className="border border-white/60 px-3 py-1 rounded text-xs hover:bg-white hover:text-black transition">
-                Get Quote
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* ================= MAIN NAV ================= */}
-        <nav>
-          <div className="container mx-auto lg:px-24">
-            <div className="flex items-center justify-between py-4 text-white">
-              {/* Logo */}
-              <img
-                src={logo}
-                alt="CLS Security"
-                className="h-9 object-contain"
-              />
-
-              {/* Desktop Menu */}
-              <ul className="hidden md:flex flex-1 justify-center gap-7 text-sm font-medium">
-                {[
-                  "Engineering",
-                  "Consulting",
-                  "Industries",
-                  "Clients",
-                  "Insights",
-                  "Approach",
-                  "About us",
-                ].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="hover:text-green-400 transition">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Icons */}
-              <div className="flex items-center gap-4 text-lg">
-                <FaSearch className="cursor-pointer hover:text-green-400" />
-                <FaUser className="cursor-pointer hover:text-green-400" />
-                <FaShoppingCart className="cursor-pointer hover:text-green-400" />
-
-                {/* Mobile */}
-                <button
-                  onClick={() => setMobileOpen(!mobileOpen)}
-                  className="md:hidden text-xl">
-                  {mobileOpen ? <FaTimes /> : <FaBars />}
-                </button>
-              </div>
-            </div>
-
-            {/* Mobile Menu */}
-            {mobileOpen && (
-              <div className="md:hidden bg-black text-white border-t border-white/20">
-                <ul className="flex flex-col text-center py-4 space-y-3 text-sm">
-                  {[
-                    "Engineering",
-                    "Consulting",
-                    "Industries",
-                    "Clients",
-                    "Insights",
-                    "Approach",
-                    "About us",
-                  ].map((item) => (
-                    <li key={item}>
-                      <a
-                        href="#"
-                        className="block py-2 hover:bg-white/10"
-                        onClick={() => setMobileOpen(false)}>
-                        {item}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        </nav>
-      </header>
-    </div>
-  );
-}
-
-fix this code : 
 import { useEffect, useRef, useState } from "react";
 import logo from "../../assets/img/CLS-SECURITY-NEW-LOGO-2024.png";
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import { FiSearch, FiUser, FiShoppingCart, FiX } from "react-icons/fi";
+
+import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import {
+  FiSearch,
+  FiUser,
+  FiShoppingCart,
+  FiX,
+  FiChevronRight,
+} from "react-icons/fi";
 import { HiBars3 } from "react-icons/hi2";
 
 export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [openMenu, setOpenMenu] = useState(null); // "Engineering" | "Consulting" | "Industries"
   const headerRef = useRef(null);
 
-  // Close dropdown on outside click (desktop)
-  useEffect(() => {
-    const onClick = (e) => {
-      if (!headerRef.current) return;
-      if (!headerRef.current.contains(e.target)) setOpenMenu(null);
-    };
-    document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
-  }, []);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
-  // ESC close
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "Escape") {
-        setMobileOpen(false);
-        setSearchOpen(false);
-        setOpenMenu(null);
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  const [activeMenu, setActiveMenu] = useState(null);
 
-  // Sticky bg on scroll (template-like)
+  const [engLevel1, setEngLevel1] = useState(null); // "page2"
+  const [engLevel2, setEngLevel2] = useState(null); // "page23"
+
+  const hoverTimer = useRef(null);
+
+  const [mob, setMob] = useState({
+    engineering: false,
+    engPage2: false,
+    engPage23: false,
+    consulting: false,
+    industries: false,
+  });
+
+  const closeAllDesktop = () => {
+    setActiveMenu(null);
+    setEngLevel1(null);
+    setEngLevel2(null);
+  };
+
+  const openMenuDelayed = (key) => {
+    if (hoverTimer.current) clearTimeout(hoverTimer.current);
+    hoverTimer.current = setTimeout(() => {
+      setActiveMenu(key);
+    }, 130);
+  };
+
+  const closeMenuDelayed = () => {
+    if (hoverTimer.current) clearTimeout(hoverTimer.current);
+    hoverTimer.current = setTimeout(() => {
+      closeAllDesktop();
+    }, 130);
+  };
+
+  const toggleMob = (key) => {
+    setMob((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
   useEffect(() => {
     const onScroll = () => {
-      const should = window.scrollY > 80;
-      // dark bg with blur similar feel
-      if (headerRef.current) {
-        headerRef.current.dataset.scrolled = should ? "1" : "0";
+      if (!headerRef.current) return;
+      if (window.scrollY > 80) {
+        headerRef.current.classList.add("bg-[rgba(27,26,26,0.85)]");
+      } else {
+        headerRef.current.classList.remove("bg-[rgba(27,26,26,0.85)]");
       }
     };
-    onScroll();
+
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const topLinks = [
-    { icon: <FaFacebookF />, href: "#", label: "Facebook" },
-    { icon: <FaLinkedinIn />, href: "#", label: "LinkedIn" },
-    {
-      icon: <span className="text-[13px] font-semibold">X</span>,
-      href: "#",
-      label: "X",
-    },
-    {
-      icon: <span className="text-[13px] font-semibold">IG</span>,
-      href: "#",
-      label: "Instagram",
-    },
-  ];
+  useEffect(() => {
+    const esc = (e) => {
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+        setSearchOpen(false);
+        closeAllDesktop();
+      }
+    };
+    window.addEventListener("keydown", esc);
+    return () => window.removeEventListener("keydown", esc);
+  }, []);
+
+  useEffect(() => {
+    const click = (e) => {
+      if (!headerRef.current?.contains(e.target)) {
+        closeAllDesktop();
+      }
+    };
+    document.addEventListener("mousedown", click);
+    return () => document.removeEventListener("mousedown", click);
+  }, []);
 
   return (
     <header
+      id="header"
       ref={headerRef}
-      className="
-        fixed top-0 left-0 right-0 z-50
-        transition-colors duration-300
-        data-[scrolled=1]:bg-[rgba(21,17,13,0.85)]
-        data-[scrolled=1]:backdrop-blur
-      "
-      data-scrolled="0">
-      {/* TOPBAR */}
-      <div className="hidden md:block text-white">
-        <div className="mx-auto max-w-7xl px-4 lg:px-10">
-          <div className="flex items-center justify-between py-2 text-[14px]">
-            {/* phone */}
-            <div className="flex items-center gap-2">
-              <span className="inline-block h-2 w-2 rounded-full bg-[#9c0]" />
-              <a href="#" className="hover:text-[#9c0] transition">
-                +0621 7163591
+      className="fixed top-0 left-0 w-full z-50 text-white transition-all duration-300">
+      {/* ================= TOPBAR ================= */}
+      <div className="hidden md:block">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-12 items-center py-2 text-[14px]">
+            <div className="col-span-4">
+              <a href="#" className="inline-flex items-center gap-1">
+                <span className="h-2 w-2 rounded-full bg-[#9c0]" />
+                <span>+0621 7163591</span>
               </a>
             </div>
 
-            {/* socials */}
-            <div className="flex items-center gap-3">
-              {topLinks.map((l) => (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  aria-label={l.label}
-                  className="grid h-8 w-8 place-items-center rounded-full hover:bg-white/10 hover:text-[#9c0] transition">
-                  {l.icon}
-                </a>
-              ))}
+            <div className="col-span-4 text-right">
+              <div className="inline-flex items-center gap-3">
+                <SocialIcon>
+                  <FaFacebookF className="text-[18px]" />
+                </SocialIcon>
+                <SocialIcon>
+                  <FaLinkedinIn className="text-[18px]" />
+                </SocialIcon>
+                <SocialIcon>
+                  <FaXTwitter className="text-[18px]" />
+                </SocialIcon>
+                <SocialIcon>
+                  <FaInstagram className="text-[18px]" />
+                </SocialIcon>
+              </div>
             </div>
 
-            {/* buttons */}
-            {/* Buttons (match PHP look) */}
-            <div className="flex items-center gap-2">
-              {/* Outer skew container */}
-              <div className="flex overflow-hidden rounded-sm bg-[#99cc00] skew-x-[-12deg]">
-                <a
-                  href="#"
-                  className="px-4 py-2 text-white text-[13px] font-semibold uppercase
-                 hover:bg-[#8cbb00] transition
-                 skew-x-[12deg] flex items-center">
-                  B2B
+            <div className="col-span-4 text-right">
+              <div className="inline-flex gap-2">
+                <a href="#" className="btn-transparent-global">
+                  <span className="btn-inner">B2B</span>
                 </a>
-
-                {/* divider */}
-                <div className="w-[1px] bg-white/50 my-2" />
-
-                <a
-                  href="#contact"
-                  className="px-4 py-2 text-white text-[13px] font-semibold uppercase
-                 hover:bg-[#8cbb00] transition
-                 skew-x-[12deg] flex items-center">
-                  GET A QUOTE
+                <a href="#contact" className="btn-transparent-global">
+                  <span className="btn-inner">Get A Quote</span>
                 </a>
               </div>
             </div>
@@ -268,344 +140,574 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* MAIN NAV */}
-      <nav className="text-white">
-        <div className="mx-auto max-w-7xl px-4 lg:px-10">
-          <div className="flex items-center justify-between py-4">
-            {/* Mobile toggle */}
+      {/* ================= NAV ================= */}
+      <nav className="">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="md:hidden flex justify-end py-2">
             <button
-              className="md:hidden inline-flex items-center justify-center rounded-lg p-2 hover:bg-white/10 transition"
-              onClick={() => setMobileOpen((v) => !v)}
-              aria-label="Toggle menu">
+              onClick={() => setMobileOpen((s) => !s)}
+              className="p-2"
+              aria-label="toggle mobile menu">
               {mobileOpen ? <FiX size={22} /> : <HiBars3 size={24} />}
             </button>
+          </div>
 
-            {/* Logo */}
-            <a href="/" className="flex items-center gap-3">
+          <div className="flex items-center justify-between py-3 md:py-4">
+            <a href="#" className="block">
               <img
                 src={logo}
                 alt="CLS Security"
-                className="h-12 w-auto object-contain"
+                className="h-[52px] object-contain"
               />
             </a>
 
-            {/* Desktop menu */}
-            <ul className="hidden md:flex items-center gap-7 text-[15px] font-medium">
-              {/* Engineering dropdown */}
-              <li className="relative">
-                <button
-                  className="hover:text-[#9c0] transition"
-                  onMouseEnter={() => setOpenMenu("Engineering")}
-                  onClick={() =>
-                    setOpenMenu(
-                      openMenu === "Engineering" ? null : "Engineering",
-                    )
-                  }>
-                  Engineering <span className="ml-1">▾</span>
-                </button>
+            {/* ================= DESKTOP MENU ================= */}
+            <ul className="hidden md:flex items-center gap-[26px] text-[13px] font-medium tracking-[.01em]">
+              {/* Engineering */}
+              <li
+                className="relative"
+                onMouseEnter={() => openMenuDelayed("eng")}
+                onMouseLeave={closeMenuDelayed}>
+                <button className="menu-link">Engineering</button>
+                <span className="menu-caret">▾</span>
 
-                {openMenu === "Engineering" && (
-                  <div
-                    className="absolute left-0 top-full mt-3 w-56 rounded-lg bg-white text-black shadow-lg border border-black/10"
-                    onMouseLeave={() => setOpenMenu(null)}>
-                    <a className="block px-4 py-2 hover:bg-black/5" href="#">
+                {activeMenu === "eng" && (
+                  <div className="dropdown-root dropdown-anim">
+                    <a href="#" className="drop-item">
                       Page 1
                     </a>
 
-                    <div className="relative group">
-                      <a
-                        className="flex items-center justify-between px-4 py-2 hover:bg-black/5"
-                        href="#">
-                        Page 2 <span>▸</span>
+                    {/* ================= Page 2 trigger (NO leave here) ================= */}
+                    <div
+                      className="relative pr-2"
+                      onMouseEnter={() => setEngLevel1("page2")}>
+                      <a href="#" className="drop-item drop-flex">
+                        <span>Page 2</span>
+                        <FiChevronRight />
                       </a>
 
-                      {/* nested */}
-                      <div className="absolute left-full top-0 ml-2 hidden w-56 rounded-lg bg-white shadow-lg border border-black/10 group-hover:block">
-                        <a
-                          className="block px-4 py-2 hover:bg-black/5"
-                          href="#">
-                          Page 2.1
-                        </a>
-                        <a
-                          className="block px-4 py-2 hover:bg-black/5"
-                          href="#">
-                          Page 2.2
-                        </a>
-                        <div className="relative group/sub">
-                          <a
-                            className="flex items-center justify-between px-4 py-2 hover:bg-black/5"
-                            href="#">
-                            Page 2.3 <span>▸</span>
+                      {/* ================= Page 2 submenu (controls leave) ================= */}
+                      {engLevel1 === "page2" && (
+                        <div
+                          className="dropdown-sub dropdown-anim left-full top-0 ml-0 pl-2"
+                          onMouseEnter={() => setEngLevel1("page2")}
+                          onMouseLeave={() => {
+                            setEngLevel1(null);
+                            setEngLevel2(null);
+                          }}>
+                          <a href="#" className="drop-item">
+                            Page 2.1
                           </a>
-                          <div className="absolute left-full top-0 ml-2 hidden w-56 rounded-lg bg-white shadow-lg border border-black/10 group-hover/sub:block">
-                            <a
-                              className="block px-4 py-2 hover:bg-black/5"
-                              href="#">
-                              Page 2.1
+                          <a href="#" className="drop-item">
+                            Page 2.2
+                          </a>
+
+                          {/* ================= Page 2.3 trigger (NO leave here) ================= */}
+                          <div
+                            className="relative pr-2"
+                            onMouseEnter={() => setEngLevel2("page23")}>
+                            <a href="#" className="drop-item drop-flex">
+                              <span>Page 2.3</span>
+                              <FiChevronRight />
                             </a>
-                            <a
-                              className="block px-4 py-2 hover:bg-black/5"
-                              href="#">
-                              Page 2.2
-                            </a>
-                            <a
-                              className="block px-4 py-2 hover:bg-black/5"
-                              href="#">
-                              Page 2.3
-                            </a>
-                            <a
-                              className="block px-4 py-2 hover:bg-black/5"
-                              href="#">
-                              Page 2.4
-                            </a>
+
+                            {/* ================= Page 2.3 submenu ================= */}
+                            {engLevel2 === "page23" && (
+                              <div
+                                className="dropdown-sub dropdown-anim left-full top-0 ml-0 pl-2"
+                                onMouseEnter={() => setEngLevel2("page23")}
+                                onMouseLeave={() => setEngLevel2(null)}>
+                                {[
+                                  "Page 2.1",
+                                  "Page 2.2",
+                                  "Page 2.3",
+                                  "Page 2.4",
+                                ].map((x) => (
+                                  <a key={x} href="#" className="drop-item">
+                                    {x}
+                                  </a>
+                                ))}
+                              </div>
+                            )}
                           </div>
+
+                          <a href="#" className="drop-item">
+                            Page 2.4
+                          </a>
                         </div>
-                        <a
-                          className="block px-4 py-2 hover:bg-black/5"
-                          href="#">
-                          Page 2.4
-                        </a>
-                      </div>
+                      )}
                     </div>
 
-                    <a className="block px-4 py-2 hover:bg-black/5" href="#">
+                    <a href="#" className="drop-item">
                       Page 3
                     </a>
-                    <a className="block px-4 py-2 hover:bg-black/5" href="#">
+                    <a href="#" className="drop-item">
                       Page 4
                     </a>
                   </div>
                 )}
               </li>
 
-              {/* Consulting mega menu */}
-              <li className="relative">
-                <button
-                  className="hover:text-[#9c0] transition"
-                  onMouseEnter={() => setOpenMenu("Consulting")}
-                  onClick={() =>
-                    setOpenMenu(openMenu === "Consulting" ? null : "Consulting")
-                  }>
-                  Consulting <span className="ml-1">▾</span>
-                </button>
-
-                {openMenu === "Consulting" && (
-                  <div
-                    className="absolute left-1/2 top-full mt-3 w-[min(1100px,calc(100vw-2rem))] -translate-x-1/2 rounded-xl bg-[#f3f5f9] text-black shadow-xl border border-black/10"
-                    onMouseLeave={() => setOpenMenu(null)}>
-                    <div className="grid grid-cols-12 gap-6 p-6">
-                      <div className="col-span-12 md:col-span-3 space-y-2">
-                        {[
-                          "Innovation Consulting",
-                          "Product Design",
-                          "Technology Enabled",
-                          "Technology Enabled",
-                          "AI and ML Consulting",
-                        ].map((t) => (
-                          <a
-                            key={t}
-                            href="#"
-                            className="block text-[14px] hover:underline">
-                            {t}
-                          </a>
-                        ))}
-                      </div>
-
-                      <div className="col-span-12 md:col-span-3 space-y-2">
-                        {[
-                          "Data-driven Transformation",
-                          "CRM Consulting",
-                          "CRM Consulting",
-                          "CRM Consulting",
-                          "Mega menu item",
-                        ].map((t) => (
-                          <a
-                            key={t}
-                            href="#"
-                            className="block text-[14px] hover:underline">
-                            {t}
-                          </a>
-                        ))}
-                      </div>
-
-                      {/* Quote panel */}
-                      <div className="col-span-12 md:col-span-6 rounded-xl bg-[#edf0f7] p-6">
-                        <div className="text-[14px] italic text-[#4f4f4f]">
-                          *instinctools&apos; work has led to a continuously
-                          growing and satisfied customer base...
-                        </div>
-                        <div className="mt-4 flex items-center gap-4">
-                          <img
-                            className="h-10 w-auto object-contain"
-                            src="https://cdn-hokdj.nitrocdn.com/xTVZIceRirelUWcvTeSrIReGRrnfbTIP/assets/images/optimized/rev-7cec5d5/www.instinctools.com/wp-content/uploads/2022/03/lawpilots-logo-size2.png"
-                            alt=""
-                          />
-                          <div className="text-[12px] text-[#4f4f4f]">
-                            Sebastian Belle, Head of Engineering of Lawpilots
-                            GmbH
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
+              {/* Consulting */}
+              <li
+                className="relative"
+                onMouseEnter={() => openMenuDelayed("con")}
+                onMouseLeave={closeMenuDelayed}>
+                <button className="menu-link">Consulting</button>
+                <span className="menu-caret">▾</span>
               </li>
 
-              {/* Industries mega menu */}
-              <li className="relative">
-                <button
-                  className="hover:text-[#9c0] transition"
-                  onMouseEnter={() => setOpenMenu("Industries")}
-                  onClick={() =>
-                    setOpenMenu(openMenu === "Industries" ? null : "Industries")
-                  }>
-                  Industries <span className="ml-1">▾</span>
-                </button>
+              {activeMenu === "con" && (
+                <MegaMenu
+                  onMouseEnter={() => openMenuDelayed("con")}
+                  onMouseLeave={closeMenuDelayed}
+                  leftLinks={[
+                    "Innovation Consulting",
+                    "Product Design",
+                    "Technology Enabled",
+                    "Technology Enabled",
+                    "AI and ML Consulting",
+                  ]}
+                  middleLinks={[
+                    "Data-driven Transformation",
+                    "CRM Consulting",
+                    "CRM Consulting",
+                    "CRM Consulting",
+                    "Mega menu item",
+                  ]}
+                  quote="*instinctools' work has led to a continuously growing and satisfied customer base, as the client's SaaS offering has low churn rates. The team delivers on time and within budget, proactively asking how to help the client and providing new ideas."
+                  author="Sebastian Belle, Head of Engineering of Lawpilots GmbH"
+                />
+              )}
 
-                {openMenu === "Industries" && (
-                  <div
-                    className="absolute left-1/2 top-full mt-3 w-[min(1100px,calc(100vw-2rem))] -translate-x-1/2 rounded-xl bg-[#f3f5f9] text-black shadow-xl border border-black/10"
-                    onMouseLeave={() => setOpenMenu(null)}>
-                    <div className="grid grid-cols-12 gap-6 p-6">
-                      <div className="col-span-12 md:col-span-3 space-y-2">
-                        {[
-                          "Healthcare",
-                          "Healthcare",
-                          "Manufacturing",
-                          "Logistics",
-                          "Automotive",
-                          "Entertainment and Media",
-                        ].map((t) => (
-                          <a
-                            key={t}
-                            href="#"
-                            className="block text-[14px] hover:underline">
-                            {t}
-                          </a>
-                        ))}
-                      </div>
-
-                      <div className="col-span-12 md:col-span-3 space-y-2">
-                        {[
-                          "Ecommerce",
-                          "Ad-Tech",
-                          "Cryptocurrency",
-                          "Education and E-learning",
-                          "Technology",
-                        ].map((t) => (
-                          <a
-                            key={t}
-                            href="#"
-                            className="block text-[14px] hover:underline">
-                            {t}
-                          </a>
-                        ))}
-                      </div>
-
-                      <div className="col-span-12 md:col-span-6 rounded-xl bg-[#edf0f7] p-6">
-                        <div className="text-[14px] italic text-[#4f4f4f]">
-                          * The team is dependable when it comes to managing
-                          time and finances...
-                        </div>
-                        <div className="mt-4 flex items-center gap-4">
-                          <img
-                            className="h-10 w-auto object-contain"
-                            src="https://cdn-hokdj.nitrocdn.com/xTVZIceRirelUWcvTeSrIReGRrnfbTIP/assets/images/optimized/rev-7cec5d5/www.instinctools.com/wp-content/uploads/2022/03/lawpilots-logo-size2.png"
-                            alt=""
-                          />
-                          <div className="text-[12px] text-[#4f4f4f]">
-                            Sebastian Belle, Head of Engineering of Lawpilots
-                            GmbH
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
+              {/* Industries */}
+              <li
+                className="relative"
+                onMouseEnter={() => openMenuDelayed("ind")}
+                onMouseLeave={closeMenuDelayed}>
+                <button className="menu-link">Industries</button>
+                <span className="menu-caret">▾</span>
               </li>
 
-              {["Clients", "Insights", "Approach", "About us"].map((t) => (
-                <li key={t}>
-                  <a className="hover:text-[#9c0] transition" href="#">
-                    {t}
+              {activeMenu === "ind" && (
+                <MegaMenu
+                  onMouseEnter={() => openMenuDelayed("ind")}
+                  onMouseLeave={closeMenuDelayed}
+                  leftLinks={[
+                    "Healthcare",
+                    "Healthcare",
+                    "Manufacturing",
+                    "Logistics",
+                    "Automotive",
+                    "Entertainment and Media",
+                  ]}
+                  middleLinks={[
+                    "Ecommerce",
+                    "Ad-Tech",
+                    "Cryptocurrency",
+                    "Education and E-learning",
+                    "Technology",
+                  ]}
+                  quote="* The team is dependable when it comes to managing time and finances, consistently staying within the designated budget."
+                  author="Sebastian Belle, Head of Engineering of Lawpilots GmbH"
+                />
+              )}
+
+              {["Clients", "Insights", "Approach", "About us"].map((m) => (
+                <li key={m}>
+                  <a href="#" className="menu-link">
+                    {m}
                   </a>
                 </li>
               ))}
             </ul>
 
-            {/* Right icons */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5">
               <button
-                className="grid h-10 w-10 place-items-center rounded-full hover:bg-white/10 hover:text-[#9c0] transition"
                 onClick={() => setSearchOpen(true)}
-                aria-label="Search">
-                <FiSearch size={18} />
+                aria-label="open search">
+                <FiSearch className="text-[20px] hover:text-[#9c0]" />
               </button>
-              <a
-                className="grid h-10 w-10 place-items-center rounded-full hover:bg-white/10 hover:text-[#9c0] transition"
-                href="#"
-                aria-label="User">
-                <FiUser size={18} />
+              <a href="#" className="hover:text-[#9c0]" aria-label="user">
+                <FiUser className="text-[20px]" />
               </a>
-              <a
-                className="grid h-10 w-10 place-items-center rounded-full hover:bg-white/10 hover:text-[#9c0] transition"
-                href="#"
-                aria-label="Cart">
-                <FiShoppingCart size={18} />
+              <a href="#" className="hover:text-[#9c0]" aria-label="cart">
+                <FiShoppingCart className="text-[20px]" />
               </a>
             </div>
           </div>
 
-          {/* Mobile menu */}
+          {/* ================= MOBILE MENU ================= */}
           {mobileOpen && (
-            <div className="md:hidden pb-4">
-              <div className="rounded-xl border border-white/10 bg-black/60 backdrop-blur p-3 text-white">
-                {[
-                  "Engineering",
-                  "Consulting",
-                  "Industries",
-                  "Clients",
-                  "Insights",
-                  "Approach",
-                  "About us",
-                ].map((t) => (
-                  <a
-                    key={t}
-                    href="#"
-                    className="block rounded-lg px-3 py-2 hover:bg-white/10">
-                    {t}
+            <div className="md:hidden bg-[#1b1a1a] rounded-md p-3 mb-3">
+              {/* Engineering */}
+              <button
+                onClick={() => toggleMob("engineering")}
+                className="w-full flex items-center justify-between py-2 px-3 rounded hover:bg-white/10">
+                <span>Engineering</span>
+                <span
+                  className={`transition-transform ${
+                    mob.engineering ? "rotate-180" : ""
+                  }`}>
+                  ▾
+                </span>
+              </button>
+
+              <Accordion open={mob.engineering}>
+                <a href="#" className="mob-item">
+                  Page 1
+                </a>
+
+                <button
+                  onClick={() => toggleMob("engPage2")}
+                  className="mob-item flex items-center justify-between w-full">
+                  <span>Page 2</span>
+                  <span
+                    className={`transition-transform ${
+                      mob.engPage2 ? "rotate-180" : ""
+                    }`}>
+                    ▾
+                  </span>
+                </button>
+
+                <Accordion open={mob.engPage2} inner>
+                  <a href="#" className="mob-item">
+                    Page 2.1
                   </a>
-                ))}
-              </div>
+                  <a href="#" className="mob-item">
+                    Page 2.2
+                  </a>
+
+                  <button
+                    onClick={() => toggleMob("engPage23")}
+                    className="mob-item flex items-center justify-between w-full">
+                    <span>Page 2.3</span>
+                    <span
+                      className={`transition-transform ${
+                        mob.engPage23 ? "rotate-180" : ""
+                      }`}>
+                      ▾
+                    </span>
+                  </button>
+
+                  <Accordion open={mob.engPage23} inner>
+                    {["Page 2.1", "Page 2.2", "Page 2.3", "Page 2.4"].map(
+                      (x) => (
+                        <a key={x} href="#" className="mob-item">
+                          {x}
+                        </a>
+                      ),
+                    )}
+                  </Accordion>
+
+                  <a href="#" className="mob-item">
+                    Page 2.4
+                  </a>
+                </Accordion>
+
+                <a href="#" className="mob-item">
+                  Page 3
+                </a>
+                <a href="#" className="mob-item">
+                  Page 4
+                </a>
+              </Accordion>
+
+              {/* Rest */}
+              {["Clients", "Insights", "Approach", "About us"].map((m) => (
+                <a
+                  key={m}
+                  href="#"
+                  className="block py-2 px-3 rounded hover:bg-white/10">
+                  {m}
+                </a>
+              ))}
             </div>
           )}
         </div>
       </nav>
 
-      {/* Search modal */}
-      {searchOpen && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-4">
-          <div className="w-full max-w-xl rounded-2xl bg-white p-4 text-black shadow-2xl">
-            <div className="flex items-center justify-between">
-              <div className="text-sm font-semibold">Search</div>
-              <button
-                onClick={() => setSearchOpen(false)}
-                className="rounded-lg p-2 hover:bg-black/5">
-                <FiX />
-              </button>
-            </div>
-            <div className="mt-3">
-              <input
-                className="w-full rounded-xl border border-black/10 px-4 py-3 outline-none focus:ring-2 focus:ring-[#9c0]"
-                placeholder="e.g. Business Intelligence"
-              />
-              <button className="mt-3 w-full rounded-xl bg-[#9c0] py-3 font-semibold text-black hover:opacity-90">
-                Search
-              </button>
+      {/* ================= SEARCH MODAL ================= */}
+      <div
+        className={`
+          fixed left-0 right-0 top-0 z-[999]
+          h-[15%] min-h-[140px]
+          bg-[linear-gradient(180deg,#171e2a,rgba(23,30,42,.82))]
+          transition-all duration-300
+          ${
+            searchOpen
+              ? "opacity-100 translate-y-0 visible"
+              : "opacity-0 -translate-y-4 invisible"
+          }
+        `}>
+        <div className="absolute left-1/2 top-[60px] -translate-x-1/2 w-[56%] max-w-[900px]">
+          <input
+            autoFocus
+            className="
+              w-full bg-transparent text-white
+              border-b border-white/20
+              px-8 py-3 text-[15px]
+              outline-none
+              placeholder:text-white/30
+            "
+            placeholder="e.g. Business Intelligence"
+          />
+        </div>
+
+        <button
+          onClick={() => setSearchOpen(false)}
+          className="absolute right-[6rem] top-[30px] h-8 w-8">
+          <FiX className="text-white text-[26px]" />
+        </button>
+
+        <button
+          className="
+            absolute right-[11rem] top-[38px]
+            h-[42px] w-[132px]
+            uppercase text-white
+            bg-[#809cd0]
+            skew-x-[-12deg]
+            overflow-hidden
+            transition-all duration-300
+            hover:text-[#9c0]
+          ">
+          <span className="skew-x-[12deg] relative z-10">Search</span>
+          <span className="absolute inset-0 bg-white w-0 hover:w-full transition-all duration-300" />
+        </button>
+      </div>
+
+      {/* ================= INTERNAL CSS HELPERS ================= */}
+      <style>{`
+        .menu-link{
+          position:relative;
+          display:inline-block;
+          padding-bottom:6px;
+          transition:color .25s ease;
+        }
+        .menu-link:hover{ color:#9c0; }
+        .menu-link::after{
+          content:"";
+          position:absolute;
+          left:0;
+          bottom:0;
+          height:2px;
+          width:0;
+          background:#9c0;
+          transition:width .25s ease;
+        }
+        .menu-link:hover::after{ width:100%; }
+        .menu-caret{ margin-left:6px; font-size:12px; opacity:.9; }
+
+        /* ✅ main dropdown only (root) */
+        .dropdown-root{
+          position:absolute;
+          top:100%;
+          margin-top:12px;
+          width:224px;
+          background:#fff;
+          color:#000;
+          box-shadow:0 10px 30px rgba(0,0,0,.15);
+          padding:6px 0;
+          z-index:60;
+        }
+
+        /* ✅ nested dropdown only (sub) */
+        .dropdown-sub{
+          position:absolute;
+          top:0;
+          margin-top:0;
+          width:224px;
+          background:#fff;
+          color:#000;
+          box-shadow:0 10px 30px rgba(0,0,0,.15);
+          padding:6px 0;
+          z-index:70;
+          pointer-events:auto;
+        }
+
+        .drop-item{
+          padding:10px 16px;
+          font-size:14px;
+          transition:background .2s ease;
+          white-space:nowrap;
+          display:block;
+        }
+        .drop-flex{
+          display:flex !important;
+          align-items:center;
+          justify-content:space-between;
+        }
+        .drop-item:hover{ background:#f3f3f3; }
+
+        .dropdown-anim{
+          animation: fadeSlide .25s ease both;
+          transform-origin: top;
+        }
+        @keyframes fadeSlide{
+          from{ opacity:0; transform:translateY(10px); }
+          to{ opacity:1; transform:translateY(0); }
+        }
+
+        .btn-transparent-global{
+          position:relative;
+          display:inline-flex;
+          justify-content:center;
+          align-items:center;
+          transform:skewX(-12deg);
+          height:41px;
+          padding:0 20px;
+          background:#9c0;
+          color:#fff;
+          text-transform:uppercase;
+          font-weight:600;
+          overflow:hidden;
+          transition:all .3s ease;
+        }
+        .btn-transparent-global::before{
+          content:"";
+          position:absolute;
+          left:0; top:0;
+          width:0; height:100%;
+          background:#8cbb00;
+          transition:all .3s ease;
+          z-index:0;
+        }
+        .btn-transparent-global:hover::before{ width:100%; }
+        .btn-inner{ position:relative; z-index:1; transform:skewX(12deg); }
+
+        .social-icons{
+          width:40px; height:40px;
+          display:inline-flex;
+          justify-content:center;
+          align-items:center;
+          position:relative;
+          border-radius:50%;
+          overflow:hidden;
+          transition:background .2s,color .2s;
+        }
+        .social-icons::before{
+          content:"";
+          position:absolute;
+          inset:0;
+          background:#9c0;
+          z-index:-1;
+          border-radius:50%;
+          transform:translate(100%,100%);
+          transition:all .4s;
+        }
+        .social-icons:hover::before{
+          transform:translate(0);
+          animation:anim .4s linear;
+        }
+        @keyframes anim{
+          0%,100%{width:100%;height:100%;}
+          50%{width:50%;height:50%;}
+        }
+
+        .mob-item{
+          display:block;
+          padding:10px 12px;
+          border-radius:8px;
+          transition:background .2s ease;
+        }
+        .mob-item:hover{ background:rgba(255,255,255,.08); }
+      `}</style>
+    </header>
+  );
+}
+
+function SocialIcon({ children }) {
+  return (
+    <a href="#" className="social-icons">
+      {children}
+    </a>
+  );
+}
+
+function MegaMenu({
+  onMouseEnter,
+  onMouseLeave,
+  leftLinks,
+  middleLinks,
+  quote,
+  author,
+}) {
+  return (
+    <div
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      className="
+        absolute left-1/2 top-full
+        -translate-x-1/2
+        w-screen
+        bg-[#f3f5f9] text-black
+        shadow-xl z-40
+        border-t border-gray-200
+      "
+      style={{
+        animationName: "fadeSlideMega",
+        animationDuration: "0.25s",
+        animationTimingFunction: "ease",
+        animationFillMode: "both",
+      }}>
+      <div className="mx-auto max-w-[1140px] px-6 py-8">
+        <div className="grid grid-cols-12 gap-6">
+          <div className="col-span-3 space-y-3 text-sm">
+            {leftLinks.map((i) => (
+              <a key={i} href="#" className="block hover:underline">
+                {i}
+              </a>
+            ))}
+          </div>
+
+          <div className="col-span-3 space-y-3 text-sm">
+            {middleLinks.map((i) => (
+              <a key={i} href="#" className="block hover:underline">
+                {i}
+              </a>
+            ))}
+          </div>
+
+          <div className="col-span-6 bg-[#edf0f7] skew-x-[-15deg] px-8 py-6">
+            <div className="skew-x-[12deg]">
+              <p className="italic text-sm text-gray-600 leading-relaxed">
+                {quote}
+              </p>
+
+              <div className="flex items-center gap-4 mt-5">
+                <img
+                  src="https://cdn-hokdj.nitrocdn.com/xTVZIceRirelUWcvTeSrIReGRrnfbTIP/assets/images/optimized/rev-7cec5d5/www.instinctools.com/wp-content/uploads/2022/03/lawpilots-logo-size2.png"
+                  className="h-8"
+                  alt=""
+                />
+                <span className="text-xs text-gray-600">{author}</span>
+              </div>
             </div>
           </div>
         </div>
-      )}
-    </header>
+      </div>
+
+      <style>{`
+        @keyframes fadeSlideMega{
+          from{ opacity:0; transform:translate(-50%, 10px); }
+          to{ opacity:1; transform:translate(-50%, 0); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+function Accordion({ open, inner = false, children }) {
+  return (
+    <div
+      className={`
+        overflow-hidden transition-all duration-300
+        ${open ? "max-h-[900px] opacity-100" : "max-h-0 opacity-0"}
+        ${inner ? "pl-3" : "pl-0"}
+      `}>
+      <div className={`${inner ? "border-l border-white/10 ml-3" : ""}`}>
+        {children}
+      </div>
+    </div>
   );
 }
