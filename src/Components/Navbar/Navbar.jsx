@@ -167,6 +167,7 @@ export default function Navbar() {
             </Link>
 
             {/* ================= DESKTOP MENU ================= */}
+            {/* <ul className="hidden md:flex flex-wrap items-center gap-x-[26px] gap-y-2 text-[13px] font-medium tracking-[.01em]"> */}
             <ul className="hidden md:flex flex-wrap items-center gap-x-[26px] gap-y-2 text-[13px] font-medium tracking-[.01em]">
               {/* Engineering */}
               <li

@@ -16,8 +16,8 @@ import {
 
 import productImg from "../../assets/img/products/hikvision.webp";
 
-import leftArrow from "../../assets/icons/Left_Arrow.svg";
-import rightArrow from "../../assets/icons/Righ_Arrow.svg";
+// import leftArrow from "../../assets/icons/Left_Arrow.svg";
+// import rightArrow from "../../assets/icons/Right_Arrow.svg";
 
 export default function ProductsSwiper() {
   const products = [
@@ -257,13 +257,13 @@ export default function ProductsSwiper() {
             {/* Arrows */}
             <div className="swiper-button-prev">
               <span className="skew-x-[12deg] flex justify-center items-center">
-                <img src={leftArrow} className="h-4 w-4" />
+                {/* <img src={leftArrow} className="h-4 w-4" /> */}
               </span>
             </div>
 
             <div className="swiper-button-next">
               <span className="skew-x-[12deg] flex justify-center items-center">
-                <img src={rightArrow} className="h-4 w-4" />
+                {/* <img src={rightArrow} className="h-4 w-4" /> */}
               </span>
             </div>
           </Swiper>

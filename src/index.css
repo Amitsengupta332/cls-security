@@ -194,3 +194,40 @@
 .products-wrap-swiper .swiper-button-prev.swiper-button-disabled {
   opacity: 0.35;
 }
+
+
+/* REMOVE blue arrow icon after product title links ONLY */
+/* .swiper-slide a::after {
+  content: none !important;
+  display: none !important;
+} */
+
+/* COMPLETELY remove swiper navigation arrows */
+/* .swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+} */
+
+/* remove ONLY swiper default arrow icon, keep button alive */
+/* .swiper-button-next::after,
+.swiper-button-prev::after {
+  content: none !important;
+  display: none !important;
+} */
+
+/* 🔥 KILL product title blue arrow once and for all */
+.swiper-slide a::after,
+.swiper-slide a::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+/* if arrow is background-image / mask */
+.swiper-slide a {
+  background-image: none !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
+

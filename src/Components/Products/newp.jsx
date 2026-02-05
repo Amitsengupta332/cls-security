@@ -145,10 +145,8 @@ export default function Products({ showAll = false }) {
             <div key={idx} className="p-[5px]">
               {/* ✅ whole card clickable */}
               <Link to={`/products/${p.sku}`} className="block h-full">
-                {/* ❌ card hover shadow removed */}
-                <div className="h-full bg-white px-[10px]">
-                  {/* ❌ group removed (so card hover won't trigger anything) */}
-                  <div className="flex h-full w-full flex-col p-3 m-2">
+                <div className="h-full bg-white px-[10px] transition-all duration-300 hover:shadow-[0_5px_83px_0_rgba(27,26,26,0.12)]">
+                  <div className="group flex h-full w-full flex-col p-3 m-2">
                     <div className="flex-1 text-center">
                       <div className="text-left">
                         <img
@@ -167,6 +165,8 @@ export default function Products({ showAll = false }) {
                             h-[200px] w-[200px]
                             max-h-[240px] max-w-[260px]
                             object-contain
+                            transition-transform duration-1000 ease-in-out
+                            group-hover:scale-[0.8]
                           "
                         />
                       </div>
@@ -326,43 +326,21 @@ function Qty() {
 }
 
 function CartButton() {
-  const [clicked, setClicked] = useState(false);
-
   return (
-    <button
-      type="button"
+    <a
+      href="#"
       aria-label="Add to cart"
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
-        setClicked(true);
-        setTimeout(() => setClicked(false), 250);
       }}
-      className={`
-        group relative inline-flex h-[40px] w-[108px] shrink-0
-        items-center justify-center
-        border-2 border-[#9c0]
-        bg-white
-        skew-x-[-12deg]
-        overflow-hidden
-        transition-all duration-200
-        ${clicked ? "scale-95 shadow-[0_6px_18px_rgba(156,204,0,0.6)]" : ""}
-      `}
+      className="group relative inline-flex h-[40px] w-[108px] shrink-0 items-center justify-center border-2 border-[#9c0] bg-white skew-x-[-12deg] overflow-hidden transition-colors duration-300"
     >
-      {/* ✅ hover only on cart */}
       <span className="absolute left-0 top-0 h-full w-0 bg-[#8cbb00] transition-all duration-300 group-hover:w-full" />
-
       <span className="relative skew-x-[12deg]">
-        <CartOutlineIcon
-          className={`
-            h-[20px] w-[20px]
-            transition-colors duration-200
-            ${clicked ? "stroke-white" : "stroke-[#9c0]"}
-            group-hover:stroke-white
-          `}
-        />
+        <CartOutlineIcon className="h-[20px] w-[20px] stroke-[#9c0] group-hover:stroke-white transition-colors duration-300" />
       </span>
-    </button>
+    </a>
   );
 }
 

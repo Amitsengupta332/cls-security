@@ -699,3 +699,26 @@ function Accordion({ open, inner = false, children }) {
     </div>
   );
 }
+
+
+     className="
+            relative hidden sm:block
+
+            [&_.swiper-button-next]:h-[34px]
+            [&_.swiper-button-next]:w-[34px]
+            [&_.swiper-button-next]:bg-[#9c0]
+            [&_.swiper-button-next]:skew-x-[-12deg]
+            [&_.swiper-button-next]:right-[10px]
+            [&_.swiper-button-next]:top-[110px]
+
+            [&_.swiper-button-prev]:h-[34px]
+            [&_.swiper-button-prev]:w-[34px]
+            [&_.swiper-button-prev]:bg-[#9c0]
+            [&_.swiper-button-prev]:skew-x-[-12deg]
+            [&_.swiper-button-prev]:left-[10px]
+            [&_.swiper-button-prev]:top-[110px]
+
+            /* ✅ IMPORTANT: remove Swiper default arrows (they come from ::after) */
+            [&_.swiper-button-next::after]:content-none
+            [&_.swiper-button-prev::after]:content-none
+          "
