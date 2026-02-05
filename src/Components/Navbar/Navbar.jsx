@@ -99,8 +99,7 @@ export default function Navbar() {
     <header
       id="header"
       ref={headerRef}
-      className="fixed top-0 left-0 w-full z-50 text-white transition-all duration-300"
-    >
+      className="fixed top-0 left-0 w-full z-50 text-white transition-all duration-300">
       {/* ================= TOPBAR (RESPONSIVE) ================= */}
       <div className="hidden md:block">
         <div className="max-w-7xl mx-auto px-6">
@@ -109,8 +108,7 @@ export default function Navbar() {
             <div className="flex items-center">
               <a
                 href="tel:+06217163591"
-                className="inline-flex items-center gap-2"
-              >
+                className="inline-flex items-center gap-2">
                 <FiPhone className="text-[16px] text-[#9c0]" />
                 <span>+0621 7163591</span>
               </a>
@@ -154,14 +152,13 @@ export default function Navbar() {
             <button
               onClick={() => setMobileOpen((s) => !s)}
               className="p-2"
-              aria-label="toggle mobile menu"
-            >
+              aria-label="toggle mobile menu">
               {mobileOpen ? <FiX size={22} /> : <HiBars3 size={24} />}
             </button>
           </div>
 
           <div className="flex items-center justify-between py-3 md:py-4">
-            <Link  to="/" className="block">
+            <Link to="/" className="block">
               <img
                 src={logo}
                 alt="CLS Security"
@@ -175,26 +172,35 @@ export default function Navbar() {
               <li
                 className="relative"
                 onMouseEnter={() => openMenuDelayed("eng")}
-                onMouseLeave={closeMenuDelayed}
-              >
+                onMouseLeave={closeMenuDelayed}>
                 <button className="menu-link">Engineering</button>
                 <span className="menu-caret">▾</span>
 
                 {activeMenu === "eng" && (
                   <div className="dropdown-root dropdown-anim">
-                    <a href="#" className="drop-item">
+                    <button className="mob-item w-full text-left">
                       Page 1
-                    </a>
+                    </button>
 
                     {/* Page 2 trigger */}
                     <div
                       className="relative pr-2"
-                      onMouseEnter={() => setEngLevel1("page2")}
-                    >
-                      <a href="#" className="drop-item drop-flex">
+                      onMouseEnter={() => setEngLevel1("page2")}>
+                      {/* <a href="#" className="drop-item drop-flex">
                         <span>Page 2</span>
                         <FiChevronRight />
-                      </a>
+                      </a> */}
+                      <button
+                        onClick={() => toggleMob("engPage2")}
+                        className="mob-item w-full flex items-center justify-between text-left">
+                        <span>Page 2</span>
+                        <span
+                          className={`transition-transform ${
+                            mob.engPage2 ? "rotate-180" : ""
+                          }`}>
+                          ▾
+                        </span>
+                      </button>
 
                       {/* Page 2 submenu */}
                       {engLevel1 === "page2" && (
@@ -204,8 +210,7 @@ export default function Navbar() {
                           onMouseLeave={() => {
                             setEngLevel1(null);
                             setEngLevel2(null);
-                          }}
-                        >
+                          }}>
                           <a href="#" className="drop-item">
                             Page 2.1
                           </a>
@@ -216,8 +221,7 @@ export default function Navbar() {
                           {/* Page 2.3 trigger */}
                           <div
                             className="relative pr-2"
-                            onMouseEnter={() => setEngLevel2("page23")}
-                          >
+                            onMouseEnter={() => setEngLevel2("page23")}>
                             <a href="#" className="drop-item drop-flex">
                               <span>Page 2.3</span>
                               <FiChevronRight />
@@ -228,8 +232,7 @@ export default function Navbar() {
                               <div
                                 className="dropdown-sub dropdown-anim left-full top-0 ml-0 pl-2"
                                 onMouseEnter={() => setEngLevel2("page23")}
-                                onMouseLeave={() => setEngLevel2(null)}
-                              >
+                                onMouseLeave={() => setEngLevel2(null)}>
                                 {[
                                   "Page 2.1",
                                   "Page 2.2",
@@ -265,8 +268,7 @@ export default function Navbar() {
               <li
                 className="relative"
                 onMouseEnter={() => openMenuDelayed("con")}
-                onMouseLeave={closeMenuDelayed}
-              >
+                onMouseLeave={closeMenuDelayed}>
                 <button className="menu-link">Consulting</button>
                 <span className="menu-caret">▾</span>
               </li>
@@ -298,8 +300,7 @@ export default function Navbar() {
               <li
                 className="relative"
                 onMouseEnter={() => openMenuDelayed("ind")}
-                onMouseLeave={closeMenuDelayed}
-              >
+                onMouseLeave={closeMenuDelayed}>
                 <button className="menu-link">Industries</button>
                 <span className="menu-caret">▾</span>
               </li>
@@ -340,8 +341,7 @@ export default function Navbar() {
             <div className="flex items-center gap-5">
               <button
                 onClick={() => setSearchOpen(true)}
-                aria-label="open search"
-              >
+                aria-label="open search">
                 <FiSearch className="text-[20px] hover:text-[#9c0]" />
               </button>
               <a href="#" className="hover:text-[#9c0]" aria-label="user">
@@ -359,33 +359,29 @@ export default function Navbar() {
               {/* Engineering */}
               <button
                 onClick={() => toggleMob("engineering")}
-                className="w-full flex items-center justify-between py-2 px-3 rounded hover:bg-white/10"
-              >
+                className="w-full flex items-center justify-between py-2 px-3 rounded hover:bg-white/10">
                 <span>Engineering</span>
                 <span
                   className={`transition-transform ${
                     mob.engineering ? "rotate-180" : ""
-                  }`}
-                >
+                  }`}>
                   ▾
                 </span>
               </button>
 
-              <Accordion open={mob.engineering}>
+              {/* <Accordion open={mob.engineering}>
                 <a href="#" className="mob-item">
                   Page 1
                 </a>
 
                 <button
                   onClick={() => toggleMob("engPage2")}
-                  className="mob-item flex items-center justify-between w-full"
-                >
+                  className="mob-item flex items-center justify-between w-full">
                   <span>Page 2</span>
                   <span
                     className={`transition-transform ${
                       mob.engPage2 ? "rotate-180" : ""
-                    }`}
-                  >
+                    }`}>
                     ▾
                   </span>
                 </button>
@@ -400,14 +396,12 @@ export default function Navbar() {
 
                   <button
                     onClick={() => toggleMob("engPage23")}
-                    className="mob-item flex items-center justify-between w-full"
-                  >
+                    className="mob-item flex items-center justify-between w-full">
                     <span>Page 2.3</span>
                     <span
                       className={`transition-transform ${
                         mob.engPage23 ? "rotate-180" : ""
-                      }`}
-                    >
+                      }`}>
                       ▾
                     </span>
                   </button>
@@ -418,7 +412,7 @@ export default function Navbar() {
                         <a key={x} href="#" className="mob-item">
                           {x}
                         </a>
-                      )
+                      ),
                     )}
                   </Accordion>
 
@@ -433,19 +427,72 @@ export default function Navbar() {
                 <a href="#" className="mob-item">
                   Page 4
                 </a>
+              </Accordion> */}
+
+              <Accordion open={mob.engineering}>
+                <button className="mob-item w-full text-left">Page 1</button>
+
+                <button
+                  onClick={() => toggleMob("engPage2")}
+                  className="mob-item w-full flex items-center justify-between text-left">
+                  <span>Page 2</span>
+                  <span
+                    className={`transition-transform ${
+                      mob.engPage2 ? "rotate-180" : ""
+                    }`}>
+                    ▾
+                  </span>
+                </button>
+
+                <Accordion open={mob.engPage2} inner>
+                  <button className="mob-item w-full text-left">
+                    Page 2.1
+                  </button>
+                  <button className="mob-item w-full text-left">
+                    Page 2.2
+                  </button>
+
+                  <button
+                    onClick={() => toggleMob("engPage23")}
+                    className="mob-item w-full flex items-center justify-between text-left">
+                    <span>Page 2.3</span>
+                    <span
+                      className={`transition-transform ${
+                        mob.engPage23 ? "rotate-180" : ""
+                      }`}>
+                      ▾
+                    </span>
+                  </button>
+
+                  <Accordion open={mob.engPage23} inner>
+                    {["Page 2.1", "Page 2.2", "Page 2.3", "Page 2.4"].map(
+                      (x) => (
+                        <button key={x} className="mob-item w-full text-left">
+                          {x}
+                        </button>
+                      ),
+                    )}
+                  </Accordion>
+
+                  <button className="mob-item w-full text-left">
+                    Page 2.4
+                  </button>
+                </Accordion>
+
+                <button className="mob-item w-full text-left">Page 3</button>
+
+                <button className="mob-item w-full text-left">Page 4</button>
               </Accordion>
 
               {/* ✅ Consulting (MOBILE) */}
               <button
                 onClick={() => toggleMob("consulting")}
-                className="w-full flex items-center justify-between py-2 px-3 rounded hover:bg-white/10 mt-2"
-              >
+                className="w-full flex items-center justify-between py-2 px-3 rounded hover:bg-white/10 mt-2">
                 <span>Consulting</span>
                 <span
                   className={`transition-transform ${
                     mob.consulting ? "rotate-180" : ""
-                  }`}
-                >
+                  }`}>
                   ▾
                 </span>
               </button>
@@ -466,14 +513,12 @@ export default function Navbar() {
               {/* ✅ Industries (MOBILE) */}
               <button
                 onClick={() => toggleMob("industries")}
-                className="w-full flex items-center justify-between py-2 px-3 rounded hover:bg-white/10 mt-2"
-              >
+                className="w-full flex items-center justify-between py-2 px-3 rounded hover:bg-white/10 mt-2">
                 <span>Industries</span>
                 <span
                   className={`transition-transform ${
                     mob.industries ? "rotate-180" : ""
-                  }`}
-                >
+                  }`}>
                   ▾
                 </span>
               </button>
@@ -499,8 +544,7 @@ export default function Navbar() {
                 <a
                   key={m}
                   href="#"
-                  className="block py-2 px-3 rounded hover:bg-white/10"
-                >
+                  className="block py-2 px-3 rounded hover:bg-white/10">
                   {m}
                 </a>
               ))}
@@ -510,7 +554,7 @@ export default function Navbar() {
       </nav>
 
       {/* ================= SEARCH MODAL ================= */}
-      <div
+      {/* <div
         className={`
           fixed left-0 right-0 top-0 z-[999]
           h-[15%] min-h-[140px]
@@ -521,8 +565,7 @@ export default function Navbar() {
               ? "opacity-100 translate-y-0 visible"
               : "opacity-0 -translate-y-4 invisible"
           }
-        `}
-      >
+        `}>
         <div className="absolute left-1/2 top-[60px] -translate-x-1/2 w-[90%] sm:w-[70%] lg:w-[56%] max-w-[900px]">
           <input
             autoFocus
@@ -539,8 +582,7 @@ export default function Navbar() {
 
         <button
           onClick={() => setSearchOpen(false)}
-          className="absolute right-4 sm:right-[6rem] top-[30px] h-8 w-8"
-        >
+          className="absolute right-4 sm:right-[6rem] top-[30px] h-8 w-8">
           <FiX className="text-white text-[26px]" />
         </button>
 
@@ -554,11 +596,67 @@ export default function Navbar() {
             overflow-hidden
             transition-all duration-300
             hover:text-[#9c0]
-          "
-        >
+          ">
           <span className="skew-x-[12deg] relative z-10">Search</span>
           <span className="absolute inset-0 bg-white w-0 hover:w-full transition-all duration-300" />
         </button>
+      </div> */}
+
+      {/* ================= SEARCH MODAL ================= */}
+      <div
+        className={`
+    fixed left-0 right-0 top-0 z-[999]
+    h-[15%] min-h-[170px] sm:min-h-[140px]
+    bg-[linear-gradient(180deg,#171e2a,rgba(23,30,42,.82))]
+    transition-all duration-300
+    ${
+      searchOpen
+        ? "opacity-100 translate-y-0 visible"
+        : "opacity-0 -translate-y-4 invisible"
+    }
+  `}>
+        {/* Input */}
+        <div className="absolute left-1/2 top-[60px] -translate-x-1/2 w-[90%] sm:w-[70%] lg:w-[56%] max-w-[900px]">
+          <input
+            autoFocus
+            className="
+        w-full bg-transparent text-white
+        border-b border-white/20
+        px-4 sm:px-8 py-3 text-[15px]
+        outline-none
+        placeholder:text-white/30
+      "
+            placeholder="e.g. Business Intelligence"
+          />
+
+          {/* ✅ Mobile Search Button (same style as B2B / Get A Quote) */}
+          <div className="sm:hidden mt-4 flex justify-center">
+            <button className="btn-transparent-global w-full max-w-[360px]">
+              <span className="btn-inner flex items-center justify-center gap-2">
+                <FiSearch />
+                Search
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {/* Close */}
+        <button
+          onClick={() => setSearchOpen(false)}
+          className="absolute right-4 sm:right-[6rem] top-[30px] h-8 w-8"
+          aria-label="close search">
+          <FiX className="text-white text-[26px]" />
+        </button>
+
+        {/* ✅ Desktop Search Button (same style as B2B / Get A Quote) */}
+        <div className="hidden sm:block absolute right-[11rem] top-[30px]">
+          <button className="btn-transparent-global">
+            <span className="btn-inner flex items-center gap-2">
+              <FiSearch />
+              Search
+            </span>
+          </button>
+        </div>
       </div>
 
       {/* ================= INTERNAL CSS HELPERS ================= */}
@@ -732,8 +830,7 @@ function MegaMenu({
         animationDuration: "0.25s",
         animationTimingFunction: "ease",
         animationFillMode: "both",
-      }}
-    >
+      }}>
       <div className="mx-auto max-w-[1140px] px-6 py-8">
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-3 space-y-3 text-sm">
@@ -788,8 +885,7 @@ function Accordion({ open, inner = false, children }) {
         overflow-hidden transition-all duration-300
         ${open ? "max-h-[900px] opacity-100" : "max-h-0 opacity-0"}
         ${inner ? "pl-3" : "pl-0"}
-      `}
-    >
+      `}>
       <div className={`${inner ? "border-l border-white/10 ml-3" : ""}`}>
         {children}
       </div>

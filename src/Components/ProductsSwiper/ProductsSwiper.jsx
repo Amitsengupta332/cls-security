@@ -108,15 +108,12 @@ export default function ProductsSwiper() {
   ];
 
   return (
-    <section
-      id="testimonials"
-      className="bg-[#f9f9f9] py-10 sm:py-14 lg:py-[68px]"
-    >
+    <section className="bg-[#f9f9f9] py-10 sm:py-14 lg:py-[68px]">
       {/* Title */}
       <div className="text-center pb-10 sm:pb-14">
-        <div className="mt-2 text-[22px] sm:text-[26px] lg:text-[32px] font-bold text-[#433f39]">
+        <h2 className="mt-2 text-[22px] sm:text-[26px] lg:text-[32px] font-bold text-[#433f39]">
           Angebot der Woche
-        </div>
+        </h2>
       </div>
 
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6">
@@ -159,105 +156,98 @@ export default function ProductsSwiper() {
               1280: { slidesPerView: 4 },
             }}
             className="
-              pb-12
+              pb-24
+
               [&_.swiper-wrapper]:items-stretch
               [&_.swiper-slide]:h-auto
               [&_.swiper-slide]:flex
+
+              [&_.swiper-pagination]:relative
+              [&_.swiper-pagination]:mt-[40px]
+              [&_.swiper-pagination]:bottom-[-20px]
+
+              [&_.swiper-pagination-bullet]:h-[12px]
+              [&_.swiper-pagination-bullet]:w-[12px]
+              [&_.swiper-pagination-bullet]:bg-[#444]
+              [&_.swiper-pagination-bullet]:opacity-50
+              [&_.swiper-pagination-bullet-active]:opacity-100
             "
           >
             {products.map((p, idx) => (
               <SwiperSlide key={idx}>
-                <div className="flex w-full">
-                  <div className="w-full bg-white px-3 transition-all duration-300 hover:shadow-lg">
-                    <div className="flex w-full flex-col p-3">
-                      {/* Brand */}
+                <div className="w-full bg-white px-3 transition hover:shadow-lg">
+                  <div className="flex flex-col p-3">
+                    {/* Brand */}
+                    <img
+                      src={p.brand}
+                      alt=""
+                      className="h-[40px] w-[100px] object-contain"
+                    />
+
+                    {/* Image */}
+                    <a href={p.link} className="block h-[220px] group">
                       <img
-                        src={p.brand}
-                        alt="Brand"
-                        className="h-[40px] w-[100px] object-contain"
-                      />
-
-                      {/* Image */}
-                      <a href={p.link} className="group block h-[220px]">
-                        <img
-                          src={p.image}
-                          alt={p.title}
-                          className="
-                            mx-auto
-                            h-[140px] w-[140px]
-                            sm:h-[180px] sm:w-[180px]
-                            lg:h-[200px] lg:w-[200px]
-                            object-contain
-                            transition-transform duration-700
-                            group-hover:scale-90
-                          "
-                        />
-                      </a>
-
-                      {/* Title */}
-                      <h3
+                        src={p.image}
+                        alt={p.title}
                         className="
-                          mt-4 mb-3
-                          text-[14px] sm:text-[16px]
-                          leading-6
-                          overflow-hidden
-                          [display:-webkit-box]
-                          [-webkit-line-clamp:2]
-                          [-webkit-box-orient:vertical]
-                          h-[48px] sm:h-[55px]
-                          text-[#505f6b]
+                          mx-auto
+                          h-[140px] w-[140px]
+                          sm:h-[180px] sm:w-[180px]
+                          lg:h-[200px] lg:w-[200px]
+                          object-contain
+                          transition
+                          group-hover:scale-90
                         "
-                      >
-                        {p.title}
-                      </h3>
+                      />
+                    </a>
 
-                      {/* Rating */}
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex gap-1">
-                          {[...Array(5)].map((_, i) => (
-                            <FaStar key={i} size={13} color="#7a7a7a" />
-                          ))}
+                    {/* Title */}
+                    <h3 className="mt-4 mb-3 text-sm sm:text-base leading-6 line-clamp-2 text-[#505f6b] min-h-[48px]">
+                      {p.title}
+                    </h3>
+
+                    {/* Rating */}
+                    <div className="flex justify-between mb-2">
+                      <div className="flex gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <FaStar key={i} size={13} color="#7a7a7a" />
+                        ))}
+                      </div>
+
+                      <span className="text-xs text-gray-500">{p.sku}</span>
+                    </div>
+
+                    {/* Price */}
+                    <div className="h-[75px]">
+                      {p.type === "normal" && (
+                        <div className="flex justify-between">
+                          <div>
+                            <p className="font-bold text-lg sm:text-2xl lg:text-3xl">
+                              {p.price}
+                            </p>
+                            <p className="text-[11px] text-[#9c0]">{p.tax}</p>
+                          </div>
+
+                          <div className="text-xs text-right">
+                            <p>Statt</p>
+                            <p className="line-through text-red-500">
+                              €{p.oldPrice}
+                            </p>
+                          </div>
                         </div>
+                      )}
+                    </div>
 
-                        <span className="text-[13px] text-gray-500">
-                          {p.sku}
-                        </span>
-                      </div>
-
-                      {/* Price */}
-                      <div className="h-[75px]">
-                        {p.type === "normal" && (
-                          <div className="flex justify-between">
-                            <div>
-                              <div className="font-bold text-[22px] sm:text-[28px] lg:text-[32px]">
-                                {p.price}
-                              </div>
-                              <div className="text-[11px] text-[#9c0]">
-                                {p.tax}
-                              </div>
-                            </div>
-
-                            <div className="text-[12px] text-right">
-                              <div>Statt</div>
-                              <div className="line-through text-red-500">
-                                €{p.oldPrice}
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Footer */}
-                      <div className="mt-4 h-[70px]">
-                        {p.type === "normal" ? (
-                          <div className="flex flex-col sm:flex-row items-center gap-3">
-                            <Qty />
-                            <CartButton />
-                          </div>
-                        ) : (
-                          <CallForPrice phone={p.phone} />
-                        )}
-                      </div>
+                    {/* Footer */}
+                    <div className="mt-4 h-[70px]">
+                      {p.type === "normal" ? (
+                        <div className="flex flex-col sm:flex-row gap-3">
+                          <Qty />
+                          <CartButton />
+                        </div>
+                      ) : (
+                        <CallForPrice phone={p.phone} />
+                      )}
                     </div>
                   </div>
                 </div>
@@ -284,34 +274,6 @@ export default function ProductsSwiper() {
 }
 
 /* ================= COMPONENTS ================= */
-
-// function Qty() {
-//   const [qty, setQty] = useState(0);
-
-//   return (
-//     <div className="inline-flex h-[34px] sm:h-[40px] items-center border-2 border-[#9c0] bg-[#9c0] skew-x-[-12deg] px-2">
-//       <button
-//         onClick={() => setQty((q) => Math.max(0, q - 1))}
-//         className="h-[30px] w-[30px] sm:h-[36px] sm:w-[36px] text-white"
-//       >
-//         <FaMinus size={10} />
-//       </button>
-
-//       <input
-//         value={qty}
-//         readOnly
-//         className="w-8 bg-transparent text-center text-white outline-none"
-//       />
-
-//       <button
-//         onClick={() => setQty((q) => q + 1)}
-//         className="h-[30px] w-[30px] sm:h-[36px] sm:w-[36px] text-white"
-//       >
-//         <FaPlus size={10} />
-//       </button>
-//     </div>
-//   );
-// }
 
 function Qty() {
   const [qty, setQty] = useState(0);
@@ -382,15 +344,7 @@ function CartButton() {
   return (
     <a
       href="#"
-      className="
-        group relative
-        h-[40px] w-full sm:w-[110px]
-        flex items-center justify-center
-        border-2 border-[#9c0]
-        bg-white
-        skew-x-[-12deg]
-        overflow-hidden
-      "
+      className="group relative h-[40px] w-full sm:w-[110px] flex items-center justify-center border-2 border-[#9c0] bg-white skew-x-[-12deg] overflow-hidden"
     >
       <span className="absolute inset-0 bg-[#8cbb00] w-0 group-hover:w-full transition-all" />
 
@@ -403,16 +357,7 @@ function CartButton() {
 
 function CallForPrice({ phone }) {
   return (
-    <div
-      className="
-        group relative h-[40px] w-full
-        flex items-center justify-center
-        border-2 border-[#9c0]
-        text-[#9c0] font-bold
-        skew-x-[-12deg]
-        overflow-hidden
-      "
-    >
+    <div className="group relative h-[40px] w-full flex items-center justify-center border-2 border-[#9c0] text-[#9c0] font-bold skew-x-[-12deg] overflow-hidden">
       <span className="absolute inset-0 bg-[#8cbb00] w-0 group-hover:w-full transition-all" />
 
       <div className="absolute inset-0 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 skew-x-[12deg] text-white text-sm">

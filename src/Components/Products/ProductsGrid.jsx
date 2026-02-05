@@ -228,32 +228,96 @@ function RatingStars({ value = 5 }) {
   );
 }
 
+// function Qty() {
+//   const [qty, setQty] = useState(0);
+
+//   return (
+//     <div className="inline-flex h-[40px] shrink-0 items-stretch border-2 border-[#9c0] bg-[#9c0] skew-x-[-12deg] px-[15px] mr-[20px]">
+//       <button
+//         type="button"
+//         onClick={() => setQty((q) => Math.max(0, q - 1))}
+//         className="flex h-[38px] w-[14px] items-center justify-center bg-transparent text-white"
+//       >
+//         <FaMinus size={10} />
+//       </button>
+
+//       <input
+//         value={qty}
+//         readOnly
+//         className="h-full w-10 bg-[#9c0] text-center text-white outline-none"
+//       />
+
+//       <button
+//         type="button"
+//         onClick={() => setQty((q) => q + 1)}
+//         className="flex h-[38px] w-[38px] items-center justify-center bg-transparent text-white"
+//       >
+//         <FaPlus size={10} />
+//       </button>
+//     </div>
+//   );
+// }
 function Qty() {
   const [qty, setQty] = useState(0);
 
   return (
-    <div className="inline-flex h-[40px] shrink-0 items-stretch border-2 border-[#9c0] bg-[#9c0] skew-x-[-12deg] px-[15px] mr-[20px]">
-      <button
-        type="button"
-        onClick={() => setQty((q) => Math.max(0, q - 1))}
-        className="flex h-[38px] w-[14px] items-center justify-center bg-transparent text-white"
-      >
-        <FaMinus size={10} />
-      </button>
+    <div
+      className="
+        inline-flex
+        h-[34px] sm:h-[40px]
+        items-center
+        border-2 border-[#9c0]
+        bg-[#9c0]
+        skew-x-[-12deg]
+        overflow-hidden
+      "
+    >
+      {/* Inner wrapper to cancel skew */}
+      <div className="flex items-center h-full skew-x-[12deg]">
+        {/* Minus */}
+        <button
+          onClick={() => setQty((q) => Math.max(0, q - 1))}
+          className="
+            h-[30px] w-[30px]
+            sm:h-[36px] sm:w-[36px]
+            flex items-center justify-center
+            text-white
+            hover:bg-[#8cbb00]
+            transition
+          "
+        >
+          <FaMinus size={10} />
+        </button>
 
-      <input
-        value={qty}
-        readOnly
-        className="h-full w-10 bg-[#9c0] text-center text-white outline-none"
-      />
+        {/* Input */}
+        <input
+          value={qty}
+          readOnly
+          className="
+            w-8
+            bg-transparent
+            text-center
+            text-white
+            outline-none
+            font-medium
+          "
+        />
 
-      <button
-        type="button"
-        onClick={() => setQty((q) => q + 1)}
-        className="flex h-[38px] w-[38px] items-center justify-center bg-transparent text-white"
-      >
-        <FaPlus size={10} />
-      </button>
+        {/* Plus */}
+        <button
+          onClick={() => setQty((q) => q + 1)}
+          className="
+            h-[30px] w-[30px]
+            sm:h-[36px] sm:w-[36px]
+            flex items-center justify-center
+            text-white
+            hover:bg-[#8cbb00]
+            transition
+          "
+        >
+          <FaPlus size={10} />
+        </button>
+      </div>
     </div>
   );
 }
