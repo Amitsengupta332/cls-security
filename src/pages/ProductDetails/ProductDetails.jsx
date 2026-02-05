@@ -3,6 +3,7 @@ import ProductsBreadcrumb from "../../Components/Products/ProductsBreadcrumb";
 import ProductDetailsMain from "../../Components/ProductDetails/ProductDetailsMain";
 import ProductDetailsTabs from "../../Components/ProductDetails/ProductDetailsTabs";
 import RelatedProducts from "../../Components/ProductDetails/RelatedProducts";
+import ProductsSwiper from "../../Components/ProductsSwiper/ProductsSwiper";
 
 export default function ProductDetails() {
   return (
@@ -19,8 +20,9 @@ export default function ProductDetails() {
           </div>
         </div>
       </section>
+      <ProductsSwiper/>
 
-      <RelatedProducts />
+      {/* <RelatedProducts /> */}
     </>
   );
 }
