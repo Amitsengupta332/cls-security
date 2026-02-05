@@ -168,3 +168,6 @@ export const productsData = [
 // helper function (optional)
 export const getProductBySku = (sku) =>
   productsData.find((p) => p.sku === sku);
+
+export const products = productsData;
+
