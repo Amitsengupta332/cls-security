@@ -195,8 +195,9 @@ export default function ProductsSwiper() {
             onSwiper={setSwiperInstance}
             navigation={false} // disable default first
             pagination={{ clickable: true }}
-            spaceBetween={20}
-            slidesPerView={1}
+          spaceBetween={32} 
+          
+            slidesPerView={4}
             breakpoints={{
               480: { slidesPerView: 1.2 },
               640: { slidesPerView: 2 },
@@ -216,9 +217,10 @@ export default function ProductsSwiper() {
             [&_.swiper-pagination-bullet]:w-[12px]
           [&_.swiper-pagination-bullet]:bg-[#444]">
             {products.map((p, idx) => (
-              <SwiperSlide key={idx}>
+              <SwiperSlide key={idx}  >
                 <Link to={`/products/${p.sku}`} className="block h-full">
-                  <div className="w-full bg-white px-3 transition hover:shadow-lg">
+                  {/* <div className="w-full  bg-white px-3 transition hover:shadow-lg"> */}
+                  <div className="w-[310px] bg-white px-3 transition hover:shadow-lg">
                     <div className="flex flex-col p-3">
                       {/* Brand */}
                       <img
