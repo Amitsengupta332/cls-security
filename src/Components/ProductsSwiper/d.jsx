@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
@@ -16,13 +16,15 @@ import {
 
 import productImg from "../../assets/img/products/hikvision.webp";
 
-// ✅ your downloaded svg arrows
 import leftArrow from "../../assets/icons/Left_Arrow.svg";
-import rightArrow from "../../assets/icons/Righ_Arrow.svg";
+import rightArrow from "../../assets/icons/Right_Arrow.svg";
 
 export default function ProductsSwiper() {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+  const [swiperInstance, setSwiperInstance] = useState(null);
+
   const products = [
-    // 1
     {
       brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
       image: productImg,
@@ -34,7 +36,6 @@ export default function ProductsSwiper() {
       type: "normal",
       link: "#",
     },
-    // 2
     {
       brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
       image: productImg,
@@ -46,7 +47,6 @@ export default function ProductsSwiper() {
       type: "normal",
       link: "#",
     },
-    // 3
     {
       brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
       image: productImg,
@@ -58,7 +58,6 @@ export default function ProductsSwiper() {
       type: "normal",
       link: "#",
     },
-    // 4 (call)
     {
       brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
       image: productImg,
@@ -68,7 +67,6 @@ export default function ProductsSwiper() {
       type: "call",
       link: "#",
     },
-    // 5
     {
       brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
       image: productImg,
@@ -80,7 +78,6 @@ export default function ProductsSwiper() {
       type: "normal",
       link: "#",
     },
-    // 6
     {
       brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
       image: productImg,
@@ -92,7 +89,6 @@ export default function ProductsSwiper() {
       type: "normal",
       link: "#",
     },
-    // 7
     {
       brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
       image: productImg,
@@ -104,7 +100,6 @@ export default function ProductsSwiper() {
       type: "normal",
       link: "#",
     },
-    // 8 (call)
     {
       brand: "https://cls-security.de/pub/media/brand/Hikvision.png",
       image: productImg,
@@ -117,18 +112,18 @@ export default function ProductsSwiper() {
   ];
 
   return (
-    <section id="testimonials" className="bg-[#f9f9f9] py-[68px]">
+    <section className="bg-[#f9f9f9] py-10 sm:py-14 lg:py-[68px]">
       {/* Title */}
-      <div className="text-center pb-[60px]">
-        <div className="mt-[10px] text-[32px] font-bold text-[#433f39]">
-          <span>Angebot der Woche</span>
-        </div>
+      <div className="text-center pb-10 sm:pb-14">
+        <h2 className="mt-2 text-[22px] sm:text-[26px] lg:text-[32px] font-bold text-[#433f39]">
+          Angebot der Woche
+        </h2>
       </div>
 
-      <div className="max-w-7xl mx-auto w-full px-6">
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6">
         <div
           className="
-            relative
+            relative hidden sm:block
 
             [&_.swiper-button-next]:h-[34px]
             [&_.swiper-button-next]:w-[34px]
@@ -144,169 +139,170 @@ export default function ProductsSwiper() {
             [&_.swiper-button-prev]:left-[10px]
             [&_.swiper-button-prev]:top-[110px]
 
-            [&_.swiper-button-next:after]:hidden
-            [&_.swiper-button-prev:after]:hidden
+      
           ">
-          <Swiper
+          {/* 
+                  [&_.swiper-button-next:after]:hidden
+            [&_.swiper-button-prev:after]:hidden
+             */}
+          {/* <Swiper
             modules={[Navigation, Pagination]}
             navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
+              // nextEl: ".swiper-button-next",
+              // prevEl: ".swiper-button-prev",
             }}
             pagination={{ clickable: true }}
             spaceBetween={20}
             slidesPerView={1}
             breakpoints={{
-              640: { slidesPerView: 2 }, // mobile landscape / small tablets
-              1024: { slidesPerView: 3 }, // tablets / small desktop
-              1280: { slidesPerView: 4 }, // ✅ desktop = 4 cards
-              1536: { slidesPerView: 4 }, // large desktop
+              480: { slidesPerView: 1.2 },
+              640: { slidesPerView: 2 },
+              768: { slidesPerView: 2.5 },
+              1024: { slidesPerView: 3 },
+              1280: { slidesPerView: 4 },
             }}
             className="
-              pb-12
+              pb-24
+
               [&_.swiper-wrapper]:items-stretch
               [&_.swiper-slide]:h-auto
               [&_.swiper-slide]:flex
 
               [&_.swiper-pagination]:relative
-              [&_.swiper-pagination]:mt-[20px]
-              [&_.swiper-pagination]:bottom-0
+              [&_.swiper-pagination]:mt-[40px]
+              [&_.swiper-pagination]:bottom-[-20px]
+
               [&_.swiper-pagination-bullet]:h-[12px]
               [&_.swiper-pagination-bullet]:w-[12px]
               [&_.swiper-pagination-bullet]:bg-[#444]
               [&_.swiper-pagination-bullet]:opacity-50
               [&_.swiper-pagination-bullet-active]:opacity-100
-            ">
+            "
+          > */}
+
+          <Swiper
+            modules={[Navigation, Pagination]}
+            onSwiper={setSwiperInstance}
+            navigation={false} // disable default first
+            pagination={{ clickable: true }}
+            spaceBetween={20}
+            slidesPerView={1}
+            breakpoints={{
+              480: { slidesPerView: 1.2 },
+              640: { slidesPerView: 2 },
+              768: { slidesPerView: 2.5 },
+              1024: { slidesPerView: 3 },
+              1280: { slidesPerView: 4 },
+            }}>
             {products.map((p, idx) => (
               <SwiperSlide key={idx}>
-                <div className="flex w-full">
-                  <div className="w-full bg-white px-[10px] transition-all duration-300 hover:shadow-[0_5px_83px_0_rgba(27,26,26,0.12)]">
-                    <div className="flex w-full flex-col p-3">
-                      {/* Brand */}
-                      <div className="text-left">
-                        <img
-                          src={p.brand}
-                          alt="Brand"
-                          className="h-[45px] w-[110px] object-contain"
-                        />
+                <div className="w-full bg-white px-3 transition hover:shadow-lg">
+                  <div className="flex flex-col p-3">
+                    {/* Brand */}
+                    <img
+                      src={p.brand}
+                      alt=""
+                      className="h-[40px] w-[100px] object-contain"
+                    />
+
+                    {/* Image */}
+                    <a href={p.link} className="block h-[220px] group">
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        className="
+                          mx-auto
+                          h-[140px] w-[140px]
+                          sm:h-[180px] sm:w-[180px]
+                          lg:h-[200px] lg:w-[200px]
+                          object-contain
+                          transition
+                          group-hover:scale-90
+                        "
+                      />
+                    </a>
+
+                    {/* Title */}
+                    <h3 className="mt-4 mb-3 text-sm sm:text-base leading-6 line-clamp-2 text-[#505f6b] min-h-[48px]">
+                      {p.title}
+                    </h3>
+
+                    {/* Rating */}
+                    <div className="flex justify-between mb-2">
+                      <div className="flex gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <FaStar key={i} size={13} color="#7a7a7a" />
+                        ))}
                       </div>
 
-                      {/* Image */}
-                      <a href={p.link} className="group block h-[240px]">
-                        <img
-                          src={p.image}
-                          alt={p.title}
-                          className="
-                            mx-auto
-                            h-[200px] w-[200px]
-                            max-h-[240px] max-w-[260px]
-                            object-contain
-                            transition-transform duration-1000 ease-in-out
-                            group-hover:scale-[0.8]
-                          "
-                        />
-                      </a>
+                      <span className="text-xs text-gray-500">{p.sku}</span>
+                    </div>
 
-                      {/* Title + Rating + SKU */}
-                      <a
-                        href={p.link}
-                        className="block"
-                        aria-label="visit product">
-                        <h3
-                          className="
-                            mt-[25px] mb-[20px]
-                            text-left
-                            text-[16px] font-[500]
-                            leading-[28px]
-                            overflow-hidden
-                            [display:-webkit-box]
-                            [-webkit-box-orient:vertical]
-                            [-webkit-line-clamp:2]
-                            h-[55.2px]
-                            text-[rgba(80,95,107)]
-                          ">
-                          {p.title}
-                        </h3>
+                    {/* Price */}
+                    <div className="h-[75px]">
+                      {p.type === "normal" && (
+                        <div className="flex justify-between">
+                          <div>
+                            <p className="font-bold text-lg sm:text-2xl lg:text-3xl">
+                              {p.price}
+                            </p>
+                            <p className="text-[11px] text-[#9c0]">{p.tax}</p>
+                          </div>
 
-                        <div className="mb-1 flex h-[28px] items-center justify-between">
-                          <ul className="flex items-center gap-[3px]">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                              <li key={i}>
-                                <FaStar size={14} color="#7a7a7a" />
-                              </li>
-                            ))}
-                          </ul>
-
-                          <div className="text-[#868686] text-[14px]">
-                            <span>{p.sku}</span>
+                          <div className="text-xs text-right">
+                            <p>Statt</p>
+                            <p className="line-through text-red-500">
+                              €{p.oldPrice}
+                            </p>
                           </div>
                         </div>
-                      </a>
+                      )}
+                    </div>
 
-                      {/* Price (fixed height) */}
-                      <div className="h-[82px]">
-                        {p.type === "normal" ? (
-                          <div className="flex items-center justify-between">
-                            <div className="inline-grid text-left">
-                              <span className="font-bold text-[35px] xl:text-[25px]">
-                                {p.price}
-                              </span>
-                              <span className="text-[11px] leading-[11px] text-[#9c0]">
-                                {p.tax}
-                              </span>
-                            </div>
-
-                            <div className="text-left">
-                              <span className="block text-[12px]">Statt</span>
-                              <span className="text-red-500 line-through">
-                                <span className="text-black">€</span>
-                                <span className="text-black">
-                                  {p.oldPrice},
-                                </span>
-                                <span>-</span>
-                              </span>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="h-full" />
-                        )}
-                      </div>
-
-                      {/* Footer */}
-                      <div className="mt-[25px] h-[52px]">
-                        {p.type === "normal" ? (
-                          <div className="flex h-full items-center justify-between gap-4">
-                            <Qty />
-                            <CartButton />
-                          </div>
-                        ) : (
-                          <CallForPrice phone={p.phone} />
-                        )}
-                      </div>
+                    {/* Footer */}
+                    <div className="mt-4 h-[70px]">
+                      {p.type === "normal" ? (
+                        <div className="flex flex-col sm:flex-row gap-3">
+                          <Qty />
+                          <CartButton />
+                        </div>
+                      ) : (
+                        <CallForPrice phone={p.phone} />
+                      )}
                     </div>
                   </div>
                 </div>
               </SwiperSlide>
             ))}
 
-            {/* ✅ Custom arrows */}
-            <div className="swiper-button-prev">
-              <span className="skew-x-[12deg] flex items-center justify-center">
-                <img
-                  src={leftArrow}
-                  alt="Previous"
-                  className="h-[18px] w-[18px] object-contain"
-                />
+            {/* Arrows */}
+            {/* <div className="swiper-button-prev">
+              <span className="skew-x-[12deg] flex justify-center items-center">
+                <img src={leftArrow} className="h-4 w-4" />
               </span>
             </div>
 
             <div className="swiper-button-next">
-              <span className="skew-x-[12deg] flex items-center justify-center">
-                <img
-                  src={rightArrow}
-                  alt="Next"
-                  className="h-[18px] w-[18px] object-contain"
-                />
+              <span className="skew-x-[12deg] flex justify-center items-center">
+                <img src={rightArrow} className="h-4 w-4" />
+              </span>
+            </div> */}
+
+            <div
+              ref={prevRef}
+              className="swiper-button-prev"
+              onClick={() => swiperInstance?.slidePrev()}>
+              <span className="skew-x-[12deg] flex justify-center items-center">
+                <img src={leftArrow} className="h-4 w-4" />
+              </span>
+            </div>
+
+            <div
+              ref={nextRef}
+              className="swiper-button-next"
+              onClick={() => swiperInstance?.slideNext()}>
+              <span className="skew-x-[12deg] flex justify-center items-center">
+                <img src={rightArrow} className="h-4 w-4" />
               </span>
             </div>
           </Swiper>
@@ -316,30 +312,66 @@ export default function ProductsSwiper() {
   );
 }
 
+/* ================= COMPONENTS ================= */
+
 function Qty() {
   const [qty, setQty] = useState(0);
 
   return (
-    <div className="inline-flex h-[40px] shrink-0 items-stretch border-2 border-[#9c0] bg-[#9c0] skew-x-[-12deg] px-[15px]">
-      <button
-        type="button"
-        onClick={() => setQty((q) => Math.max(0, q - 1))}
-        className="flex h-[38px] w-[38px] items-center justify-center bg-transparent text-white">
-        <FaMinus size={10} />
-      </button>
+    <div
+      className="
+        inline-flex
+        h-[34px] sm:h-[40px]
+        items-center
+        border-2 border-[#9c0]
+        bg-[#9c0]
+        skew-x-[-12deg]
+        overflow-hidden
+      ">
+      {/* Inner wrapper to cancel skew */}
+      <div className="flex items-center h-full skew-x-[12deg]">
+        {/* Minus */}
+        <button
+          onClick={() => setQty((q) => Math.max(0, q - 1))}
+          className="
+            h-[30px] w-[30px]
+            sm:h-[36px] sm:w-[36px]
+            flex items-center justify-center
+            text-white
+            hover:bg-[#8cbb00]
+            transition
+          ">
+          <FaMinus size={10} />
+        </button>
 
-      <input
-        value={qty}
-        readOnly
-        className="h-full w-10 bg-[#9c0] text-center text-white outline-none"
-      />
+        {/* Input */}
+        <input
+          value={qty}
+          readOnly
+          className="
+            w-8
+            bg-transparent
+            text-center
+            text-white
+            outline-none
+            font-medium
+          "
+        />
 
-      <button
-        type="button"
-        onClick={() => setQty((q) => q + 1)}
-        className="flex h-[38px] w-[38px] items-center justify-center bg-transparent text-white">
-        <FaPlus size={10} />
-      </button>
+        {/* Plus */}
+        <button
+          onClick={() => setQty((q) => q + 1)}
+          className="
+            h-[30px] w-[30px]
+            sm:h-[36px] sm:w-[36px]
+            flex items-center justify-center
+            text-white
+            hover:bg-[#8cbb00]
+            transition
+          ">
+          <FaPlus size={10} />
+        </button>
+      </div>
     </div>
   );
 }
@@ -348,8 +380,9 @@ function CartButton() {
   return (
     <a
       href="#"
-      className="group relative inline-flex h-[40px] w-[110px] shrink-0 items-center justify-center border-2 border-[#9c0] bg-white skew-x-[-12deg] overflow-hidden">
-      <span className="absolute left-0 top-0 h-full w-0 bg-[#8cbb00] transition-all duration-300 group-hover:w-full" />
+      className="group relative h-[40px] w-full sm:w-[110px] flex items-center justify-center border-2 border-[#9c0] bg-white skew-x-[-12deg] overflow-hidden">
+      <span className="absolute inset-0 bg-[#8cbb00] w-0 group-hover:w-full transition-all" />
+
       <span className="relative skew-x-[12deg] text-[#9c0] group-hover:text-white">
         <FaShoppingCart />
       </span>
@@ -359,15 +392,15 @@ function CartButton() {
 
 function CallForPrice({ phone }) {
   return (
-    <div className="group relative h-[40px] w-full flex items-center justify-center border-2 border-[#9c0] text-[#9c0] font-bold uppercase skew-x-[-12deg] overflow-hidden">
-      <span className="absolute left-0 top-0 h-full w-0 bg-[#8cbb00] transition-all duration-300 group-hover:w-full" />
+    <div className="group relative h-[40px] w-full flex items-center justify-center border-2 border-[#9c0] text-[#9c0] font-bold skew-x-[-12deg] overflow-hidden">
+      <span className="absolute inset-0 bg-[#8cbb00] w-0 group-hover:w-full transition-all" />
 
-      <div className="absolute inset-0 flex items-center justify-center gap-2 opacity-0 invisible transition-opacity duration-200 group-hover:opacity-100 group-hover:visible skew-x-[12deg] text-white text-[15px] font-extrabold">
-        <FaPhoneAlt className="text-white" />
-        <span>{phone}</span>
+      <div className="absolute inset-0 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 skew-x-[12deg] text-white text-sm">
+        <FaPhoneAlt />
+        {phone}
       </div>
 
-      <div className="relative skew-x-[12deg] opacity-100 visible transition-opacity duration-200 group-hover:opacity-0 group-hover:invisible">
+      <div className="relative skew-x-[12deg] group-hover:opacity-0">
         Preis anfragen
       </div>
     </div>

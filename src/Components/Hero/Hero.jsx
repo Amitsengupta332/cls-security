@@ -42,7 +42,7 @@ export default function Hero() {
           {/* Heading */}
           <h1
             className="
-              text-white font-extrabold
+              text-white font-bold
               text-[70px] leading-[1.115em] tracking-[-.03em]
               max-[1500px]:text-[40px]
               max-[767px]:text-[25px]
