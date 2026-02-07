@@ -95,7 +95,7 @@ export default function ProductDetailsTabs() {
             </div>
           ) : null,
         )}
-      </div>
+      </div> 
     </div>
   );
 }

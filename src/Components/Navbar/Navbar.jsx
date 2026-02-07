@@ -170,8 +170,8 @@ export default function Navbar() {
             {/* <ul className="hidden md:flex flex-wrap items-center gap-x-[26px] gap-y-2 text-[13px] font-medium tracking-[.01em]"> */}
             <ul className="hidden md:flex flex-wrap items-center gap-x-[26px] gap-y-2 text-[13px] font-medium tracking-[.01em]">
               {/* Engineering */}
-              <li
-                className="relative"
+              {/* <li
+                className="relative "
                 onMouseEnter={() => openMenuDelayed("eng")}
                 onMouseLeave={closeMenuDelayed}>
                 <button className="menu-link">Engineering</button>
@@ -182,15 +182,11 @@ export default function Navbar() {
                     <button className="mob-item w-full text-left">
                       Page 1
                     </button>
-
-                    {/* Page 2 trigger */}
+ 
                     <div
                       className="relative pr-2"
                       onMouseEnter={() => setEngLevel1("page2")}>
-                      {/* <a href="#" className="drop-item drop-flex">
-                        <span>Page 2</span>
-                        <FiChevronRight />
-                      </a> */}
+                
                       <button
                         onClick={() => toggleMob("engPage2")}
                         className="mob-item w-full flex items-center justify-between text-left">
@@ -203,7 +199,7 @@ export default function Navbar() {
                         </span>
                       </button>
 
-                      {/* Page 2 submenu */}
+              
                       {engLevel1 === "page2" && (
                         <div
                           className="dropdown-sub dropdown-anim left-full top-0 ml-0 pl-2"
@@ -219,7 +215,7 @@ export default function Navbar() {
                             Page 2.2
                           </a>
 
-                          {/* Page 2.3 trigger */}
+                       
                           <div
                             className="relative pr-2"
                             onMouseEnter={() => setEngLevel2("page23")}>
@@ -228,7 +224,7 @@ export default function Navbar() {
                               <FiChevronRight />
                             </a>
 
-                            {/* Page 2.3 submenu */}
+                       
                             {engLevel2 === "page23" && (
                               <div
                                 className="dropdown-sub dropdown-anim left-full top-0 ml-0 pl-2"
@@ -263,11 +259,138 @@ export default function Navbar() {
                     </a>
                   </div>
                 )}
+              </li> */}
+
+              {/* Engineering */}
+              <li
+                className="relative has-dropdown"
+                onMouseEnter={() => openMenuDelayed("eng")}
+                onMouseLeave={closeMenuDelayed}>
+                <button className="menu-link">Engineering</button>
+                <span className="menu-caret">▾</span>
+
+                {activeMenu === "eng" && (
+                  <div className="dropdown-root dropdown-anim">
+                    {/* Page 1 */}
+                    {/* <button className="mob-item w-full text-left ">
+                      Page 1
+                    </button> */}
+                    <button className="drop-item w-full text-left">
+                      Page 1
+                    </button>
+
+                    {/* ================= Page 2 ================= */}
+                    <div
+                      className="relative pr-2"
+                      onMouseEnter={() => {
+                        if (hoverTimer.current)
+                          clearTimeout(hoverTimer.current);
+
+                        hoverTimer.current = setTimeout(() => {
+                          setEngLevel1("page2");
+                        }, 130);
+                      }}
+                      onMouseLeave={() => {
+                        if (hoverTimer.current)
+                          clearTimeout(hoverTimer.current);
+
+                        hoverTimer.current = setTimeout(() => {
+                          setEngLevel1(null);
+                          setEngLevel2(null);
+                        }, 130);
+                      }}>
+                      <a href="#" className="drop-item drop-flex">
+                        <span>Page 2</span>
+                        <FiChevronRight />
+                      </a>
+
+                      {/* ================= Page 2 Sub ================= */}
+                      {engLevel1 === "page2" && (
+                        <div
+                          className="dropdown-sub dropdown-anim left-full top-0 ml-0 pl-2"
+                          onMouseEnter={() => setEngLevel1("page2")}
+                          onMouseLeave={() => {
+                            setEngLevel1(null);
+                            setEngLevel2(null);
+                          }}>
+                          {/* Page 2.1 */}
+                          <a href="#" className="drop-item">
+                            Page 2.1
+                          </a>
+
+                          {/* Page 2.2 */}
+                          <a href="#" className="drop-item">
+                            Page 2.2
+                          </a>
+
+                          {/* ================= Page 2.3 ================= */}
+                          <div
+                            className="relative pr-2"
+                            onMouseEnter={() => {
+                              if (hoverTimer.current)
+                                clearTimeout(hoverTimer.current);
+
+                              hoverTimer.current = setTimeout(() => {
+                                setEngLevel2("page23");
+                              }, 130);
+                            }}
+                            onMouseLeave={() => {
+                              if (hoverTimer.current)
+                                clearTimeout(hoverTimer.current);
+
+                              hoverTimer.current = setTimeout(() => {
+                                setEngLevel2(null);
+                              }, 130);
+                            }}>
+                            <a href="#" className="drop-item drop-flex">
+                              <span>Page 2.3</span>
+                              <FiChevronRight />
+                            </a>
+
+                            {/* ================= Page 2.3 Sub ================= */}
+                            {engLevel2 === "page23" && (
+                              <div
+                                className="dropdown-sub dropdown-anim left-full top-0 ml-0 pl-2"
+                                onMouseEnter={() => setEngLevel2("page23")}
+                                onMouseLeave={() => setEngLevel2(null)}>
+                                {[
+                                  "Page 2.3.1",
+                                  "Page 2.3.2",
+                                  "Page 2.3.3",
+                                  "Page 2.3.4",
+                                ].map((x) => (
+                                  <a key={x} href="#" className="drop-item">
+                                    {x}
+                                  </a>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Page 2.4 */}
+                          <a href="#" className="drop-item">
+                            Page 2.4
+                          </a>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Page 3 */}
+                    <a href="#" className="drop-item">
+                      Page 3
+                    </a>
+
+                    {/* Page 4 */}
+                    <a href="#" className="drop-item">
+                      Page 4
+                    </a>
+                  </div>
+                )}
               </li>
 
               {/* Consulting */}
               <li
-                className="relative"
+                className="relative has-dropdown"
                 onMouseEnter={() => openMenuDelayed("con")}
                 onMouseLeave={closeMenuDelayed}>
                 <button className="menu-link">Consulting</button>
@@ -299,7 +422,7 @@ export default function Navbar() {
 
               {/* Industries */}
               <li
-                className="relative"
+                className="relative has-dropdown"
                 onMouseEnter={() => openMenuDelayed("ind")}
                 onMouseLeave={closeMenuDelayed}>
                 <button className="menu-link">Industries</button>
@@ -369,66 +492,6 @@ export default function Navbar() {
                   ▾
                 </span>
               </button>
-
-              {/* <Accordion open={mob.engineering}>
-                <a href="#" className="mob-item">
-                  Page 1
-                </a>
-
-                <button
-                  onClick={() => toggleMob("engPage2")}
-                  className="mob-item flex items-center justify-between w-full">
-                  <span>Page 2</span>
-                  <span
-                    className={`transition-transform ${
-                      mob.engPage2 ? "rotate-180" : ""
-                    }`}>
-                    ▾
-                  </span>
-                </button>
-
-                <Accordion open={mob.engPage2} inner>
-                  <a href="#" className="mob-item">
-                    Page 2.1
-                  </a>
-                  <a href="#" className="mob-item">
-                    Page 2.2
-                  </a>
-
-                  <button
-                    onClick={() => toggleMob("engPage23")}
-                    className="mob-item flex items-center justify-between w-full">
-                    <span>Page 2.3</span>
-                    <span
-                      className={`transition-transform ${
-                        mob.engPage23 ? "rotate-180" : ""
-                      }`}>
-                      ▾
-                    </span>
-                  </button>
-
-                  <Accordion open={mob.engPage23} inner>
-                    {["Page 2.1", "Page 2.2", "Page 2.3", "Page 2.4"].map(
-                      (x) => (
-                        <a key={x} href="#" className="mob-item">
-                          {x}
-                        </a>
-                      ),
-                    )}
-                  </Accordion>
-
-                  <a href="#" className="mob-item">
-                    Page 2.4
-                  </a>
-                </Accordion>
-
-                <a href="#" className="mob-item">
-                  Page 3
-                </a>
-                <a href="#" className="mob-item">
-                  Page 4
-                </a>
-              </Accordion> */}
 
               <Accordion open={mob.engineering}>
                 <button className="mob-item w-full text-left">Page 1</button>
@@ -555,55 +618,6 @@ export default function Navbar() {
       </nav>
 
       {/* ================= SEARCH MODAL ================= */}
-      {/* <div
-        className={`
-          fixed left-0 right-0 top-0 z-[999]
-          h-[15%] min-h-[140px]
-          bg-[linear-gradient(180deg,#171e2a,rgba(23,30,42,.82))]
-          transition-all duration-300
-          ${
-            searchOpen
-              ? "opacity-100 translate-y-0 visible"
-              : "opacity-0 -translate-y-4 invisible"
-          }
-        `}>
-        <div className="absolute left-1/2 top-[60px] -translate-x-1/2 w-[90%] sm:w-[70%] lg:w-[56%] max-w-[900px]">
-          <input
-            autoFocus
-            className="
-              w-full bg-transparent text-white
-              border-b border-white/20
-              px-8 py-3 text-[15px]
-              outline-none
-              placeholder:text-white/30
-            "
-            placeholder="e.g. Business Intelligence"
-          />
-        </div>
-
-        <button
-          onClick={() => setSearchOpen(false)}
-          className="absolute right-4 sm:right-[6rem] top-[30px] h-8 w-8">
-          <FiX className="text-white text-[26px]" />
-        </button>
-
-        <button
-          className="
-            absolute right-[5.5rem] sm:right-[11rem] top-[38px]
-            h-[42px] w-[132px]
-            uppercase text-white
-            bg-[#809cd0]
-            skew-x-[-12deg]
-            overflow-hidden
-            transition-all duration-300
-            hover:text-[#9c0]
-          ">
-          <span className="skew-x-[12deg] relative z-10">Search</span>
-          <span className="absolute inset-0 bg-white w-0 hover:w-full transition-all duration-300" />
-        </button>
-      </div> */}
-
-      {/* ================= SEARCH MODAL ================= */}
       <div
         className={`
     fixed left-0 right-0 top-0 z-[999]
@@ -682,17 +696,29 @@ export default function Navbar() {
         .menu-link:hover::after{ width:100%; }
         .menu-caret{ margin-left:6px; font-size:12px; opacity:.9; }
 
-        .dropdown-root{
-          position:absolute;
-          top:100%;
-          margin-top:12px;
-          width:224px;
-          background:#fff;
-          color:#000;
-          box-shadow:0 10px 30px rgba(0,0,0,.15);
-          padding:6px 0;
-          z-index:60;
-        }
+ .dropdown-root{
+  position:absolute;
+  top: calc(100% + 12px);  /* ✅ same gap but no margin */
+  margin-top:16px;
+  width:224px;
+  background:#fff;
+  color:#000;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+  padding:6px 0;
+  z-index:60;
+}
+
+   .has-dropdown::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:100%;
+  width:100%;
+  height:12px;       /* তোমার margin-top এর সমান */
+
+  background:transparent;
+  pointer-events:auto;   /* ✅ MUST */
+}
 
         .dropdown-sub{
           position:absolute;
@@ -819,7 +845,7 @@ function MegaMenu({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       className="
-        absolute left-1/2 top-full
+        absolute left-1/2 top-full 
         -translate-x-1/2
         w-screen
         bg-[#f3f5f9] text-black
@@ -893,3 +919,12 @@ function Accordion({ open, inner = false, children }) {
     </div>
   );
 }
+
+/* 
+       .has-dropdown::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:100%;
+  width:100%;
+  height:12px;   /* gap size এর সমান */

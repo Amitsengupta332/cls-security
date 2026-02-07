@@ -125,7 +125,7 @@ export default function Products({ showAll = false }) {
         link: "#",
       },
     ],
-    []
+    [],
   );
 
   // ✅ Home = first 4, Products page = all
@@ -171,7 +171,10 @@ export default function Products({ showAll = false }) {
                         />
                       </div>
 
-                      <div aria-label="visit product" className="block" tabIndex={0}>
+                      <div
+                        aria-label="visit product"
+                        className="block"
+                        tabIndex={0}>
                         <h3
                           className="
                             mt-[25px] mb-[20px]
@@ -184,8 +187,7 @@ export default function Products({ showAll = false }) {
                             [-webkit-box-orient:vertical]
                             [-webkit-line-clamp:2]
                             h-[55.2px]
-                          "
-                        >
+                          ">
                           {p.title}
                         </h3>
 
@@ -224,7 +226,9 @@ export default function Products({ showAll = false }) {
                     </div>
 
                     {/* ✅ stop card navigation for buttons */}
-                    <div className="mt-auto pt-6" onClick={(e) => e.preventDefault()}>
+                    <div
+                      className="mt-auto pt-6"
+                      onClick={(e) => e.preventDefault()}>
                       {p.type === "normal" ? (
                         <div className="flex items-center justify-between">
                           <Qty />
@@ -253,8 +257,7 @@ export default function Products({ showAll = false }) {
                 bg-white
                 skew-x-[-12deg]
                 overflow-hidden
-              "
-            >
+              ">
               <span className="absolute left-0 top-0 h-full w-0 bg-[#8cbb00] transition-all duration-300 group-hover:w-full" />
               <span className="relative skew-x-[12deg] font-bold uppercase text-[#9c0] group-hover:text-white transition-colors duration-300">
                 View more products
@@ -285,9 +288,8 @@ function Qty() {
 
   return (
     <div
-      className="inline-flex h-[40px] shrink-0 items-stretch border-2 border-[#9c0] bg-[#9c0] skew-x-[-12deg] px-[15px] mr-[20px]"
-      onClick={(e) => e.stopPropagation()}
-    >
+      className="inline-flex h-[40px] shrink-0 items-center border-2 border-[#9c0] bg-[#9c0] skew-x-[-12deg] mr-[20px]"
+      onClick={(e) => e.stopPropagation()}>
       <button
         type="button"
         onClick={(e) => {
@@ -295,19 +297,18 @@ function Qty() {
           e.stopPropagation();
           setQty((q) => Math.max(0, q - 1));
         }}
-        className="flex h-[38px] w-[14px] items-center justify-center bg-transparent text-white"
-      >
+        className="flex h-[40px] w-[40px] items-center justify-center bg-transparent text-white">
         <FaMinus size={10} />
       </button>
 
       <input
         value={qty}
         readOnly
+        className="h-[40px] w-[44px] bg-[#9c0] text-center text-white outline-none"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
         }}
-        className="h-full w-10 bg-[#9c0] text-center text-white outline-none"
       />
 
       <button
@@ -317,8 +318,7 @@ function Qty() {
           e.stopPropagation();
           setQty((q) => q + 1);
         }}
-        className="flex h-[38px] w-[38px] items-center justify-center bg-transparent text-white"
-      >
+        className="flex h-[40px] w-[40px] items-center justify-center bg-transparent text-white">
         <FaPlus size={10} />
       </button>
     </div>
@@ -347,8 +347,7 @@ function CartButton() {
         overflow-hidden
         transition-all duration-200
         ${clicked ? "scale-95 shadow-[0_6px_18px_rgba(156,204,0,0.6)]" : ""}
-      `}
-    >
+      `}>
       {/* ✅ hover only on cart */}
       <span className="absolute left-0 top-0 h-full w-0 bg-[#8cbb00] transition-all duration-300 group-hover:w-full" />
 
@@ -374,8 +373,7 @@ function CartOutlineIcon({ className = "" }) {
       fill="none"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+      strokeLinejoin="round">
       <path d="M6 6h15l-1.5 8.5a2 2 0 0 1-2 1.5H9a2 2 0 0 1-2-1.6L5 3H2" />
       <circle cx="9" cy="20" r="1.5" />
       <circle cx="17" cy="20" r="1.5" />
@@ -387,8 +385,7 @@ function CallForPrice({ phone }) {
   return (
     <div
       className="group relative mt-[35px] flex h-[40px] items-center justify-center border-2 border-[#9c0] text-[#9c0] font-bold uppercase skew-x-[-12deg] overflow-hidden"
-      onClick={(e) => e.stopPropagation()}
-    >
+      onClick={(e) => e.stopPropagation()}>
       <div className="absolute left-0 top-0 h-full w-0 bg-[#8cbb00] transition-all duration-300 group-hover:w-full" />
 
       <div className="absolute inset-0 flex items-center justify-center gap-2 opacity-0 invisible transition-opacity duration-200 group-hover:opacity-100 group-hover:visible skew-x-[12deg] text-white text-[15px] font-extrabold px-3">

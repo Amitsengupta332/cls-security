@@ -316,7 +316,7 @@ export default function ProductsSwiper() {
               className="swiper-button-prev"
               onClick={() => swiperInstance?.slidePrev()}>
               <span className="skew-x-[12deg] flex justify-center items-center">
-                <img src={leftArrow} className="h-4 w-4" />
+                <img src={leftArrow} className="h-10 w-10" />
               </span>
             </div>
 
@@ -325,7 +325,7 @@ export default function ProductsSwiper() {
               className="swiper-button-next"
               onClick={() => swiperInstance?.slideNext()}>
               <span className="skew-x-[12deg] flex justify-center items-center">
-                <img src={rightArrow} className="h-4 w-4" />
+                <img src={rightArrow} className="h-10 w-10" />
               </span>
             </div>
           </Swiper>
@@ -340,64 +340,109 @@ export default function ProductsSwiper() {
 function Qty() {
   const [qty, setQty] = useState(0);
 
-  return (
-    <div
-      className="
-        inline-flex
-        h-[34px] sm:h-[40px]
-        items-center
-        border-2 border-[#9c0]
-        bg-[#9c0]
-        skew-x-[-12deg]
-        overflow-hidden
-      ">
-      {/* Inner wrapper to cancel skew */}
-      <div className="flex items-center h-full skew-x-[12deg]">
-        {/* Minus */}
-        <button
-          onClick={() => setQty((q) => Math.max(0, q - 1))}
-          className="
-            h-[30px] w-[30px]
-            sm:h-[36px] sm:w-[36px]
-            flex items-center justify-center
-            text-white
-            hover:bg-[#8cbb00]
-            transition
-          ">
-          <FaMinus size={10} />
-        </button>
+return (
+  <div
+    className="inline-flex h-[40px] shrink-0 items-center border-2 border-[#9c0] bg-[#9c0] skew-x-[-12deg] mr-[20px]"
+    onClick={(e) => e.stopPropagation()}
+  >
+    <button
+      type="button"
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setQty((q) => Math.max(0, q - 1));
+      }}
+      className="flex h-[40px] w-[40px] items-center justify-center bg-transparent text-white"
+    >
+      <FaMinus size={10} />
+    </button>
 
-        {/* Input */}
-        <input
-          value={qty}
-          readOnly
-          className="
-            w-8
-            bg-transparent
-            text-center
-            text-white
-            outline-none
-            font-medium
-          "
-        />
+    <input
+      value={qty}
+      readOnly
+      className="h-[40px] w-[44px] bg-[#9c0] text-center text-white outline-none"
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
+    />
 
-        {/* Plus */}
-        <button
-          onClick={() => setQty((q) => q + 1)}
-          className="
-            h-[30px] w-[30px]
-            sm:h-[36px] sm:w-[36px]
-            flex items-center justify-center
-            text-white
-            hover:bg-[#8cbb00]
-            transition
-          ">
-          <FaPlus size={10} />
-        </button>
-      </div>
-    </div>
-  );
+    <button
+      type="button"
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setQty((q) => q + 1);
+      }}
+      className="flex h-[40px] w-[40px] items-center justify-center bg-transparent text-white"
+    >
+      <FaPlus size={10} />
+    </button>
+  </div>
+);
+
 }
+// function Qty() {
+//   const [qty, setQty] = useState(0);
+
+//   return (
+//     <div
+//       className="
+//         inline-flex
+//         h-[34px] sm:h-[40px]
+//         items-center
+//         border-2 border-[#9c0]
+//         bg-[#9c0]
+//         skew-x-[-12deg]
+//         overflow-hidden
+//       ">
+//       {/* Inner wrapper to cancel skew */}
+//       <div className="flex items-center h-full skew-x-[12deg]">
+//         {/* Minus */}
+//         <button
+//           onClick={() => setQty((q) => Math.max(0, q - 1))}
+//           className="
+//             h-[30px] w-[30px]
+//             sm:h-[36px] sm:w-[36px]
+//             flex items-center justify-center
+//             text-white
+//             hover:bg-[#8cbb00]
+//             transition
+//           ">
+//           <FaMinus size={10} />
+//         </button>
+
+//         {/* Input */}
+//         <input
+//           value={qty}
+//           readOnly
+//           className="
+//             w-8
+//             bg-transparent
+//             text-center
+//             text-white
+//             outline-none
+//             font-medium
+//           "
+//         />
+
+//         {/* Plus */}
+//         <button
+//           onClick={() => setQty((q) => q + 1)}
+//           className="
+//             h-[30px] w-[30px]
+//             sm:h-[36px] sm:w-[36px]
+//             flex items-center justify-center
+//             text-white
+//             hover:bg-[#8cbb00]
+//             transition
+//           ">
+//           <FaPlus size={10} />
+//         </button>
+//       </div>
+//     </div>
+//   );
+// }
 
 function CartButton() {
   return (
