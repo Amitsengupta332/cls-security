@@ -234,3 +234,8 @@
   mask-image: none !important;
   -webkit-mask-image: none !important;
 }
+
+.productSwiper .swiper-button-next,
+.productSwiper .swiper-button-prev {
+  color: #000;
+}
