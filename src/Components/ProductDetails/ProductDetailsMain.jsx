@@ -257,7 +257,7 @@ export default function ProductDetailsMain() {
               </div>
 
               {/* description */}
-              <div className="short-description mt-3 text-[14px] text-black">
+              <div className="short-description text-gray-500 mt-3 text-[14px]  ">
                 <p>{product.description}</p>
               </div>
 
