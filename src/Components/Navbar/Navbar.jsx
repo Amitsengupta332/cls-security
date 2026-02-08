@@ -170,98 +170,6 @@ export default function Navbar() {
             {/* <ul className="hidden md:flex flex-wrap items-center gap-x-[26px] gap-y-2 text-[13px] font-medium tracking-[.01em]"> */}
             <ul className="hidden md:flex flex-wrap items-center gap-x-[26px] gap-y-2 text-[13px] font-medium tracking-[.01em]">
               {/* Engineering */}
-              {/* <li
-                className="relative "
-                onMouseEnter={() => openMenuDelayed("eng")}
-                onMouseLeave={closeMenuDelayed}>
-                <button className="menu-link">Engineering</button>
-                <span className="menu-caret">▾</span>
-
-                {activeMenu === "eng" && (
-                  <div className="dropdown-root dropdown-anim">
-                    <button className="mob-item w-full text-left">
-                      Page 1
-                    </button>
- 
-                    <div
-                      className="relative pr-2"
-                      onMouseEnter={() => setEngLevel1("page2")}>
-                
-                      <button
-                        onClick={() => toggleMob("engPage2")}
-                        className="mob-item w-full flex items-center justify-between text-left">
-                        <span>Page 2</span>
-                        <span
-                          className={`transition-transform ${
-                            mob.engPage2 ? "rotate-180" : ""
-                          }`}>
-                          ▾
-                        </span>
-                      </button>
-
-              
-                      {engLevel1 === "page2" && (
-                        <div
-                          className="dropdown-sub dropdown-anim left-full top-0 ml-0 pl-2"
-                          onMouseEnter={() => setEngLevel1("page2")}
-                          onMouseLeave={() => {
-                            setEngLevel1(null);
-                            setEngLevel2(null);
-                          }}>
-                          <a href="#" className="drop-item">
-                            Page 2.1
-                          </a>
-                          <a href="#" className="drop-item">
-                            Page 2.2
-                          </a>
-
-                       
-                          <div
-                            className="relative pr-2"
-                            onMouseEnter={() => setEngLevel2("page23")}>
-                            <a href="#" className="drop-item drop-flex">
-                              <span>Page 2.3</span>
-                              <FiChevronRight />
-                            </a>
-
-                       
-                            {engLevel2 === "page23" && (
-                              <div
-                                className="dropdown-sub dropdown-anim left-full top-0 ml-0 pl-2"
-                                onMouseEnter={() => setEngLevel2("page23")}
-                                onMouseLeave={() => setEngLevel2(null)}>
-                                {[
-                                  "Page 2.1",
-                                  "Page 2.2",
-                                  "Page 2.3",
-                                  "Page 2.4",
-                                ].map((x) => (
-                                  <a key={x} href="#" className="drop-item">
-                                    {x}
-                                  </a>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-
-                          <a href="#" className="drop-item">
-                            Page 2.4
-                          </a>
-                        </div>
-                      )}
-                    </div>
-
-                    <a href="#" className="drop-item">
-                      Page 3
-                    </a>
-                    <a href="#" className="drop-item">
-                      Page 4
-                    </a>
-                  </div>
-                )}
-              </li> */}
-
-              {/* Engineering */}
               <li
                 className="relative has-dropdown"
                 onMouseEnter={() => openMenuDelayed("eng")}
@@ -860,21 +768,33 @@ function MegaMenu({
       }}>
       <div className="mx-auto max-w-[1140px] px-6 py-8">
         <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-3 space-y-3 text-sm">
+          {/* <div className="col-span-3 space-y-3 text-sm">
             {leftLinks.map((i) => (
               <a key={i} href="#" className="block hover:underline">
                 {i}
               </a>
             ))}
-          </div>
+          </div> */}
 
-          <div className="col-span-3 space-y-3 text-sm">
+          {/* <div className="col-span-3 space-y-3 text-sm">
             {middleLinks.map((i) => (
               <a key={i} href="#" className="block hover:underline">
                 {i}
               </a>
             ))}
-          </div>
+          </div> */}
+
+          {leftLinks.map((i, idx) => (
+            <a key={`${i}-${idx}`} href="#" className="block hover:underline">
+              {i}
+            </a>
+          ))}
+
+          {middleLinks.map((i, idx) => (
+            <a key={`${i}-${idx}`} href="#" className="block hover:underline">
+              {i}
+            </a>
+          ))}
 
           <div className="col-span-6 bg-[#edf0f7] skew-x-[-15deg] px-8 py-6">
             <div className="skew-x-[12deg]">

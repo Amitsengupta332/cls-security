@@ -135,7 +135,7 @@ export default function ProductsGrid({ limit }) {
                   />
                 </a> */}
 
-                  <a href={p.link} className="group block" tabIndex={0}>
+                  {/* <a href={p.link} className="group block" tabIndex={0}>
                     <img
                       src={p.image}
                       alt={p.title}
@@ -148,10 +148,10 @@ export default function ProductsGrid({ limit }) {
                       group-hover:scale-[0.8]
     "
                     />
-                  </a>
+                  </a> */}
 
                   {/* Title + Rating + SKU */}
-                  <a
+                  {/* <a
                     href={p.link}
                     aria-label="visit product"
                     className="block"
@@ -178,7 +178,41 @@ export default function ProductsGrid({ limit }) {
                         <span>{p.sku}</span>
                       </div>
                     </div>
-                  </a>
+                  </a> */}
+
+                  <div className="group block" tabIndex={0}>
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      className="
+      mx-auto
+      h-[200px] w-[200px]
+      max-h-[240px] max-w-[260px]
+      object-contain
+      transition-transform duration-1000 ease-in-out
+      group-hover:scale-[0.8]
+    "
+                    />
+                  </div>
+
+                  <div
+                    aria-label="visit product"
+                    className="block"
+                    tabIndex={0}>
+                    <h3
+                      className="mt-[25px] mb-[20px] text-left text-[16px] font-[500] leading-[28px] text-[rgba(80,95,107)]
+    overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] h-[55.2px]
+  ">
+                      {p.title}
+                    </h3>
+
+                    <div className="mb-1 flex items-center justify-between">
+                      <RatingStars value={5} />
+                      <div className="text-[#868686] text-[14px]">
+                        <span>{p.sku}</span>
+                      </div>
+                    </div>
+                  </div>
 
                   {/* Price */}
                   {p.type === "normal" ? (

@@ -142,61 +142,12 @@ export default function ProductsSwiper() {
 
       
           ">
-          {/* 
-                  [&_.swiper-button-next:after]:hidden
-            [&_.swiper-button-prev:after]:hidden
-             */}
-          {/* <Swiper
-            modules={[Navigation, Pagination]}
-            navigation={{
-              // nextEl: ".swiper-button-next",
-              // prevEl: ".swiper-button-prev",
-            }}
-            pagination={{ clickable: true }}
-            spaceBetween={20}
-            slidesPerView={1}
-            breakpoints={{
-              480: { slidesPerView: 1.2 },
-              640: { slidesPerView: 2 },
-              768: { slidesPerView: 2.5 },
-              1024: { slidesPerView: 3 },
-              1280: { slidesPerView: 4 },
-            }}
-            className="
-              pb-24
-
-              [&_.swiper-wrapper]:items-stretch
-              [&_.swiper-slide]:h-auto
-              [&_.swiper-slide]:flex
-
-              [&_.swiper-pagination]:relative
-              [&_.swiper-pagination]:mt-[40px]
-              [&_.swiper-pagination]:bottom-[-20px]
-
-              [&_.swiper-pagination-bullet]:h-[12px]
-              [&_.swiper-pagination-bullet]:w-[12px]
-              [&_.swiper-pagination-bullet]:bg-[#444]
-              [&_.swiper-pagination-bullet]:opacity-50
-              [&_.swiper-pagination-bullet-active]:opacity-100
-            "
-
-
-              className="
-    pb-16
-
-    [&_.swiper-pagination]:relative
-    [&_.swiper-pagination]:mt-6
-    [&_.swiper-pagination]:bottom-[-10px]
-  "
-          > */}
-
           <Swiper
             modules={[Navigation, Pagination]}
             onSwiper={setSwiperInstance}
             navigation={false} // disable default first
             pagination={{ clickable: true }}
-          spaceBetween={32} 
-          
+            spaceBetween={32}
             slidesPerView={4}
             breakpoints={{
               480: { slidesPerView: 1.2 },
@@ -217,7 +168,7 @@ export default function ProductsSwiper() {
             [&_.swiper-pagination-bullet]:w-[12px]
           [&_.swiper-pagination-bullet]:bg-[#444]">
             {products.map((p, idx) => (
-              <SwiperSlide key={idx}  >
+              <SwiperSlide key={idx}>
                 <Link to={`/products/${p.sku}`} className="block h-full">
                   {/* <div className="w-full  bg-white px-3 transition hover:shadow-lg"> */}
                   <div className="w-[310px] bg-white px-3 transition hover:shadow-lg">
@@ -230,7 +181,7 @@ export default function ProductsSwiper() {
                       />
 
                       {/* Image */}
-                      <a href={p.link} className="block h-[220px] group">
+                      {/* <a href={p.link} className="block h-[220px] group">
                         <img
                           src={p.image}
                           alt={p.title}
@@ -244,7 +195,23 @@ export default function ProductsSwiper() {
                           group-hover:scale-90
                         "
                         />
-                      </a>
+                      </a> */}
+
+                      <div className="block h-[220px] group">
+                        <img
+                          src={p.image}
+                          alt={p.title}
+                          className="
+      mx-auto
+      h-[140px] w-[140px]
+      sm:h-[180px] sm:w-[180px]
+      lg:h-[200px] lg:w-[200px]
+      object-contain
+      transition
+      group-hover:scale-90
+    "
+                        />
+                      </div>
 
                       {/* Title */}
                       <h3 className="mt-4 mb-3 text-sm sm:text-base leading-6 line-clamp-2 text-[#505f6b] min-h-[48px]">
@@ -342,47 +309,48 @@ export default function ProductsSwiper() {
 function Qty() {
   const [qty, setQty] = useState(0);
 
-return (
-  <div
-    className="inline-flex h-[40px] shrink-0 items-center border-2 border-[#9c0] bg-[#9c0] skew-x-[-12deg] mr-[20px]"
-    onClick={(e) => e.stopPropagation()}
-  >
-    <button
-      type="button"
-      onClick={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setQty((q) => Math.max(0, q - 1));
-      }}
-      className="flex h-[40px] w-[40px] items-center justify-center bg-transparent text-white"
-    >
-      <FaMinus size={10} />
-    </button>
+  return (
+    <div
+      className="inline-flex h-[40px] shrink-0 items-center border-2 border-[#9c0] bg-[#9c0] skew-x-[-12deg] mr-[20px]"
+      onClick={(e) => e.stopPropagation()}>
+      <button
+        type="button"
+        // onClick={(e) => {
+        //   e.preventDefault();
+        //   e.stopPropagation();
+        //   setQty((q) => Math.max(0, q - 1));
+        // }}
 
-    <input
-      value={qty}
-      readOnly
-      className="h-[40px] w-[44px] bg-[#9c0] text-center text-white outline-none"
-      onClick={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-      }}
-    />
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+        className="flex h-[40px] w-[40px] items-center justify-center bg-transparent text-white">
+        <FaMinus size={10} />
+      </button>
 
-    <button
-      type="button"
-      onClick={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setQty((q) => q + 1);
-      }}
-      className="flex h-[40px] w-[40px] items-center justify-center bg-transparent text-white"
-    >
-      <FaPlus size={10} />
-    </button>
-  </div>
-);
+      <input
+        value={qty}
+        readOnly
+        className="h-[40px] w-[44px] bg-[#9c0] text-center text-white outline-none"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      />
 
+      <button
+        type="button"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setQty((q) => q + 1);
+        }}
+        className="flex h-[40px] w-[40px] items-center justify-center bg-transparent text-white">
+        <FaPlus size={10} />
+      </button>
+    </div>
+  );
 }
 // function Qty() {
 //   const [qty, setQty] = useState(0);
@@ -446,17 +414,37 @@ return (
 //   );
 // }
 
+// function CartButton() {
+//   return (
+//     <a
+//       href="#"
+//       className="group relative h-[40px] w-full sm:w-[110px] flex items-center justify-center border-2 border-[#9c0] bg-white skew-x-[-12deg] overflow-hidden">
+//       <span className="absolute inset-0 bg-[#8cbb00] w-0 group-hover:w-full transition-all" />
+
+//       <span className="relative skew-x-[12deg] text-[#9c0] group-hover:text-white">
+//         <FaShoppingCart />
+//       </span>
+//     </a>
+//   );
+// }
+
 function CartButton() {
   return (
-    <a
-      href="#"
+    <button
+      type="button"
+      aria-label="Add to cart"
+      onClick={(e) => {
+        e.preventDefault(); // stop Link navigation
+        e.stopPropagation(); // stop bubbling to Link
+        // add-to-cart logic here
+      }}
       className="group relative h-[40px] w-full sm:w-[110px] flex items-center justify-center border-2 border-[#9c0] bg-white skew-x-[-12deg] overflow-hidden">
       <span className="absolute inset-0 bg-[#8cbb00] w-0 group-hover:w-full transition-all" />
 
       <span className="relative skew-x-[12deg] text-[#9c0] group-hover:text-white">
         <FaShoppingCart />
       </span>
-    </a>
+    </button>
   );
 }
 

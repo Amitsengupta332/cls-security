@@ -47,8 +47,7 @@ function AccordionItem({ title, children, defaultOpen = false }) {
           e.stopPropagation();
           setOpen((v) => !v);
         }}
-        className="accordion-button w-full bg-white px-[10px] py-[10px] text-left flex items-center justify-between shadow-none"
-      >
+        className="accordion-button w-full bg-white px-[10px] py-[10px] text-left flex items-center justify-between shadow-none">
         <span className="block text-[14px] font-[500] text-[#111111]">
           {title}
         </span>
@@ -62,8 +61,7 @@ function AccordionItem({ title, children, defaultOpen = false }) {
       <div
         className={`transition-[max-height,opacity] duration-300 ease-in-out ${
           open ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
+        }`}>
         <div className="card-body pt-[6px] pb-0 px-0">{children}</div>
       </div>
     </div>
@@ -128,8 +126,7 @@ function PriceRangeSlider({ values, setValues }) {
               onMouseDown={props.onMouseDown}
               onTouchStart={props.onTouchStart}
               className="slider slider-horizontal w-full h-[20px] flex"
-              style={{ width: "100%" }}
-            >
+              style={{ width: "100%" }}>
               <div
                 ref={props.ref}
                 className="slider-track relative w-full h-[2px] self-center"
@@ -140,36 +137,64 @@ function PriceRangeSlider({ values, setValues }) {
                     min: MIN,
                     max: MAX,
                   }),
-                }}
-              >
+                }}>
                 {children}
               </div>
             </div>
           )}
-          renderThumb={({ props, index, value }) => (
-            <div
-              {...props}
-              className="slider-handle outline-none"
-              style={{
-                ...props.style,
-                height: 16,
-                width: 16,
-                borderRadius: 9999,
-                background: index === 0 ? "red" : "#131313", // left handle red like your CSS nth-child(odd)
-                boxShadow: "none",
-                border: "none",
-              }}
-            >
-              {/* tooltip always visible */}
-              <div className="absolute -top-[28px] left-1/2 -translate-x-1/2">
-                <div className="tooltip in bottom opacity-100">
-                  <div className="tooltip-inner text-[12px] text-black px-[8px] py-[3px] rounded-[4px] bg-transparent">
-                    {value}
+          // renderThumb={({ props, index, value }) => (
+          //   <div
+          //     {...props}
+          //     className="slider-handle outline-none"
+          //     style={{
+          //       ...props.style,
+          //       height: 16,
+          //       width: 16,
+          //       borderRadius: 9999,
+          //       background: index === 0 ? "red" : "#131313", // left handle red like your CSS nth-child(odd)
+          //       boxShadow: "none",
+          //       border: "none",
+          //     }}
+          //   >
+          //     {/* tooltip always visible */}
+          //     <div className="absolute -top-[28px] left-1/2 -translate-x-1/2">
+          //       <div className="tooltip in bottom opacity-100">
+          //         <div className="tooltip-inner text-[12px] text-black px-[8px] py-[3px] rounded-[4px] bg-transparent">
+          //           {value}
+          //         </div>
+          //       </div>
+          //     </div>
+          //   </div>
+          // )}
+
+          renderThumb={({ props, index, value }) => {
+            const { key, ...rest } = props;
+
+            return (
+              <div
+                key={key} // ✅ key আলাদা করে দিলাম
+                {...rest} // ✅ বাকিগুলো spread
+                className="slider-handle outline-none"
+                style={{
+                  ...rest.style,
+                  height: 16,
+                  width: 16,
+                  borderRadius: 9999,
+                  background: index === 0 ? "red" : "#131313",
+                  boxShadow: "none",
+                  border: "none",
+                }}>
+                {/* tooltip */}
+                <div className="absolute -top-[28px] left-1/2 -translate-x-1/2">
+                  <div className="tooltip in bottom opacity-100">
+                    <div className="tooltip-inner text-[12px] text-black px-[8px] py-[3px] rounded-[4px] bg-transparent">
+                      {value}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            );
+          }}
         />
 
         {/* Bottom min/max like screenshot style */}
@@ -186,17 +211,17 @@ export default function ProductsSidebar() {
   // Demo content like your PHP
   const categoryItems = useMemo(
     () => Array.from({ length: 6 }).map(() => "Brandmelder"),
-    []
+    [],
   );
 
   const sizes = useMemo(
     () => ["5MP 2K", "6MP 4K", "7MP 4K", "8MP 4K", "9MP 4K"],
-    []
+    [],
   );
 
   const brands = useMemo(
     () => ["Dahua", "Hikvision", "Uniarch", "Uniview", "Uniview", "Hikvision"],
-    []
+    [],
   );
 
   // Slider values (like PHP data-slider-value="4999,9999")
@@ -224,7 +249,7 @@ export default function ProductsSidebar() {
     const snap = (v) => Math.round(v / STEP) * STEP;
 
     const newRange = [snap(clamp(nextMin)), snap(clamp(nextMax))];
-    
+
     // Defer state update using a microtask to avoid cascading renders
     queueMicrotask(() => {
       setRange(newRange);
@@ -237,10 +262,10 @@ export default function ProductsSidebar() {
 
   // Sizes/Brands checkbox state (optional)
   const [sizeChecked, setSizeChecked] = useState(() =>
-    Object.fromEntries(sizes.map((_, i) => [`size-${i}`, false]))
+    Object.fromEntries(sizes.map((_, i) => [`size-${i}`, false])),
   );
   const [brandChecked, setBrandChecked] = useState(() =>
-    Object.fromEntries(brands.map((_, i) => [`brand-${i}`, false]))
+    Object.fromEntries(brands.map((_, i) => [`brand-${i}`, false])),
   );
 
   return (

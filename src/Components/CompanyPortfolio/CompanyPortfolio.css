@@ -1,0 +1,101 @@
+.companyContactText,
+.companyGroupPhoto {
+  padding: 0;
+}
+
+.groupContactnum,
+.group-card-item {
+  background: #f3f5f9;
+  position: relative;
+  z-index: 999;
+  margin-top: 26px;
+  margin-bottom: 26px;
+
+  border-radius: 12px;   /* ✅ FIX */
+  overflow: hidden;      /* ✅ FIX (red gap remove) */
+}
+
+/* .group-card-item img {
+  height: 222px;
+}
+
+.groupContactnum {
+  padding-left: 50px;
+  padding-top: 28px;
+} */
+
+.groupContactnum {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.group-card-item {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.groupContactnum a {
+  display: flex;
+  padding: 10px 20px;
+  color: #000;
+  margin: 10px 0;
+  margin-left: -20px;
+  font-size: 26px;
+  align-items: center;
+  border-radius: 3px;
+}
+
+/* DRAW EFFECT */
+
+/* DRAW EFFECT - around the full wrapper */
+.draw {
+  position: absolute;
+  inset: -18px;              /* ✅ extra space so bottom border shows */
+  transform: skewX(-12deg);
+  z-index: 1;
+  pointer-events: none;
+
+  border-radius: 14px;
+}
+
+/* keep f-left alignment (optional) */
+.draw_f-left {
+  left: 20px;                /* tweak if needed */
+  right: -20px;              /* slight extension */
+}
+
+/* PSEUDO BORDER */
+.draw:before,
+.draw:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  border-radius: 14px;
+}
+
+.draw_color-left.active:before {
+  border-top-color: #8c66de;
+  border-left-color: #8c66de;
+  transition: height 0.45s ease-out, width 0.45s ease-out 0.45s;
+}
+
+.draw_color-left.active:after {
+  border-bottom-color: #8c66de;
+  border-right-color: #8c66de;
+  transition: height 0.45s ease-out 0.45s, width 0.45s ease-out;
+}
+
+
+.groupContactnum,
+.group-card-item {
+  height: 100%;
+}
+
+/* .group-card-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
