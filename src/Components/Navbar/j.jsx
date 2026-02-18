@@ -14,7 +14,7 @@ import {
 import { HiBars3 } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar1() {
   const headerRef = useRef(null);
 
   const [mobileOpen, setMobileOpen] = useState(false);

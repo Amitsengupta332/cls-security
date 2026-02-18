@@ -80,6 +80,61 @@ export default function Hero() {
 
           {/* Buttons */}
           <ul className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            {/* <li>
+              <a
+                href="#services"
+                className="
+                  relative inline-flex items-center justify-center
+                  h-[52px] px-[40px]
+                  border-2 border-[#9c0]
+                  text-[#9c0]
+                  uppercase text-[14px] leading-[22px] tracking-[.03em]
+                  skew-x-[-12deg]
+                  transition-all duration-300
+                  overflow-hidden
+                  hover:text-white hover:border-[#8cbb00]
+                  before:content-['']
+                  before:absolute before:left-0 before:top-0
+                  before:h-full before:w-0
+                  before:bg-[#8cbb00]
+                  before:transition-all before:duration-300
+                  hover:before:w-full
+                "
+              >
+                <span className="relative z-10 skew-x-[12deg] flex items-center gap-[10px]">
+                  Recent projects
+                </span>
+              </a>
+            </li> */}
+
+            <li>
+              <a
+                href="#team"
+                className="
+                  relative inline-flex items-center justify-center
+                  h-[52px] px-[40px]
+                  border-2 border-[#9c0]
+                  bg-[#9c0] text-white
+                  uppercase text-[14px] leading-[22px] tracking-[.03em]
+                  skew-x-[-12deg]
+                  transition-all duration-300
+                  overflow-hidden
+                  hover:border-[#8cbb00]
+                  before:content-['']
+                  before:absolute before:left-0 before:top-0
+                  before:h-full before:w-0
+                  before:bg-[#8cbb00]
+                  before:transition-all before:duration-300
+                  hover:before:w-full
+                "
+              >
+                <span className="relative z-10 skew-x-[12deg] flex items-center gap-[10px]">
+                  Get free estimation
+                </span>
+              </a>
+            </li>
+          </ul>
+          {/* <ul className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <li>
               <a
                 href="#services"
@@ -133,7 +188,7 @@ export default function Hero() {
                 </span>
               </a>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </div>
     </section>
