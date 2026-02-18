@@ -3,6 +3,7 @@ import Home from "../pages/Home/Home";
 import MainLayout from "../layouts/MainLayout";
 import AllProducts from "../pages/AllProducts/AllProducts";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
+import Estimation from "../pages/Estimation/Estimation";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
         path: "/products/:sku",
         element: <ProductDetails />,
       },
+      { path: "/estimation", element: <Estimation /> },
     ],
   },
 ]);
