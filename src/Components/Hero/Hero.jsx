@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
- 
+
 import { ReactTyped } from "react-typed";
 import Modal from "../Modal";
 
@@ -8,14 +8,23 @@ export default function Hero() {
   const [openAppointment, setOpenAppointment] = useState(false);
 
   return (
-    <section id="hero" className="relative overflow-hidden flex items-center justify-center h-[calc(100vh-100px)] max-[1533px]:h-screen">
+    <section
+      id="hero"
+      className="relative overflow-hidden flex items-center justify-center h-[calc(100vh-100px)] max-[1533px]:h-screen">
       {/* Background Video */}
-      <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover">
         <source src="/video/home.mp4" type="video/mp4" />
       </video>
 
-      <div className="absolute inset-0 z-[2] pointer-events-none opacity-[0.35]
-        bg-[linear-gradient(.49deg,rgba(242,242,242,0.65)_0%,rgba(17,22,31,0)_100%)]" />
+      <div
+        className="absolute inset-0 z-[2] pointer-events-none opacity-[0.35]
+        bg-[linear-gradient(.49deg,rgba(242,242,242,0.65)_0%,rgba(17,22,31,0)_100%)]"
+      />
 
       <div className="relative z-[3] w-full">
         <div className="mx-auto px-6 text-center max-w-7xl min-[1300px]:max-w-[1400px]">
@@ -55,8 +64,7 @@ export default function Hero() {
                   text-[#9c0]
                   uppercase text-[14px] leading-[22px] tracking-[.03em]
                   skew-x-[-12deg]
-                "
-              >
+                ">
                 <span className="relative z-10 skew-x-[12deg] flex items-center gap-[10px]">
                   Appointment
                 </span>
@@ -74,8 +82,7 @@ export default function Hero() {
                   bg-[#9c0] text-white
                   uppercase text-[14px] leading-[22px] tracking-[.03em]
                   skew-x-[-12deg]
-                "
-              >
+                ">
                 <span className="relative z-10 skew-x-[12deg] flex items-center gap-[10px]">
                   Get free estimation
                 </span>
@@ -89,8 +96,7 @@ export default function Hero() {
       <Modal
         open={openAppointment}
         onClose={() => setOpenAppointment(false)}
-        title="Book an Appointment"
-      >
+        title="Book an Appointment">
         <iframe
           title="Appointment Scheduling"
           src="https://YOUR-BOOKING-LINK-HERE"

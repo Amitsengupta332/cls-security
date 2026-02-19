@@ -4,7 +4,7 @@ export default function Estimation() {
   const [budget, setBudget] = useState("$25K - $50K");
 
   return (
-    <section className="min-h-screen bg-[#f3f3f3] py-20 px-6">
+    <section className="min-h-screen bg-[#f3f3f3] pt-32 px-6">
       <div className="max-w-4xl mx-auto text-center">
         {/* Header */}
         <h1 className="text-5xl font-semibold text-gray-800">

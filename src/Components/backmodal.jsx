@@ -103,6 +103,35 @@ export default function AppointmentPopupLike({ open, onClose }) {
           {/* RIGHT */}
           <div className="w-[56%] px-10 py-10">
             <div className="text-[13px] text-gray-700 space-y-5">
+
+                  {/* duration */}
+              <div>
+                <div className="font-semibold text-gray-800">
+                  Meeting Type
+                </div>
+                <div className="mt-2 inline-flex border border-gray-300 rounded overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() => setDuration("30")}
+                    className={`px-6 py-2 text-[12px] ${
+                      duration === "30"
+                        ? "bg-gray-200 text-gray-900"
+                        : "bg-white text-gray-600"
+                    }`}>
+                    Online
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDuration("45")}
+                    className={`px-6 py-2 text-[12px] border-l border-gray-300 ${
+                      duration === "45"
+                        ? "bg-gray-200 text-gray-900"
+                        : "bg-white text-gray-600"
+                    }`}>
+                    Offline
+                  </button>
+                </div>
+              </div>
               {/* location */}
               <div>
                 <div className="font-semibold text-gray-800">
@@ -115,7 +144,7 @@ export default function AppointmentPopupLike({ open, onClose }) {
               </div>
 
               {/* duration */}
-              <div>
+              {/* <div>
                 <div className="font-semibold text-gray-800">
                   How long do you need?
                 </div>
@@ -141,7 +170,7 @@ export default function AppointmentPopupLike({ open, onClose }) {
                     45 mins
                   </button>
                 </div>
-              </div>
+              </div> */}
 
               {/* times */}
               <div>

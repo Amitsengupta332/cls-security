@@ -99,7 +99,7 @@ export default function Navbar1() {
     <header
       id="header"
       ref={headerRef}
-      className="fixed top-0 left-0 w-full z-50 text-white transition-all duration-300 bg-[rgba(27,26,26,0.65)]">
+      className="fixed top-0 left-0 w-full z-50 text-white transition-all duration-300">
       {/* ================= TOPBAR (RESPONSIVE) ================= */}
       {/* <div className="hidden md:block">
         <div className="max-w-7xl mx-auto px-6">
